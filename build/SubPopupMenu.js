@@ -12,9 +12,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _index = require('./menuAnimate/index');
+var _beeAnimate = require('bee-animate');
 
-var _index2 = _interopRequireDefault(_index);
+var _beeAnimate2 = _interopRequireDefault(_beeAnimate);
 
 var _classnames = require('classnames');
 
@@ -347,7 +347,7 @@ var SubPopupMenu = function (_Component) {
       }
     }
     return _react2["default"].createElement(
-      _index2["default"],
+      _beeAnimate2["default"],
       _extends({}, animProps, {
         showProp: 'visible',
         component: '',

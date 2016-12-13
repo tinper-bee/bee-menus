@@ -1,7 +1,7 @@
 import React, { PropTypes,Component } from 'react';
 //import MenuMixin from './MenuMixin';
 //import Animate from 'rc-animate';
-import Animate from './menuAnimate/index';
+import Animate from 'bee-animate';
 import classnames from 'classnames';
 import { createChainedFunction, KeyCode } from 'tinper-bee-core';
 import { getKeyFromChildrenIndex, loopMenuItem } from './util';
