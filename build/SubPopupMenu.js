@@ -12,9 +12,15 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+<<<<<<< HEAD
 var _beeAnimate = require('bee-animate');
 
 var _beeAnimate2 = _interopRequireDefault(_beeAnimate);
+=======
+var _index = require('./menuAnimate/index');
+
+var _index2 = _interopRequireDefault(_index);
+>>>>>>> dd366c62bbe870018de3f3672aafaaf80b2f12a7
 
 var _classnames = require('classnames');
 
@@ -347,7 +353,11 @@ var SubPopupMenu = function (_Component) {
       }
     }
     return _react2["default"].createElement(
+<<<<<<< HEAD
       _beeAnimate2["default"],
+=======
+      _index2["default"],
+>>>>>>> dd366c62bbe870018de3f3672aafaaf80b2f12a7
       _extends({}, animProps, {
         showProp: 'visible',
         component: '',
