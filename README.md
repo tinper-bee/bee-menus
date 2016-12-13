@@ -1,6 +1,6 @@
 # bee-menus
 [![npm version](https://img.shields.io/npm/v/bee-menus.svg)](https://www.npmjs.com/package/bee-menus)
-[![Build Status](https://img.shields.io/travis/tinper-bee/generator-tinper-bee/master.svg)](https://travis-ci.org/tinper-bee/bee-menus)
+[![Build Status](https://img.shields.io/travis/tinper-bee/bee-menus/master.svg)](https://travis-ci.org/tinper-bee/bee-menus)
 [![devDependency Status](https://img.shields.io/david/dev/tinper-bee/bee-menus.svg)](https://david-dm.org/tinper-bee/bee-menus#info=devDependencies)
 
 
