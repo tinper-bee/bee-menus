@@ -12,15 +12,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-<<<<<<< HEAD
 var _beeAnimate = require('bee-animate');
 
 var _beeAnimate2 = _interopRequireDefault(_beeAnimate);
-=======
-var _index = require('./menuAnimate/index');
-
-var _index2 = _interopRequireDefault(_index);
->>>>>>> dd366c62bbe870018de3f3672aafaaf80b2f12a7
 
 var _classnames = require('classnames');
 
@@ -45,9 +39,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
-//import MenuMixin from './MenuMixin';
-//import Animate from 'rc-animate';
-
 
 function allDisabled(arr) {
   if (!arr.length) {
@@ -353,11 +344,7 @@ var SubPopupMenu = function (_Component) {
       }
     }
     return _react2["default"].createElement(
-<<<<<<< HEAD
       _beeAnimate2["default"],
-=======
-      _index2["default"],
->>>>>>> dd366c62bbe870018de3f3672aafaaf80b2f12a7
       _extends({}, animProps, {
         showProp: 'visible',
         component: '',
