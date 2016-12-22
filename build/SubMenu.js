@@ -119,10 +119,10 @@ var SubMenu = function (_Component) {
   }
 
   SubMenu.prototype.componentWillUnmount = function componentWillUnmount() {
-    var _props = this.props;
-    var onDestroy = _props.onDestroy;
-    var eventKey = _props.eventKey;
-    var parentMenu = _props.parentMenu;
+    var _props = this.props,
+        onDestroy = _props.onDestroy,
+        eventKey = _props.eventKey,
+        parentMenu = _props.parentMenu;
 
     this.mounted = true;
     if (onDestroy) {
@@ -199,8 +199,8 @@ var SubMenu = function (_Component) {
 
   SubMenu.prototype.onTitleMouseEnter = function onTitleMouseEnter(domEvent) {
     var props = this.props;
-    var parentMenu = props.parentMenu;
-    var key = props.eventKey;
+    var parentMenu = props.parentMenu,
+        key = props.eventKey;
 
     var item = this;
     this.clearSubMenuTitleLeaveTimer(parentMenu.subMenuInstance !== item);
@@ -236,8 +236,8 @@ var SubMenu = function (_Component) {
     var _this2 = this;
 
     var props = this.props;
-    var parentMenu = props.parentMenu;
-    var eventKey = props.eventKey;
+    var parentMenu = props.parentMenu,
+        eventKey = props.eventKey;
 
     parentMenu.subMenuInstance = this;
     parentMenu.subMenuTitleLeaveFn = function () {
@@ -265,8 +265,8 @@ var SubMenu = function (_Component) {
     var _this3 = this;
 
     var props = this.props;
-    var parentMenu = props.parentMenu;
-    var eventKey = props.eventKey;
+    var parentMenu = props.parentMenu,
+        eventKey = props.eventKey;
 
     parentMenu.subMenuInstance = this;
     parentMenu.subMenuLeaveFn = function () {

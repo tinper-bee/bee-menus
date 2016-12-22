@@ -89,7 +89,7 @@ const defaultProps = {
     defaultSelectedKeys: [],
     defaultOpenKeys: [],
 
-    prefixCls: 'u-menu',
+    clsPrefix: 'u-menu',
     className: '',
     mode: 'vertical',
     level: 1,
@@ -291,7 +291,7 @@ class Menu extends Component{
     let transitionName = props.openTransitionName;
     const animationName = props.openAnimation;
     if (!transitionName && typeof animationName === 'string') {
-      transitionName = `${props.prefixCls}-open-${animationName}`;
+      transitionName = `${props.clsPrefix}-open-${animationName}`;
     }
     return transitionName;
   }
@@ -334,7 +334,7 @@ class Menu extends Component{
       level: props.level,
       inlineIndent: props.inlineIndent,
       renderMenuItem: this.renderMenuItem,
-      rootPrefixCls: props.prefixCls,
+      rootPrefixCls: props.clsPrefix,
       index: i,
       parentMenu: this,
       ref: childProps.disabled ? undefined :
@@ -480,8 +480,8 @@ class Menu extends Component{
     renderRoot(props) {
     this.instanceArray = [];
     const classes = {
-      [props.prefixCls]: 1,
-      [`${props.prefixCls}-${props.mode}`]: 1,
+      [props.clsPrefix]: 1,
+      [`${props.clsPrefix}-${props.mode}`]: 1,
       [props.className]: !!props.className,
     };
     const domProps = {
@@ -502,7 +502,7 @@ class Menu extends Component{
       <DOMWrap
         style={props.style}
         tag="ul"
-        hiddenClassName={`${props.prefixCls}-hidden`}
+        hiddenClassName={`${props.clsPrefix}-hidden`}
         visible={props.visible}
         {...domProps}
       >
@@ -513,7 +513,7 @@ class Menu extends Component{
   }
   render() {
     const props = { ...this.props };
-    props.className += ` ${props.prefixCls}-root`;
+    props.className += ` ${props.clsPrefix}-root`;
     return this.renderRoot(props);
   }
 };

@@ -39,20 +39,20 @@ var MenuItemGroup = function (_Component) {
   }
 
   MenuItemGroup.prototype.renderInnerMenuItem = function renderInnerMenuItem(item, subIndex) {
-    var _props = this.props;
-    var renderMenuItem = _props.renderMenuItem;
-    var index = _props.index;
+    var _props = this.props,
+        renderMenuItem = _props.renderMenuItem,
+        index = _props.index;
 
     return renderMenuItem(item, index, subIndex);
   };
 
   MenuItemGroup.prototype.render = function render() {
-    var _props2 = this.props;
-    var _props2$className = _props2.className;
-    var className = _props2$className === undefined ? '' : _props2$className;
-    var title = _props2.title;
-    var children = _props2.children;
-    var rootPrefixCls = _props2.rootPrefixCls;
+    var _props2 = this.props,
+        _props2$className = _props2.className,
+        className = _props2$className === undefined ? '' : _props2$className,
+        title = _props2.title,
+        children = _props2.children,
+        rootPrefixCls = _props2.rootPrefixCls;
 
     var titleClassName = rootPrefixCls + '-item-group-title';
     var listClassName = rootPrefixCls + '-item-group-list';

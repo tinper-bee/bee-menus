@@ -55,8 +55,8 @@ function allDisabled(arr) {
 
 function getActiveKey(props, originalActiveKey) {
   var activeKey = originalActiveKey;
-  var children = props.children;
-  var eventKey = props.eventKey;
+  var children = props.children,
+      eventKey = props.eventKey;
 
   if (activeKey) {
     var found = void 0;
@@ -120,7 +120,7 @@ var defaultProps = {
   defaultSelectedKeys: [],
   defaultOpenKeys: [],
 
-  prefixCls: 'u-menu',
+  clsPrefix: 'u-menu',
   className: '',
   mode: 'vertical',
   level: 1,
@@ -221,11 +221,11 @@ var Menu = function (_Component) {
     var _this2 = this;
 
     var item = e.item;
-    var _props = this.props;
-    var mode = _props.mode;
-    var closeSubMenuOnMouseLeave = _props.closeSubMenuOnMouseLeave;
-    var _e$openChanges = e.openChanges;
-    var openChanges = _e$openChanges === undefined ? [] : _e$openChanges;
+    var _props = this.props,
+        mode = _props.mode,
+        closeSubMenuOnMouseLeave = _props.closeSubMenuOnMouseLeave;
+    var _e$openChanges = e.openChanges,
+        openChanges = _e$openChanges === undefined ? [] : _e$openChanges;
     // special for top sub menu
 
     if (mode !== 'inline' && !closeSubMenuOnMouseLeave && item.isSubMenu) {
@@ -335,7 +335,7 @@ var Menu = function (_Component) {
     var transitionName = props.openTransitionName;
     var animationName = props.openAnimation;
     if (!transitionName && typeof animationName === 'string') {
-      transitionName = props.prefixCls + '-open-' + animationName;
+      transitionName = props.clsPrefix + '-open-' + animationName;
     }
     return transitionName;
   };
@@ -380,7 +380,7 @@ var Menu = function (_Component) {
       level: props.level,
       inlineIndent: props.inlineIndent,
       renderMenuItem: this.renderMenuItem,
-      rootPrefixCls: props.prefixCls,
+      rootPrefixCls: props.clsPrefix,
       index: i,
       parentMenu: this,
       ref: childProps.disabled ? undefined : (0, _tinperBeeCore.createChainedFunction)(child.ref, saveRef.bind(this, i, subIndex)),
@@ -405,9 +405,9 @@ var Menu = function (_Component) {
 
   Menu.prototype.getOpenChangesOnItemHover = function getOpenChangesOnItemHover(e) {
     var mode = this.props.mode;
-    var key = e.key;
-    var hover = e.hover;
-    var trigger = e.trigger;
+    var key = e.key,
+        hover = e.hover,
+        trigger = e.trigger;
 
     var activeKey = this.state.activeKey;
     if (!trigger || hover || this.props.closeSubMenuOnMouseLeave || !e.item.isSubMenu || mode === 'inline') {
@@ -534,7 +534,7 @@ var Menu = function (_Component) {
     var _classes;
 
     this.instanceArray = [];
-    var classes = (_classes = {}, _defineProperty(_classes, props.prefixCls, 1), _defineProperty(_classes, props.prefixCls + '-' + props.mode, 1), _defineProperty(_classes, props.className, !!props.className), _classes);
+    var classes = (_classes = {}, _defineProperty(_classes, props.clsPrefix, 1), _defineProperty(_classes, props.clsPrefix + '-' + props.mode, 1), _defineProperty(_classes, props.className, !!props.className), _classes);
     var domProps = {
       className: (0, _classnames2["default"])(classes),
       role: 'menu',
@@ -555,7 +555,7 @@ var Menu = function (_Component) {
         _extends({
           style: props.style,
           tag: 'ul',
-          hiddenClassName: props.prefixCls + '-hidden',
+          hiddenClassName: props.clsPrefix + '-hidden',
           visible: props.visible
         }, domProps),
         _react2["default"].Children.map(props.children, this.renderMenuItem.bind(this))
@@ -567,7 +567,7 @@ var Menu = function (_Component) {
 
   Menu.prototype.render = function render() {
     var props = _extends({}, this.props);
-    props.className += ' ' + props.prefixCls + '-root';
+    props.className += ' ' + props.clsPrefix + '-root';
     return this.renderRoot(props);
   };
 
