@@ -291,7 +291,7 @@
     transition: -webkit-transform .3s ease;
     transition: transform .3s ease;
     transition: transform .3s ease, -webkit-transform .3s ease;
-    content: "\e640";
+    content: "\e609";
     right: 16px;
     top: 0;
     display: inline-block;
@@ -366,6 +366,7 @@
     text-overflow: ellipsis;
 }
 .u-menu-submenu-vertical > .u-menu-submenu-title:after{
+    transform: rotate(270deg) scale(0.75);
     font-family: "uf" !important;
     font-style: normal;
     vertical-align: baseline;
@@ -373,16 +374,16 @@
     text-transform: none;
     text-rendering: auto;
     position: absolute;
-    -webkit-transition: -webkit-transform .3s ease;
-    transition: -webkit-transform .3s ease;
     transition: transform .3s ease;
-    transition: transform .3s ease, -webkit-transform .3s ease;
-    content: "\e640";
+    content: "\e609";
     right: 16px;
-    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-    -webkit-transform: rotate(270deg) scale(0.75);
-    -ms-transform: rotate(270deg) scale(0.75);
-    transform: rotate(270deg) scale(0.75);
+    top: 0;
+    display: inline-block;
+    font-size: 12px;
+    font-size: 8px \9;
+    /* transform: scale(0.66667) rotate(0deg); */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=1, M12=0, M21=0, M22=1)";
+    zoom: 1;
 }
 .u-menu-item-group-title {
     color: #999;

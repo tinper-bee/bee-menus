@@ -12,14 +12,7 @@ const CARET = <i className="uf uf-chevronarrowdown"></i>;
 const CARETUP = <i className="uf uf-chevronarrowup"></i>;
 
 
-class Demo1 extends Component {
-	render () {
-		return (
-TEST
-		)
-	}
-}var DemoArray = [{"example":<Demo1 />,"title":"Demo1","code":"class Demo1 extends Component {\n\trender () {\n\t\treturn (\nTEST\n\t\t)\n\t}\n}","desc":""}]
-
+{demolist}
 
 class Demo extends Component {
     constructor(props){
