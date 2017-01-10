@@ -1,5 +1,6 @@
 @import "../node_modules/tinper-bee-core/scss/minxin-variables";
 @import "../node_modules/tinper-bee-core/scss/minxin-mixins";
+@import "../node_modules/tinper-bee-core/scss/util-keyframe";
 
 
 
@@ -60,7 +61,7 @@
     top: 100%;
     left: 0;
     position: absolute;
-    min-width: 160px;
+    min-width: 110px;
     margin-top: 4px;
   }
 
