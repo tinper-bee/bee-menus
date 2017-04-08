@@ -52,7 +52,7 @@ const propTypes = {
     openSubMenuOnMouseEnter: PropTypes.bool,
     closeSubMenuOnMouseLeave: PropTypes.bool,
     selectedKeys: PropTypes.oneOfType([
-      PropTypes.array
+      PropTypes.array,
       PropTypes.string
     ]),
     defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
