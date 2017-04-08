@@ -33,9 +33,9 @@ var Divider = function (_Component) {
   }
 
   Divider.prototype.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        rootPrefixCls = _props.rootPrefixCls;
+    var _props = this.props;
+    var className = _props.className;
+    var rootPrefixCls = _props.rootPrefixCls;
 
     return _react2["default"].createElement('li', { className: className + ' ' + rootPrefixCls + '-item-divider' });
   };

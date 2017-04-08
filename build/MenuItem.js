@@ -101,8 +101,8 @@ var MenuItem = function (_Component) {
     var _this2 = this;
 
     var props = this.props;
-    var eventKey = props.eventKey,
-        parentMenu = props.parentMenu;
+    var eventKey = props.eventKey;
+    var parentMenu = props.parentMenu;
 
     parentMenu.menuItemInstance = this;
     parentMenu.menuItemMouseLeaveFn = function () {
@@ -125,8 +125,8 @@ var MenuItem = function (_Component) {
 
   MenuItem.prototype.onMouseEnter = function onMouseEnter(e) {
     var props = this.props;
-    var eventKey = props.eventKey,
-        parentMenu = props.parentMenu;
+    var eventKey = props.eventKey;
+    var parentMenu = props.parentMenu;
 
     this.clearMenuItemMouseLeaveTimer(parentMenu.menuItemInstance !== this);
     if (parentMenu.subMenuInstance) {

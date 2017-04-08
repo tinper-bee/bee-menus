@@ -55,8 +55,8 @@ function allDisabled(arr) {
 
 function getActiveKey(props, originalActiveKey) {
   var activeKey = originalActiveKey;
-  var children = props.children,
-      eventKey = props.eventKey;
+  var children = props.children;
+  var eventKey = props.eventKey;
 
   if (activeKey) {
     var found = void 0;
@@ -221,11 +221,11 @@ var Menu = function (_Component) {
     var _this2 = this;
 
     var item = e.item;
-    var _props = this.props,
-        mode = _props.mode,
-        closeSubMenuOnMouseLeave = _props.closeSubMenuOnMouseLeave;
-    var _e$openChanges = e.openChanges,
-        openChanges = _e$openChanges === undefined ? [] : _e$openChanges;
+    var _props = this.props;
+    var mode = _props.mode;
+    var closeSubMenuOnMouseLeave = _props.closeSubMenuOnMouseLeave;
+    var _e$openChanges = e.openChanges;
+    var openChanges = _e$openChanges === undefined ? [] : _e$openChanges;
     // special for top sub menu
 
     if (mode !== 'inline' && !closeSubMenuOnMouseLeave && item.isSubMenu) {
@@ -405,9 +405,9 @@ var Menu = function (_Component) {
 
   Menu.prototype.getOpenChangesOnItemHover = function getOpenChangesOnItemHover(e) {
     var mode = this.props.mode;
-    var key = e.key,
-        hover = e.hover,
-        trigger = e.trigger;
+    var key = e.key;
+    var hover = e.hover;
+    var trigger = e.trigger;
 
     var activeKey = this.state.activeKey;
     if (!trigger || hover || this.props.closeSubMenuOnMouseLeave || !e.item.isSubMenu || mode === 'inline') {
