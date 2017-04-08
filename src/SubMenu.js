@@ -8,7 +8,10 @@ let guid = 0;
 
 const propTypes = {
     parentMenu: PropTypes.object,
-    title: PropTypes.node,
+    title: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node
+    ]),
     children: PropTypes.any,
     selectedKeys: PropTypes.array,
     openKeys: PropTypes.array,

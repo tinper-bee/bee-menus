@@ -4,7 +4,15 @@ const propTypes = {
     renderMenuItem: PropTypes.func,
     index: PropTypes.number,
     className: PropTypes.string,
-    rootPrefixCls: PropTypes.string
+    rootPrefixCls: PropTypes.string,
+    title:  PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node
+    ]),
+    children:  PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node
+    ])
 };
 
 const defaultProps = {

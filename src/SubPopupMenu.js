@@ -58,7 +58,7 @@ const propTypes = {
     onDestroy: PropTypes.func,
     openTransitionName: PropTypes.string,
     openAnimation: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    openKeys: PropTypes.arrayOf(PropTypes.string),
+    openKeys: PropTypes.array,
     closeSubMenuOnMouseLeave: PropTypes.bool,
     visible: PropTypes.bool,
     children: PropTypes.any
