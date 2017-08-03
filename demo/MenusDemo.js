@@ -1,17 +1,26 @@
-import Menu, { Item as MenuItem, ItemGroup as MenuItemGroup } from '../src';
-import React, { Component } from 'react'
+import  Navbar from '../src';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-//import Menu from '../src/VerticalMenu';
+
+
 
 class Demo extends Component {
-	
+	constructor(props, context) {
+	    super(props, context);
+	    this.state = {
+	    	expanded : false
+	    }
+	}
+	onToggle(value) {
+		this.setState({expanded:value});
+	}
 	render(){
 		return( 
-			<Menu>
-		        
-		      </Menu>
+			<div>
+				
+
+			</div>
 		)
 	}
 }
-
 export default Demo;

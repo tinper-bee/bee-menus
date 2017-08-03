@@ -12,6 +12,12 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _tinperBeeCore = require('tinper-bee-core');
+
+var _warning = require('warning');
+
+var _warning2 = _interopRequireDefault(_warning);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function noop() {}

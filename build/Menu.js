@@ -218,8 +218,6 @@ var Menu = function (_Component) {
   };
 
   Menu.prototype.onItemHover = function onItemHover(e) {
-    var _this2 = this;
-
     var item = e.item;
     var _props = this.props,
         mode = _props.mode,
@@ -229,20 +227,18 @@ var Menu = function (_Component) {
     // special for top sub menu
 
     if (mode !== 'inline' && !closeSubMenuOnMouseLeave && item.isSubMenu) {
-      (function () {
-        var activeKey = _this2.state.activeKey;
-        var activeItem = _this2.getFlatInstanceArray().filter(function (c) {
-          return c && c.props.eventKey === activeKey;
-        })[0];
-        if (activeItem && activeItem.props.open) {
-          openChanges = openChanges.concat({
-            key: item.props.eventKey,
-            item: item,
-            originalEvent: e,
-            open: true
-          });
-        }
-      })();
+      var activeKey = this.state.activeKey;
+      var activeItem = this.getFlatInstanceArray().filter(function (c) {
+        return c && c.props.eventKey === activeKey;
+      })[0];
+      if (activeItem && activeItem.props.open) {
+        openChanges = openChanges.concat({
+          key: item.props.eventKey,
+          item: item,
+          originalEvent: e,
+          open: true
+        });
+      }
     }
     openChanges = openChanges.concat(this.getOpenChangesOnItemHover(e));
     if (openChanges.length) {
@@ -495,7 +491,7 @@ var Menu = function (_Component) {
   };
 
   Menu.prototype.onKeyDown = function onKeyDown(e) {
-    var _this3 = this;
+    var _this2 = this;
 
     var keyCode = e.keyCode;
     var handled = void 0;
@@ -516,7 +512,7 @@ var Menu = function (_Component) {
       this.setState({
         activeKey: activeItem.props.eventKey
       }, function () {
-        scrollIntoView(ReactDOM.findDOMNode(activeItem), ReactDOM.findDOMNode(_this3), {
+        scrollIntoView(ReactDOM.findDOMNode(activeItem), ReactDOM.findDOMNode(_this2), {
           onlyScrollIfNeeded: true
         });
       });

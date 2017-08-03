@@ -4,12 +4,17 @@ import { Panel } from 'bee-panel';
 import Button from 'bee-button';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Menu from '../src';
+import Menu from '../src/VerticalMenu';
+
+// const Menu = Navbar.Menu;
+// const MenuItem = Navbar.MenuItem;
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 
-const CARET = <i className="uf uf-chevronarrowdown"></i>;
+const CARET = <i className="uf uf-arrow-down"></i>;
 
-const CARETUP = <i className="uf uf-chevronarrowup"></i>;
+const CARETUP = <i className="uf uf-arrow-up"></i>;
 
 
 {demolist}
