@@ -1,5 +1,5 @@
 import React from 'react';
-import RcMenu, { Item, Divider, SubMenu, ItemGroup } from './index.js';
+import RcMenu, { Item, Divider, SubMenu, ItemGroup } from './ExportMenu.js';
 import animation from './_util/openAnimation';
 import warning from './_util/warning';
 

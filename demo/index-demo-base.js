@@ -4,12 +4,23 @@ import { Panel } from 'bee-panel';
 import Button from 'bee-button';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Menu from '../src/VerticalMenu';
+import Menu from '../src/index';
+import FormControl from 'bee-form-control';
+import Badge from 'bee-badge';
+import Icon from 'bee-icon';
+import {MenuToggle,SideContainer} from '../src/ExportMenu';
 
-// const Menu = Navbar.Menu;
-// const MenuItem = Navbar.MenuItem;
+import Navbar from 'bee-Navbar';
+
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
+
+const NavItem = Navbar.NavItem;
+const Header = Navbar.Header;
+const Brand = Navbar.Brand;
+const Collapse = Navbar.Collapse;
+const Toggle = Navbar.Toggle;
+const Nav = Navbar.Nav;
 
 
 const CARET = <i className="uf uf-arrow-down"></i>;
