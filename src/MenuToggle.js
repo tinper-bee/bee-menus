@@ -41,7 +41,6 @@ class MenuToggle extends React.Component {
         onToggle(!expanded);
       }
   }
-  Component
   render() {
     const { onClick, className, children,clsPrefix, show,...props } = this.props;
     //const navbarProps = this.context.u_navbar || { bsClass: 'navbar' };
