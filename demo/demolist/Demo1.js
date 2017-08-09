@@ -18,6 +18,7 @@ class Demo1 extends Component {
     }
 
     render() {
+        console.log(Menu);
         return (
             <Menu onClick={this.handleClick.bind(this)}
                   selectedKeys={[this.state.current]}

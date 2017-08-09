@@ -52,10 +52,7 @@ export interface MenuProps {
 }
 
 class Menu extends React.Component<MenuProps, any> {
-  static Divider = Divider;
-  static Item = Item;
-  static SubMenu = SubMenu;
-  static ItemGroup = ItemGroup;
+  
   static defaultProps = {
     prefixCls: 'u-menu',
     className: '',
@@ -150,4 +147,8 @@ class Menu extends React.Component<MenuProps, any> {
     return <RcMenu {...this.props} {...props} />;
   }
 }
+Menu.Divider = Divider;
+Menu.Item = Item;
+Menu.SubMenu = SubMenu;
+Menu.ItemGroup = ItemGroup;
 export default Menu;

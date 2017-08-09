@@ -852,7 +852,7 @@
   overflow: hidden;
   text-overflow: ellipsis; }
 
-.u-menu-vertical > .u-menu-submenu-title:after {
+.u-menu-vertical .u-menu-submenu-title:after {
   transform: rotate(270deg) scale(0.75);
   font-family: "uf" !important;
   font-style: normal;

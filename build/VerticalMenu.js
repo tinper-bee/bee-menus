@@ -10,9 +10,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _index = require('./index.js');
+var _ExportMenu = require('./ExportMenu.js');
 
-var _index2 = _interopRequireDefault(_index);
+var _ExportMenu2 = _interopRequireDefault(_ExportMenu);
 
 var _openAnimation = require('./_util/openAnimation');
 
@@ -124,20 +124,21 @@ var Menu = function (_React$Component) {
         className: className
       };
     }
-    return _react2["default"].createElement(_index2["default"], _extends({}, this.props, props));
+    return _react2["default"].createElement(_ExportMenu2["default"], _extends({}, this.props, props));
   };
 
   return Menu;
 }(_react2["default"].Component);
 
-Menu.Divider = _index.Divider;
-Menu.Item = _index.Item;
-Menu.SubMenu = _index.SubMenu;
-Menu.ItemGroup = _index.ItemGroup;
 Menu.defaultProps = {
   prefixCls: 'u-menu',
   className: '',
   theme: 'light' // or dark
 };
+
+Menu.Divider = _ExportMenu.Divider;
+Menu.Item = _ExportMenu.Item;
+Menu.SubMenu = _ExportMenu.SubMenu;
+Menu.ItemGroup = _ExportMenu.ItemGroup;
 exports["default"] = Menu;
 module.exports = exports['default'];
