@@ -1,20 +1,26 @@
 /**
  * @title Navbar和Menus的组合
  * @description 示例采取navbar与menus的组合，达到一种PC端常用的复合导航菜单。导航添加了常用的搜索表单消息提醒等组件。
- * import FormControl from 'bee-form-control';
- * import Badge from 'bee-badge';
- * import Icon from 'bee-icon';
- * import {MenuToggle,SideContainer} from '../src/ExportMenu';
- * import Navbar from 'bee-Navbar';
- * const SubMenu = Menu.SubMenu;
- * const MenuItemGroup = Menu.ItemGroup;
- * const NavItem = Navbar.NavItem;
- * const Header = Navbar.Header;
- * const Brand = Navbar.Brand;
- * const Collapse = Navbar.Collapse;
- * const Toggle = Navbar.Toggle;
- * const Nav = Navbar.Nav;
+ *
  */
+
+import React, { Component } from 'react';
+import Menu from '../../src/index';
+import FormControl from 'bee-form-control';
+import Badge from 'bee-badge';
+import Icon from 'bee-icon';
+import {MenuToggle,SideContainer} from '../../src/ExportMenu';
+
+
+import Navbar from 'bee-Navbar';
+
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
+
+const NavItem = Navbar.NavItem;
+const Header = Navbar.Header;
+const Brand = Navbar.Brand;
+const Nav = Navbar.Nav;
 
 
 class Demo5 extends Component {
@@ -100,3 +106,5 @@ class Demo5 extends Component {
         )
     }
 }
+
+export default Demo5;

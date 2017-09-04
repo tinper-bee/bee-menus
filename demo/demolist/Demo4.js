@@ -3,6 +3,14 @@
  * @description 子菜单在右侧呼出形式显示。
  */
 
+import React, { Component } from 'react';
+import Menu from '../../src';
+
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
+
+
+
 class Demo4 extends Component {
 
     handleClick() {
@@ -39,3 +47,5 @@ class Demo4 extends Component {
         )
     }
 }
+
+export default Demo4;

@@ -3,6 +3,25 @@
  * @description 子菜单竖向显示，可折叠。
  */
 
+import { Con, Row, Col } from 'bee-layout';
+import { Panel } from 'bee-panel';
+import React, { Component } from 'react';
+import Menu from '../../src/index';
+
+
+import Navbar from 'bee-Navbar';
+
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
+
+const NavItem = Navbar.NavItem;
+const Header = Navbar.Header;
+const Brand = Navbar.Brand;
+const Collapse = Navbar.Collapse;
+const Toggle = Navbar.Toggle;
+const Nav = Navbar.Nav;
+
+
 class Demo2 extends Component {
     constructor(props, context) {
         super(props, context);
@@ -49,3 +68,5 @@ class Demo2 extends Component {
         )
     }
 }
+
+export default Demo2;

@@ -3,6 +3,24 @@
  * @description 更简洁，更方便
  */
 
+import { Con, Row, Col } from 'bee-layout';
+import { Panel } from 'bee-panel';
+import React, { Component } from 'react';
+import Menu from '../../src';
+
+import Navbar from 'bee-Navbar';
+
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
+
+const NavItem = Navbar.NavItem;
+const Header = Navbar.Header;
+const Brand = Navbar.Brand;
+const Collapse = Navbar.Collapse;
+const Toggle = Navbar.Toggle;
+const Nav = Navbar.Nav;
+
+
 class Demo1 extends Component {
     constructor(props, context) {
         super(props, context);
@@ -44,3 +62,5 @@ class Demo1 extends Component {
         )
     }
 }
+
+export default Demo1;

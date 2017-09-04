@@ -3,6 +3,13 @@
  * @description 菜单展开是手风琴形式。
  */
 
+
+import React, { Component } from 'react';
+import Menu from '../../src';
+
+const SubMenu = Menu.SubMenu;
+
+
 class Demo3 extends Component {
     constructor(props, context) {
         super(props, context);
@@ -82,3 +89,5 @@ class Demo3 extends Component {
         )
     }
 }
+
+export default Demo3;
