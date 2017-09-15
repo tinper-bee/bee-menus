@@ -9,13 +9,14 @@ import Menu from '../../src/index';
 import FormControl from 'bee-form-control';
 import Badge from 'bee-badge';
 import Icon from 'bee-icon';
-import {MenuToggle,SideContainer} from '../../src/ExportMenu';
 
 
 import Navbar from 'bee-Navbar';
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
+const MenuToggle = Menu.MenuToggle;
+const SideContainer = Menu.SideContainer;
 
 const NavItem = Navbar.NavItem;
 const Header = Navbar.Header;

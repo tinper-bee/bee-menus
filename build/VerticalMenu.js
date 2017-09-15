@@ -140,5 +140,7 @@ Menu.Divider = _ExportMenu.Divider;
 Menu.Item = _ExportMenu.Item;
 Menu.SubMenu = _ExportMenu.SubMenu;
 Menu.ItemGroup = _ExportMenu.ItemGroup;
+Menu.MenuToggle = _ExportMenu.MenuToggle;
+Menu.SideContainer = _ExportMenu.SideContainer;
 exports["default"] = Menu;
 module.exports = exports['default'];

@@ -1,5 +1,5 @@
 import React from 'react';
-import RcMenu, { Item, Divider, SubMenu, ItemGroup } from './ExportMenu.js';
+import RcMenu, { Item, Divider, SubMenu, ItemGroup,SideContainer,MenuToggle } from './ExportMenu.js';
 import animation from './_util/openAnimation';
 import warning from './_util/warning';
 
@@ -151,4 +151,6 @@ Menu.Divider = Divider;
 Menu.Item = Item;
 Menu.SubMenu = SubMenu;
 Menu.ItemGroup = ItemGroup;
+Menu.MenuToggle = MenuToggle;
+Menu.SideContainer = SideContainer;
 export default Menu;
