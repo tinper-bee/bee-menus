@@ -610,7 +610,7 @@
     transform: translateZ(0); }
   .u-menu-submenu-selected {
     background-color: #eaf8fe; }
-  .u-menu > u-menu-submenu {
+  .u-menu > .u-menu-submenu {
     padding: 0; }
   .u-menu-submenu-horizontal > .u-menu {
     top: 100%;
