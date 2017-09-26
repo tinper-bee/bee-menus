@@ -9,7 +9,7 @@
   margin-bottom: 0;
   padding-left: 0; // Override default ul/ol
   list-style: none;
-  z-index: 99999;
+  z-index: $zindex-menubar;
   border: 1px solid $menu-border-color;
   box-shadow: 0 0 4px $menu-border-color;
   border-radius: 3px;
