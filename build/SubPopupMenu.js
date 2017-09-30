@@ -12,6 +12,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _beeAnimate = require('bee-animate');
 
 var _beeAnimate2 = _interopRequireDefault(_beeAnimate);
@@ -90,17 +94,17 @@ function saveRef(index, subIndex, c) {
 
 //import Animate from 'bee-transition';
 var propTypes = {
-  onSelect: _react.PropTypes.func,
-  onClick: _react.PropTypes.func,
-  onDeselect: _react.PropTypes.func,
-  onOpenChange: _react.PropTypes.func,
-  onDestroy: _react.PropTypes.func,
-  openTransitionName: _react.PropTypes.string,
-  openAnimation: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.object]),
-  openKeys: _react.PropTypes.array,
-  closeSubMenuOnMouseLeave: _react.PropTypes.bool,
-  visible: _react.PropTypes.bool,
-  children: _react.PropTypes.any
+  onSelect: _propTypes2["default"].func,
+  onClick: _propTypes2["default"].func,
+  onDeselect: _propTypes2["default"].func,
+  onOpenChange: _propTypes2["default"].func,
+  onDestroy: _propTypes2["default"].func,
+  openTransitionName: _propTypes2["default"].string,
+  openAnimation: _propTypes2["default"].oneOfType([_propTypes2["default"].string, _propTypes2["default"].object]),
+  openKeys: _propTypes2["default"].array,
+  closeSubMenuOnMouseLeave: _propTypes2["default"].bool,
+  visible: _propTypes2["default"].bool,
+  children: _propTypes2["default"].any
 };
 
 var SubPopupMenu = function (_Component) {

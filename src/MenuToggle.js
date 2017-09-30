@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import React, { PropTypes } from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import { createChainedFunction } from 'tinper-bee-core';
 
 const propTypes = {

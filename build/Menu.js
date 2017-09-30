@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _util = require('./util');
 
 var _classnames = require('classnames');
@@ -83,30 +87,30 @@ function getActiveKey(props, originalActiveKey) {
 
 var propTypes = {
 
-  openSubMenuOnMouseEnter: _react.PropTypes.bool,
-  closeSubMenuOnMouseLeave: _react.PropTypes.bool,
-  selectedKeys: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.string]),
-  defaultSelectedKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
-  defaultOpenKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
-  openKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
-  mode: _react.PropTypes.string,
-  onClick: _react.PropTypes.func,
-  onSelect: _react.PropTypes.func,
-  onDeselect: _react.PropTypes.func,
-  onDestroy: _react.PropTypes.func,
-  openTransitionName: _react.PropTypes.string,
-  openAnimation: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.object]),
-  level: _react.PropTypes.number,
-  eventKey: _react.PropTypes.string,
-  selectable: _react.PropTypes.bool,
-  children: _react.PropTypes.any,
+  openSubMenuOnMouseEnter: _propTypes2["default"].bool,
+  closeSubMenuOnMouseLeave: _propTypes2["default"].bool,
+  selectedKeys: _propTypes2["default"].oneOfType([_propTypes2["default"].array, _propTypes2["default"].string]),
+  defaultSelectedKeys: _propTypes2["default"].arrayOf(_propTypes2["default"].string),
+  defaultOpenKeys: _propTypes2["default"].arrayOf(_propTypes2["default"].string),
+  openKeys: _propTypes2["default"].arrayOf(_propTypes2["default"].string),
+  mode: _propTypes2["default"].string,
+  onClick: _propTypes2["default"].func,
+  onSelect: _propTypes2["default"].func,
+  onDeselect: _propTypes2["default"].func,
+  onDestroy: _propTypes2["default"].func,
+  openTransitionName: _propTypes2["default"].string,
+  openAnimation: _propTypes2["default"].oneOfType([_propTypes2["default"].string, _propTypes2["default"].object]),
+  level: _propTypes2["default"].number,
+  eventKey: _propTypes2["default"].string,
+  selectable: _propTypes2["default"].bool,
+  children: _propTypes2["default"].any,
 
-  focusable: _react.PropTypes.bool,
-  multiple: _react.PropTypes.bool,
-  style: _react.PropTypes.object,
-  defaultActiveFirst: _react.PropTypes.bool,
-  visible: _react.PropTypes.bool,
-  activeKey: _react.PropTypes.string
+  focusable: _propTypes2["default"].bool,
+  multiple: _propTypes2["default"].bool,
+  style: _propTypes2["default"].object,
+  defaultActiveFirst: _propTypes2["default"].bool,
+  visible: _propTypes2["default"].bool,
+  activeKey: _propTypes2["default"].string
 
 };
 var defaultProps = {

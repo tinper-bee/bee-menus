@@ -1,4 +1,5 @@
-import React, { PropTypes,Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Animate from 'bee-animate';
 import classnames from 'classnames';
 import { createChainedFunction, KeyCode } from 'tinper-bee-core';

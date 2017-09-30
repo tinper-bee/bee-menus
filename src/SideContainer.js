@@ -1,7 +1,6 @@
 import classnames from 'classnames';
-import React, { PropTypes } from 'react';
-
-
+import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const defaultProps = {
@@ -15,15 +14,15 @@ class NavSideContainer extends React.Component {
 
     //const navbarProps = this.context.u_navbar;
 
-    
-
     return (
-      <div in={expanded}  className={classnames(className, clsPrefix,expanded && 'expanded')}>
+      <div  className={classnames(className, clsPrefix,expanded && 'expanded')}>
         {children}
       </div>
     );
   }
 }
+
+
 
 NavSideContainer.defaultProps = defaultProps;
 

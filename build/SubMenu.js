@@ -14,6 +14,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _tinperBeeCore = require('tinper-bee-core');
 
 var _classnames = require('classnames');
@@ -37,28 +41,28 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var guid = 0;
 
 var propTypes = {
-  parentMenu: _react.PropTypes.object,
-  title: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.node]),
-  children: _react.PropTypes.any,
-  selectedKeys: _react.PropTypes.array,
-  openKeys: _react.PropTypes.array,
-  onClick: _react.PropTypes.func,
-  onOpenChange: _react.PropTypes.func,
-  rootPrefixCls: _react.PropTypes.string,
-  eventKey: _react.PropTypes.string,
-  multiple: _react.PropTypes.bool,
-  active: _react.PropTypes.bool,
-  onSelect: _react.PropTypes.func,
-  closeSubMenuOnMouseLeave: _react.PropTypes.bool,
-  openSubMenuOnMouseEnter: _react.PropTypes.bool,
-  onDeselect: _react.PropTypes.func,
-  onDestroy: _react.PropTypes.func,
-  onItemHover: _react.PropTypes.func,
-  onMouseEnter: _react.PropTypes.func,
-  onMouseLeave: _react.PropTypes.func,
-  onTitleMouseEnter: _react.PropTypes.func,
-  onTitleMouseLeave: _react.PropTypes.func,
-  onTitleClick: _react.PropTypes.func
+  parentMenu: _propTypes2["default"].object,
+  title: _propTypes2["default"].oneOfType([_propTypes2["default"].string, _propTypes2["default"].node]),
+  children: _propTypes2["default"].any,
+  selectedKeys: _propTypes2["default"].array,
+  openKeys: _propTypes2["default"].array,
+  onClick: _propTypes2["default"].func,
+  onOpenChange: _propTypes2["default"].func,
+  rootPrefixCls: _propTypes2["default"].string,
+  eventKey: _propTypes2["default"].string,
+  multiple: _propTypes2["default"].bool,
+  active: _propTypes2["default"].bool,
+  onSelect: _propTypes2["default"].func,
+  closeSubMenuOnMouseLeave: _propTypes2["default"].bool,
+  openSubMenuOnMouseEnter: _propTypes2["default"].bool,
+  onDeselect: _propTypes2["default"].func,
+  onDestroy: _propTypes2["default"].func,
+  onItemHover: _propTypes2["default"].func,
+  onMouseEnter: _propTypes2["default"].func,
+  onMouseLeave: _propTypes2["default"].func,
+  onTitleMouseEnter: _propTypes2["default"].func,
+  onTitleMouseLeave: _propTypes2["default"].func,
+  onTitleClick: _propTypes2["default"].func
 };
 var defaultProps = {
   onMouseEnter: _util.noop,

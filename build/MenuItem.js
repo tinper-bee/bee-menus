@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _tinperBeeCore = require('tinper-bee-core');
 
 var _classnames = require('classnames');
@@ -30,21 +34,21 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /* eslint react/no-is-mounted:0 */
 var propTypes = {
-  rootPrefixCls: _react.PropTypes.string,
-  eventKey: _react.PropTypes.string,
-  active: _react.PropTypes.bool,
-  children: _react.PropTypes.any,
-  selectedKeys: _react.PropTypes.array,
-  disabled: _react.PropTypes.bool,
-  title: _react.PropTypes.string,
-  onSelect: _react.PropTypes.func,
-  onClick: _react.PropTypes.func,
-  onDeselect: _react.PropTypes.func,
-  parentMenu: _react.PropTypes.object,
-  onItemHover: _react.PropTypes.func,
-  onDestroy: _react.PropTypes.func,
-  onMouseEnter: _react.PropTypes.func,
-  onMouseLeave: _react.PropTypes.func
+  rootPrefixCls: _propTypes2["default"].string,
+  eventKey: _propTypes2["default"].string,
+  active: _propTypes2["default"].bool,
+  children: _propTypes2["default"].any,
+  selectedKeys: _propTypes2["default"].array,
+  disabled: _propTypes2["default"].bool,
+  title: _propTypes2["default"].string,
+  onSelect: _propTypes2["default"].func,
+  onClick: _propTypes2["default"].func,
+  onDeselect: _propTypes2["default"].func,
+  parentMenu: _propTypes2["default"].object,
+  onItemHover: _propTypes2["default"].func,
+  onDestroy: _propTypes2["default"].func,
+  onMouseEnter: _propTypes2["default"].func,
+  onMouseLeave: _propTypes2["default"].func
 };
 
 var defaultProps = {

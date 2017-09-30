@@ -1,5 +1,6 @@
 import SubPopupMenu from './SubPopupMenu';
-import React, { PropTypes,Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { KeyCode } from 'tinper-bee-core';
 import classnames from 'classnames';
 import { noop, loopMenuItemRecusively } from './util';

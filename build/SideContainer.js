@@ -12,6 +12,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
@@ -49,10 +53,9 @@ var NavSideContainer = function (_React$Component) {
 
     //const navbarProps = this.context.u_navbar;
 
-
     return _react2["default"].createElement(
       'div',
-      { 'in': expanded, className: (0, _classnames2["default"])(className, clsPrefix, expanded && 'expanded') },
+      { className: (0, _classnames2["default"])(className, clsPrefix, expanded && 'expanded') },
       children
     );
   };

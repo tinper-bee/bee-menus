@@ -35,20 +35,23 @@
   "dependencies": {
     "babel-runtime": "6.x",
     "bee-animate": "latest",
-    "bee-badge": "^0.1.11",
-    "bee-form-control": "^0.1.8",
-    "bee-navbar": "^0.2.8",
-    "bee-transition": "^0.2.3",
+    "bee-badge": "latest",
+    "bee-form-control": "latest",
+    "bee-navbar": "latest",
+    "bee-transition": "latest",
     "classnames": "^2.2.5",
     "dom-scroll-into-view": "1.x",
     "tinper-bee-core": "latest"
   },
+  "peerDependencies": {
+    "react": "^15.3.0 || ^16.0",
+    "react-dom": "^15.3.0 || ^16.0",
+    "prop-types": "15.6.0"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "enzyme": "^2.4.1",
-    "react": "15.3.2",
     "react-addons-test-utils": "15.3.2",
-    "react-dom": "15.3.2",
     "console-polyfill": "~0.2.1",
     "es5-shim": "~4.1.10",
     "css-animation": "^1.2.0",
