@@ -29,7 +29,8 @@ class Demo5 extends Component {
         super(props, context);
         this.state = {
             expanded: false,
-            current: 1
+            current: 1,
+            searchValue:"Search"
         }
     }
 
@@ -44,6 +45,10 @@ class Demo5 extends Component {
         });
     }
 
+    onChange = (e) => {
+        this.setState({searchValue:e});
+    }
+
     render() {
         return (
             <div id="demo5">
@@ -56,7 +61,7 @@ class Demo5 extends Component {
                     </Header>
 
                     <Nav pullRight>
-                        <NavItem eventKey={1}><FormControl type="text" placeholder="Search"/></NavItem>
+                        <NavItem eventKey={1}><FormControl type="text" placeholder="Search" onChange={this.onChange} value={this.state.searchValue}/></NavItem>
                         <NavItem eventKey={2}><Badge dataBadge="4" colors="warning"><Icon
                             type="uf-bell"></Icon></Badge></NavItem>
                         <NavItem eventKey={3}><Icon type="uf-bubble-o"></Icon></NavItem>
