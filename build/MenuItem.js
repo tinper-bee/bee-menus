@@ -14,7 +14,9 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _tinperBeeCore = require('tinper-bee-core');
+var _keyCode = require('tinper-bee-core/lib/keyCode');
+
+var _keyCode2 = _interopRequireDefault(_keyCode);
 
 var _classnames = require('classnames');
 
@@ -95,7 +97,7 @@ var MenuItem = function (_Component) {
 
   MenuItem.prototype.onKeyDown = function onKeyDown(e) {
     var keyCode = e.keyCode;
-    if (keyCode === _tinperBeeCore.KeyCode.ENTER) {
+    if (keyCode === _keyCode2["default"].ENTER) {
       this.onClick(e);
       return true;
     }

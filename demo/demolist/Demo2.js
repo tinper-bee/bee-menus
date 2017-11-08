@@ -3,23 +3,11 @@
  * @description 子菜单竖向显示，可折叠。
  */
 
-import { Con, Row, Col } from 'bee-layout';
-import { Panel } from 'bee-panel';
 import React, { Component } from 'react';
 import Menu from '../../src/index';
 
-
-import Navbar from 'bee-Navbar';
-
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
-
-const NavItem = Navbar.NavItem;
-const Header = Navbar.Header;
-const Brand = Navbar.Brand;
-const Collapse = Navbar.Collapse;
-const Toggle = Navbar.Toggle;
-const Nav = Navbar.Nav;
 
 
 class Demo2 extends Component {
@@ -30,8 +18,8 @@ class Demo2 extends Component {
         }
     }
 
-    handleClick(e) {
-        console.log('click ', e);
+    handleClick = (e) => {
+
         this.setState({
             current: e.key,
         });
@@ -39,7 +27,7 @@ class Demo2 extends Component {
 
     render() {
         return (
-            <Menu onClick={this.handleClick.bind(this)} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode="inline">
+            <Menu onClick={this.handleClick} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode="inline">
                 <SubMenu key="demo3sub1" title={<span><span>组织 1</span></span>}>
                     <MenuItemGroup title="组 1">
                         <Menu.Item key="1">选项 1</Menu.Item>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Animate from 'bee-animate';
 import classnames from 'classnames';
-import { createChainedFunction, KeyCode } from 'tinper-bee-core';
+import createChainedFunction from 'tinper-bee-core/lib/createChainedFunction';
 import { getKeyFromChildrenIndex, loopMenuItem } from './util';
 import DOMWrap from './DOMWrap';
 
@@ -50,7 +50,6 @@ function saveRef(index, subIndex, c) {
   }
 }
 
-//import Animate from 'bee-transition';
 const propTypes = {
     onSelect: PropTypes.func,
     onClick: PropTypes.func,

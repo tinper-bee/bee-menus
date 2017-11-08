@@ -18,7 +18,9 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _tinperBeeCore = require('tinper-bee-core');
+var _createChainedFunction = require('tinper-bee-core/lib/createChainedFunction');
+
+var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -92,7 +94,7 @@ var MenuToggle = function (_React$Component) {
     var buttonProps = _extends({
       type: 'button'
     }, props, {
-      onClick: (0, _tinperBeeCore.createChainedFunction)(onClick, this.handleClick.bind(this)),
+      onClick: (0, _createChainedFunction2["default"])(onClick, this.handleClick.bind(this)),
       className: (0, _classnames2["default"])(className, clsPrefix, show && 'show')
       //!this.context.u_navbar.expanded && 'collapsed',
     });

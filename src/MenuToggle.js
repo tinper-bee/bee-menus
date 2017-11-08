@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createChainedFunction } from 'tinper-bee-core';
+import createChainedFunction from 'tinper-bee-core/lib/createChainedFunction';
 
 const propTypes = {
   onClick: PropTypes.func,

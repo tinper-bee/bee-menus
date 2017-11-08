@@ -24,7 +24,9 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _tinperBeeCore = require('tinper-bee-core');
+var _createChainedFunction = require('tinper-bee-core/lib/createChainedFunction');
+
+var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 
 var _util = require('./util');
 
@@ -92,7 +94,6 @@ function saveRef(index, subIndex, c) {
   }
 }
 
-//import Animate from 'bee-transition';
 var propTypes = {
   onSelect: _propTypes2["default"].func,
   onClick: _propTypes2["default"].func,
@@ -251,7 +252,7 @@ var SubPopupMenu = function (_Component) {
       rootPrefixCls: props.prefixCls,
       index: i,
       parentMenu: this,
-      ref: childProps.disabled ? undefined : (0, _tinperBeeCore.createChainedFunction)(child.ref, saveRef.bind(this, i, subIndex)),
+      ref: childProps.disabled ? undefined : (0, _createChainedFunction2["default"])(child.ref, saveRef.bind(this, i, subIndex)),
       eventKey: key,
       closeSubMenuOnMouseLeave: props.closeSubMenuOnMouseLeave,
       onItemHover: this.onItemHover,

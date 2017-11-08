@@ -34,11 +34,11 @@ class Demo5 extends Component {
         }
     }
 
-    onToggle(value) {
+    onToggle = (value) => {
         this.setState({expanded: value});
     }
 
-    handleClick(e) {
+    handleClick = (e) => {
         console.log('click ', e);
         this.setState({
             current: e.key
@@ -52,7 +52,7 @@ class Demo5 extends Component {
     render() {
         return (
             <div id="demo5">
-                <Navbar expanded={this.state.expanded} onToggle={this.onToggle.bind(this)}>
+                <Navbar expanded={this.state.expanded} onToggle={this.onToggle}>
                     <MenuToggle show/>
                     <Header>
                         <Brand>
@@ -61,12 +61,26 @@ class Demo5 extends Component {
                     </Header>
 
                     <Nav pullRight>
-                        <NavItem eventKey={1}><FormControl type="text" placeholder="Search" onChange={this.onChange} value={this.state.searchValue}/></NavItem>
-                        <NavItem eventKey={2}><Badge dataBadge="4" colors="warning"><Icon
-                            type="uf-bell"></Icon></Badge></NavItem>
-                        <NavItem eventKey={3}><Icon type="uf-bubble-o"></Icon></NavItem>
+                        <NavItem eventKey={1}>
+                            <FormControl
+                                type="text"
+                                placeholder="Search"
+                                onChange={this.onChange}
+                                value={this.state.searchValue}
+                            />
+                        </NavItem>
+                        <NavItem eventKey={2}>
+                            <Badge dataBadge="4" colors="warning">
+                                <Icon
+                                    type="uf-bell"
+                                />
+                            </Badge>
+                        </NavItem>
+                        <NavItem eventKey={3}>
+                            <Icon type="uf-bubble-o" />
+                        </NavItem>
                         <Menu mode="horizontal" className="dropdown">
-                            <SubMenu title={<span>刘认华<Icon type="uf-triangle-down"></Icon></span>}>
+                            <SubMenu title={<span>刘认华<Icon type="uf-triangle-down" /></span>}>
                                 <Menu.Item key="setting:1">选项 1</Menu.Item>
                                 <Menu.Item key="setting:2">选项 2</Menu.Item>
                                 <Menu.Item key="setting:3">选项 3</Menu.Item>
@@ -75,8 +89,10 @@ class Demo5 extends Component {
                         </Menu>
                     </Nav>
                 </Navbar>
-                <SideContainer onToggle={this.onToggle.bind(this)} expanded={this.state.expanded}>
-                    <Menu onClick={this.handleClick.bind(this)}
+                <SideContainer
+                    onToggle={this.onToggle}
+                    expanded={this.state.expanded}>
+                    <Menu onClick={this.handleClick}
                           style={{ width: 240 }}
                           defaultOpenKeys={['demo3sub1']}
                           selectedKeys={[this.state.current]}

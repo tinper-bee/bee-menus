@@ -18,7 +18,9 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _tinperBeeCore = require('tinper-bee-core');
+var _keyCode = require('tinper-bee-core/lib/keyCode');
+
+var _keyCode2 = _interopRequireDefault(_keyCode);
 
 var _classnames = require('classnames');
 
@@ -146,7 +148,7 @@ var SubMenu = function (_Component) {
     var menu = this.menuInstance;
     var isOpen = this.isOpen();
 
-    if (keyCode === _tinperBeeCore.KeyCode.ENTER) {
+    if (keyCode === _keyCode2["default"].ENTER) {
       this.onTitleClick(e);
       this.setState({
         defaultActiveFirst: true
@@ -154,7 +156,7 @@ var SubMenu = function (_Component) {
       return true;
     }
 
-    if (keyCode === _tinperBeeCore.KeyCode.RIGHT) {
+    if (keyCode === _keyCode2["default"].RIGHT) {
       if (isOpen) {
         menu.onKeyDown(e);
       } else {
@@ -165,7 +167,7 @@ var SubMenu = function (_Component) {
       }
       return true;
     }
-    if (keyCode === _tinperBeeCore.KeyCode.LEFT) {
+    if (keyCode === _keyCode2["default"].LEFT) {
       var handled = void 0;
       if (isOpen) {
         handled = menu.onKeyDown(e);
@@ -179,7 +181,7 @@ var SubMenu = function (_Component) {
       return handled;
     }
 
-    if (isOpen && (keyCode === _tinperBeeCore.KeyCode.UP || keyCode === _tinperBeeCore.KeyCode.DOWN)) {
+    if (isOpen && (keyCode === _keyCode2["default"].UP || keyCode === _keyCode2["default"].DOWN)) {
       return menu.onKeyDown(e);
     }
   };

@@ -13,12 +13,12 @@ const MenuItemGroup = Menu.ItemGroup;
 
 class Demo4 extends Component {
 
-    handleClick() {
+    handleClick = (e) => {
         console.log('click', e);
     }
     render() {
         return (
-            <Menu onClick={this.handleClick.bind(this)} style={{ width: 240 }} mode="vertical">
+            <Menu onClick={this.handleClick} style={{ width: 240 }} mode="vertical">
                 <SubMenu key="sub1" title={<span><span>组织 1</span></span>}>
                     <MenuItemGroup title="Item 1">
                         <Menu.Item key="1">选项 1</Menu.Item>

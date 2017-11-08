@@ -17,20 +17,16 @@ class Demo3 extends Component {
             current: '1',
             openKeys: []
         }
-        this.myfilter = this.myfilter.bind(this);
     }
-    handleClick(e) {
+    handleClick = (e) => {
         console.log('Clicked: ', e);
         this.setState({current: e.key});
     }
-    onOpenChange(openKeys) {
+    onOpenChange = (openKeys) => {
         const state = this.state;
 
         const latestOpenKey = this.myfilter(openKeys,state.openKeys);
         const latestCloseKey = this.myfilter(state.openKeys,openKeys);
-
-         /*   const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1));
-            const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1));*/
 
         let nextOpenKeys = [];
         if (latestOpenKey) {
@@ -41,30 +37,39 @@ class Demo3 extends Component {
         }
         this.setState({openKeys: nextOpenKeys});
     }
+
     //IE下 array.find（）方法不可用
-    myfilter(arr1,arr2) {
-        if(arr2.length == 0 || !arr2) {
+    myfilter = (arr1,arr2) => {
+        if(arr2.length === 0 || !arr2) {
             return arr1[0];
         }
 
         for(var i=0;i<arr1.length;i++)
         {
-          if(arr2.indexOf(arr1[i].toString())==-1)
+          if(arr2.indexOf(arr1[i].toString()) === -1)
           {
                 return arr1[i];
           }      
         }
         return false;
     }
-    getAncestorKeys(key) {
+
+    getAncestorKeys = (key) => {
         const map = {
             sub3: ['sub2'],
         };
         return map[key] || [];
     }
+
     render() {
         return (
-            <Menu mode="inline" openKeys={this.state.openKeys} selectedKeys={[this.state.current]} style={{ width: 240 }} onOpenChange={this.onOpenChange.bind(this)} style={{ width: 240 }}  onClick={this.handleClick.bind(this)}>
+            <Menu
+                mode="inline"
+                openKeys={this.state.openKeys}
+                selectedKeys={[this.state.current]}
+                style={{ width: 240 }}
+                onOpenChange={this.onOpenChange}
+                onClick={this.handleClick}>
                 <SubMenu key="sub1" title={<span><span>组织 1</span></span>}>
                     <Menu.Item key="1">选项 1</Menu.Item>
                     <Menu.Item key="2">选项 2</Menu.Item>
