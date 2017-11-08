@@ -70,6 +70,7 @@ class Menu extends React.Component<MenuProps, any> {
     this.state = {
       openKeys: [],
     };
+    this.rcMenu = {};
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.mode === 'inline' &&
@@ -144,7 +145,7 @@ class Menu extends React.Component<MenuProps, any> {
         className,
       };
     }
-    return <RcMenu {...this.props} {...props} />;
+    return <RcMenu ref={(el) => this.rcMenu = el}  {...this.props} {...props} />;
   }
 }
 Menu.Divider = Divider;

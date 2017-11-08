@@ -63,6 +63,7 @@ var Menu = function (_React$Component) {
     _this.state = {
       openKeys: []
     };
+    _this.rcMenu = {};
     return _this;
   }
 
@@ -82,6 +83,8 @@ var Menu = function (_React$Component) {
   };
 
   Menu.prototype.render = function render() {
+    var _this2 = this;
+
     var openAnimation = this.props.openAnimation || this.props.openTransitionName;
     if (!openAnimation) {
       switch (this.props.mode) {
@@ -124,7 +127,9 @@ var Menu = function (_React$Component) {
         className: className
       };
     }
-    return _react2["default"].createElement(_ExportMenu2["default"], _extends({}, this.props, props));
+    return _react2["default"].createElement(_ExportMenu2["default"], _extends({ ref: function ref(el) {
+        return _this2.rcMenu = el;
+      } }, this.props, props));
   };
 
   return Menu;
