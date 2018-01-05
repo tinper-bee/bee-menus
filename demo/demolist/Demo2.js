@@ -27,7 +27,7 @@ class Demo2 extends Component {
 
     render() {
         return (
-            <Menu onClick={this.handleClick} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode="inline">
+            <Menu theme="dark" onClick={this.handleClick} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode="inline">
                 <SubMenu key="demo3sub1" title={<span><span>组织 1</span></span>}>
                     <MenuItemGroup title="组 1">
                         <Menu.Item key="1">选项 1</Menu.Item>

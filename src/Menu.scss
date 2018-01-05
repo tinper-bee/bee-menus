@@ -464,6 +464,10 @@
     .u-menu-item > a{
         color: $menu-group-titil-color;
     }
+    .u-menu-item-active,
+    .u-menu-submenu-active > .u-menu-submenu-title {
+      background-color: transparent;
+    }
 }
 
 

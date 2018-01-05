@@ -108,7 +108,7 @@
 	
 	var CARETUP = _react2['default'].createElement('i', { className: 'uf uf-arrow-up' });
 	
-	var Demo1 = __webpack_require__(139);var Demo2 = __webpack_require__(140);var Demo3 = __webpack_require__(141);var Demo4 = __webpack_require__(142);var Demo5 = __webpack_require__(143);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 横向Menu纯菜单导航", "code": "/**\n * @title 横向Menu纯菜单导航\n * @description 更简洁，更方便\n */\n\nimport React, { Component } from 'react';\nimport Menu from 'bee-menus';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\nclass Demo1 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: 'mail'\n        }\n    }\n\n    handleClick = (e) => {\n        this.setState({\n            current: e.key,\n        });\n    }\n\n    render() {\n        return (\n            <Menu onClick={this.handleClick}\n                  selectedKeys={[this.state.current]}\n                  mode=\"horizontal\"\n                >\n                <Menu.Item key=\"mail\">\n                    组织 1\n                </Menu.Item>\n                <Menu.Item key=\"app\" disabled>\n                    组织 2\n                </Menu.Item>\n                <SubMenu title={<span>组织 1 - 子</span>}>\n                    <MenuItemGroup title=\"组 1\">\n                        <Menu.Item key=\"setting:1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"setting:2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"组 2\">\n                        <Menu.Item key=\"setting:3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"setting:4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 更简洁，更方便" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 竖向Menu基础样式", "code": "/**\n * @title 竖向Menu基础样式\n * @description 子菜单竖向显示，可折叠。\n */\n\nimport React, { Component } from 'react';\nimport Menu from '../../src/index';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\nclass Demo2 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: 1\n        }\n    }\n\n    handleClick = (e) => {\n\n        this.setState({\n            current: e.key,\n        });\n    }\n\n    render() {\n        return (\n            <Menu onClick={this.handleClick} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode=\"inline\">\n                <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\n                    <MenuItemGroup title=\"组 1\">\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"组 2\">\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n                <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"demo3sub3\" title=\"子项\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 子菜单竖向显示，可折叠。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 竖向手风琴Menu", "code": "/**\n * @title 竖向手风琴Menu\n * @description 菜单展开是手风琴形式。\n */\n\n\nimport React, { Component } from 'react';\nimport Menu from 'bee-menus';\n\nconst SubMenu = Menu.SubMenu;\n\n\nclass Demo3 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: '1',\n            openKeys: []\n        }\n    }\n    handleClick = (e) => {\n        console.log('Clicked: ', e);\n        this.setState({current: e.key});\n    }\n    onOpenChange = (openKeys) => {\n        const state = this.state;\n\n        const latestOpenKey = this.myfilter(openKeys,state.openKeys);\n        const latestCloseKey = this.myfilter(state.openKeys,openKeys);\n\n        let nextOpenKeys = [];\n        if (latestOpenKey) {\n            nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);\n        }\n        if (latestCloseKey) {\n            nextOpenKeys = this.getAncestorKeys(latestCloseKey);\n        }\n        this.setState({openKeys: nextOpenKeys});\n    }\n\n    //IE下 array.find（）方法不可用\n    myfilter = (arr1,arr2) => {\n        if(arr2.length === 0 || !arr2) {\n            return arr1[0];\n        }\n\n        for(var i=0;i<arr1.length;i++)\n        {\n          if(arr2.indexOf(arr1[i].toString()) === -1)\n          {\n                return arr1[i];\n          }      \n        }\n        return false;\n    }\n\n    getAncestorKeys = (key) => {\n        const map = {\n            sub3: ['sub2'],\n        };\n        return map[key] || [];\n    }\n\n    render() {\n        return (\n            <Menu\n                mode=\"inline\"\n                openKeys={this.state.openKeys}\n                selectedKeys={[this.state.current]}\n                style={{ width: 240 }}\n                onOpenChange={this.onOpenChange}\n                onClick={this.handleClick}>\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\n                    <Menu.Item key=\"1\">选项 1</Menu.Item>\n                    <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    <Menu.Item key=\"3\">选项 3</Menu.Item>\n                    <Menu.Item key=\"4\">选项 4</Menu.Item>\n                </SubMenu>\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"sub3\" title=\"子项\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 菜单展开是手风琴形式。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 子菜单呼出形式Menu", "code": "/**\n * @title 子菜单呼出形式Menu\n * @description 子菜单在右侧呼出形式显示。\n */\n\nimport React, { Component } from 'react';\nimport Menu from 'bee-menus';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\n\nclass Demo4 extends Component {\n\n    handleClick = (e) => {\n        console.log('click', e);\n    }\n    render() {\n        return (\n            <Menu onClick={this.handleClick} style={{ width: 240 }} mode=\"vertical\">\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\n                    <MenuItemGroup title=\"Item 1\">\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"Iteom 2\">\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"sub3\" title=\"Submenu\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 子菜单在右侧呼出形式显示。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " Navbar和Menus的组合", "code": "/**\n * @title Navbar和Menus的组合\n * @description 示例采取navbar与menus的组合，达到一种PC端常用的复合导航菜单。导航添加了常用的搜索表单消息提醒等组件。\n *\n */\n\nimport React, { Component } from 'react';\nimport Menu from '../../src/index';\nimport FormControl from 'bee-form-control';\nimport Badge from 'bee-badge';\nimport Icon from 'bee-icon';\n\n\nimport Navbar from 'bee-Navbar';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\nconst MenuToggle = Menu.MenuToggle;\nconst SideContainer = Menu.SideContainer;\n\nconst NavItem = Navbar.NavItem;\nconst Header = Navbar.Header;\nconst Brand = Navbar.Brand;\nconst Nav = Navbar.Nav;\n\n\nclass Demo5 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            expanded: false,\n            current: 1,\n            searchValue:\"Search\"\n        }\n    }\n\n    onToggle = (value) => {\n        this.setState({expanded: value});\n    }\n\n    handleClick = (e) => {\n        console.log('click ', e);\n        this.setState({\n            current: e.key\n        });\n    }\n\n    onChange = (e) => {\n        this.setState({searchValue:e});\n    }\n\n    render() {\n        return (\n            <div id=\"demo5\">\n                <Navbar expanded={this.state.expanded} onToggle={this.onToggle}>\n                    <MenuToggle show/>\n                    <Header>\n                        <Brand>\n                            <a href=\"#\"><img style={{width:140}} src=\"http://design.yyuap.com/logos/logox.png\"/></a>\n                        </Brand>\n                    </Header>\n\n                    <Nav pullRight>\n                        <NavItem eventKey={1}>\n                            <FormControl\n                                type=\"text\"\n                                placeholder=\"Search\"\n                                onChange={this.onChange}\n                                value={this.state.searchValue}\n                            />\n                        </NavItem>\n                        <NavItem eventKey={2}>\n                            <Badge dataBadge=\"4\" colors=\"warning\">\n                                <Icon\n                                    type=\"uf-bell\"\n                                />\n                            </Badge>\n                        </NavItem>\n                        <NavItem eventKey={3}>\n                            <Icon type=\"uf-bubble-o\" />\n                        </NavItem>\n                        <Menu mode=\"horizontal\" className=\"dropdown\">\n                            <SubMenu title={<span>刘认华<Icon type=\"uf-triangle-down\" /></span>}>\n                                <Menu.Item key=\"setting:1\">选项 1</Menu.Item>\n                                <Menu.Item key=\"setting:2\">选项 2</Menu.Item>\n                                <Menu.Item key=\"setting:3\">选项 3</Menu.Item>\n                                <Menu.Item key=\"setting:4\">选项 4</Menu.Item>\n                            </SubMenu>\n                        </Menu>\n                    </Nav>\n                </Navbar>\n                <SideContainer\n                    onToggle={this.onToggle}\n                    expanded={this.state.expanded}>\n                    <Menu onClick={this.handleClick}\n                          style={{ width: 240 }}\n                          defaultOpenKeys={['demo3sub1']}\n                          selectedKeys={[this.state.current]}\n                          mode=\"inline\"\n                        >\n                        <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\n                            <MenuItemGroup title=\"组 1\">\n                                <Menu.Item key=\"1\">选项 1</Menu.Item>\n                                <Menu.Item key=\"2\">选项 2</Menu.Item>\n                            </MenuItemGroup>\n                            <MenuItemGroup title=\"组 2\">\n                                <Menu.Item key=\"3\">选项 3</Menu.Item>\n                                <Menu.Item key=\"4\">选项 4</Menu.Item>\n                            </MenuItemGroup>\n                        </SubMenu>\n                        <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\n                            <Menu.Item key=\"5\">选项 5</Menu.Item>\n                            <Menu.Item key=\"6\">选项 6</Menu.Item>\n                            <SubMenu key=\"demo3sub3\" title=\"子项\">\n                                <Menu.Item key=\"7\">选项 7</Menu.Item>\n                                <Menu.Item key=\"8\">选项 8</Menu.Item>\n                            </SubMenu>\n                        </SubMenu>\n                        <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\n                            <Menu.Item key=\"9\">选项 9</Menu.Item>\n                            <Menu.Item key=\"10\">选项 10</Menu.Item>\n                            <Menu.Item key=\"11\">选项 11</Menu.Item>\n                            <Menu.Item key=\"12\">选项 12</Menu.Item>\n                        </SubMenu>\n                    </Menu>\n                </SideContainer>\n            </div>\n        )\n    }\n}\n\n", "desc": " 示例采取navbar与menus的组合，达到一种PC端常用的复合导航菜单。导航添加了常用的搜索表单消息提醒等组件。" }];
+	var Demo1 = __webpack_require__(139);var Demo2 = __webpack_require__(140);var Demo3 = __webpack_require__(141);var Demo4 = __webpack_require__(142);var Demo5 = __webpack_require__(143);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 横向Menu纯菜单导航", "code": "/**\n * @title 横向Menu纯菜单导航\n * @description 更简洁，更方便\n */\n\nimport React, { Component } from 'react';\nimport Menu from 'bee-menus';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\nclass Demo1 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: 'mail'\n        }\n    }\n\n    handleClick = (e) => {\n        this.setState({\n            current: e.key,\n        });\n    }\n\n    render() {\n        return (\n            <Menu onClick={this.handleClick}\n                  selectedKeys={[this.state.current]}\n                  mode=\"horizontal\"\n                >\n                <Menu.Item key=\"mail\">\n                    组织 1\n                </Menu.Item>\n                <Menu.Item key=\"app\" disabled>\n                    组织 2\n                </Menu.Item>\n                <SubMenu title={<span>组织 1 - 子</span>}>\n                    <MenuItemGroup title=\"组 1\">\n                        <Menu.Item key=\"setting:1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"setting:2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"组 2\">\n                        <Menu.Item key=\"setting:3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"setting:4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 更简洁，更方便" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 竖向Menu基础样式", "code": "/**\n * @title 竖向Menu基础样式\n * @description 子菜单竖向显示，可折叠。\n */\n\nimport React, { Component } from 'react';\nimport Menu from '../../src/index';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\nclass Demo2 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: 1\n        }\n    }\n\n    handleClick = (e) => {\n\n        this.setState({\n            current: e.key,\n        });\n    }\n\n    render() {\n        return (\n            <Menu theme=\"dark\" onClick={this.handleClick} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode=\"inline\">\n                <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\n                    <MenuItemGroup title=\"组 1\">\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"组 2\">\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n                <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"demo3sub3\" title=\"子项\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 子菜单竖向显示，可折叠。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 竖向手风琴Menu", "code": "/**\n * @title 竖向手风琴Menu\n * @description 菜单展开是手风琴形式。\n */\n\n\nimport React, { Component } from 'react';\nimport Menu from 'bee-menus';\n\nconst SubMenu = Menu.SubMenu;\n\n\nclass Demo3 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: '1',\n            openKeys: []\n        }\n    }\n    handleClick = (e) => {\n        console.log('Clicked: ', e);\n        this.setState({current: e.key});\n    }\n    onOpenChange = (openKeys) => {\n        const state = this.state;\n\n        const latestOpenKey = this.myfilter(openKeys,state.openKeys);\n        const latestCloseKey = this.myfilter(state.openKeys,openKeys);\n\n        let nextOpenKeys = [];\n        if (latestOpenKey) {\n            nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);\n        }\n        if (latestCloseKey) {\n            nextOpenKeys = this.getAncestorKeys(latestCloseKey);\n        }\n        this.setState({openKeys: nextOpenKeys});\n    }\n\n    //IE下 array.find（）方法不可用\n    myfilter = (arr1,arr2) => {\n        if(arr2.length === 0 || !arr2) {\n            return arr1[0];\n        }\n\n        for(var i=0;i<arr1.length;i++)\n        {\n          if(arr2.indexOf(arr1[i].toString()) === -1)\n          {\n                return arr1[i];\n          }      \n        }\n        return false;\n    }\n\n    getAncestorKeys = (key) => {\n        const map = {\n            sub3: ['sub2'],\n        };\n        return map[key] || [];\n    }\n\n    render() {\n        return (\n            <Menu\n                mode=\"inline\"\n                openKeys={this.state.openKeys}\n                selectedKeys={[this.state.current]}\n                style={{ width: 240 }}\n                onOpenChange={this.onOpenChange}\n                onClick={this.handleClick}>\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\n                    <Menu.Item key=\"1\">选项 1</Menu.Item>\n                    <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    <Menu.Item key=\"3\">选项 3</Menu.Item>\n                    <Menu.Item key=\"4\">选项 4</Menu.Item>\n                </SubMenu>\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"sub3\" title=\"子项\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 菜单展开是手风琴形式。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 子菜单呼出形式Menu", "code": "/**\n * @title 子菜单呼出形式Menu\n * @description 子菜单在右侧呼出形式显示。\n */\n\nimport React, { Component } from 'react';\nimport Menu from 'bee-menus';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\n\nclass Demo4 extends Component {\n\n    handleClick = (e) => {\n        console.log('click', e);\n    }\n    render() {\n        return (\n            <Menu onClick={this.handleClick} style={{ width: 240 }} mode=\"vertical\">\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\n                    <MenuItemGroup title=\"Item 1\">\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"Iteom 2\">\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"sub3\" title=\"Submenu\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 子菜单在右侧呼出形式显示。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " Navbar和Menus的组合", "code": "/**\n * @title Navbar和Menus的组合\n * @description 示例采取navbar与menus的组合，达到一种PC端常用的复合导航菜单。导航添加了常用的搜索表单消息提醒等组件。\n *\n */\n\nimport React, { Component } from 'react';\nimport Menu from '../../src/index';\nimport FormControl from 'bee-form-control';\nimport Badge from 'bee-badge';\nimport Icon from 'bee-icon';\n\n\nimport Navbar from 'bee-Navbar';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\nconst MenuToggle = Menu.MenuToggle;\nconst SideContainer = Menu.SideContainer;\n\nconst NavItem = Navbar.NavItem;\nconst Header = Navbar.Header;\nconst Brand = Navbar.Brand;\nconst Nav = Navbar.Nav;\n\n\nclass Demo5 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            expanded: false,\n            current: 1,\n            searchValue:\"Search\"\n        }\n    }\n\n    onToggle = (value) => {\n        this.setState({expanded: value});\n    }\n\n    handleClick = (e) => {\n        console.log('click ', e);\n        this.setState({\n            current: e.key\n        });\n    }\n\n    onChange = (e) => {\n        this.setState({searchValue:e});\n    }\n\n    render() {\n        return (\n            <div id=\"demo5\">\n                <Navbar expanded={this.state.expanded} onToggle={this.onToggle}>\n                    <MenuToggle show/>\n                    <Header>\n                        <Brand>\n                            <a href=\"#\"><img style={{width:140}} src=\"http://design.yyuap.com/logos/logox.png\"/></a>\n                        </Brand>\n                    </Header>\n\n                    <Nav pullRight>\n                        <NavItem eventKey={1}>\n                            <FormControl\n                                type=\"text\"\n                                placeholder=\"Search\"\n                                onChange={this.onChange}\n                                value={this.state.searchValue}\n                            />\n                        </NavItem>\n                        <NavItem eventKey={2}>\n                            <Badge dataBadge=\"4\" colors=\"warning\">\n                                <Icon\n                                    type=\"uf-bell\"\n                                />\n                            </Badge>\n                        </NavItem>\n                        <NavItem eventKey={3}>\n                            <Icon type=\"uf-bubble-o\" />\n                        </NavItem>\n                        <Menu mode=\"horizontal\" className=\"dropdown\">\n                            <SubMenu title={<span>刘认华<Icon type=\"uf-triangle-down\" /></span>}>\n                                <Menu.Item key=\"setting:1\">选项 1</Menu.Item>\n                                <Menu.Item key=\"setting:2\">选项 2</Menu.Item>\n                                <Menu.Item key=\"setting:3\">选项 3</Menu.Item>\n                                <Menu.Item key=\"setting:4\">选项 4</Menu.Item>\n                            </SubMenu>\n                        </Menu>\n                    </Nav>\n                </Navbar>\n                <SideContainer\n                    onToggle={this.onToggle}\n                    expanded={this.state.expanded}>\n                    <Menu onClick={this.handleClick}\n                          style={{ width: 240 }}\n                          defaultOpenKeys={['demo3sub1']}\n                          selectedKeys={[this.state.current]}\n                          mode=\"inline\"\n                        >\n                        <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\n                            <MenuItemGroup title=\"组 1\">\n                                <Menu.Item key=\"1\">选项 1</Menu.Item>\n                                <Menu.Item key=\"2\">选项 2</Menu.Item>\n                            </MenuItemGroup>\n                            <MenuItemGroup title=\"组 2\">\n                                <Menu.Item key=\"3\">选项 3</Menu.Item>\n                                <Menu.Item key=\"4\">选项 4</Menu.Item>\n                            </MenuItemGroup>\n                        </SubMenu>\n                        <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\n                            <Menu.Item key=\"5\">选项 5</Menu.Item>\n                            <Menu.Item key=\"6\">选项 6</Menu.Item>\n                            <SubMenu key=\"demo3sub3\" title=\"子项\">\n                                <Menu.Item key=\"7\">选项 7</Menu.Item>\n                                <Menu.Item key=\"8\">选项 8</Menu.Item>\n                            </SubMenu>\n                        </SubMenu>\n                        <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\n                            <Menu.Item key=\"9\">选项 9</Menu.Item>\n                            <Menu.Item key=\"10\">选项 10</Menu.Item>\n                            <Menu.Item key=\"11\">选项 11</Menu.Item>\n                            <Menu.Item key=\"12\">选项 12</Menu.Item>\n                        </SubMenu>\n                    </Menu>\n                </SideContainer>\n            </div>\n        )\n    }\n}\n\n", "desc": " 示例采取navbar与menus的组合，达到一种PC端常用的复合导航菜单。导航添加了常用的搜索表单消息提醒等组件。" }];
 	
 	var Demo = function (_Component) {
 	    _inherits(Demo, _Component);
@@ -11136,10 +11136,6 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(12);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
 	var _classnames = __webpack_require__(3);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
@@ -11158,8 +11154,6 @@
 	
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -11169,8 +11163,7 @@
 	var propTypes = {
 	  componentClass: _propTypes2["default"].oneOfType([_propTypes2["default"].element, _propTypes2["default"].string]),
 	  type: _propTypes2["default"].string,
-	  size: _propTypes2["default"].oneOf(['sm', 'md', 'lg']),
-	  id: _propTypes2["default"].string
+	  size: _propTypes2["default"].oneOf(['sm', 'md', 'lg'])
 	};
 	
 	var defaultProps = {
@@ -11188,11 +11181,14 @@
 	
 	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 	
-	    _this.onChange = function (e) {
+	    _this.handleChange = function (e) {
 	      var value = e.target.value;
 	      var onChange = _this.props.onChange;
 	
-	      _this.setState(_defineProperty({ value: value, showSearch: false }, 'showSearch', value == ""));
+	      _this.setState({
+	        value: value,
+	        showSearch: value == null || value === ""
+	      });
 	      if (onChange) {
 	        onChange(value);
 	      }
@@ -11204,7 +11200,7 @@
 	
 	    _this.state = {
 	      showSearch: true,
-	      value: props.value || ""
+	      value: props.value == null ? "" : props.value
 	    };
 	    _this.input = {};
 	    return _this;
@@ -11222,11 +11218,11 @@
 	    var _props = this.props,
 	        Component = _props.componentClass,
 	        type = _props.type,
-	        id = _props.id,
 	        className = _props.className,
 	        size = _props.size,
 	        clsPrefix = _props.clsPrefix,
-	        others = _objectWithoutProperties(_props, ['componentClass', 'type', 'id', 'className', 'size', 'clsPrefix']);
+	        onChange = _props.onChange,
+	        others = _objectWithoutProperties(_props, ['componentClass', 'type', 'className', 'size', 'clsPrefix', 'onChange']);
 	    // input[type="file"] 不应该有类名 .form-control.
 	
 	
@@ -11234,7 +11230,7 @@
 	    if (size) {
 	      classes['' + size] = true;
 	    }
-	    if (type == "search") {
+	    if (type === "search") {
 	      classes['u-input-search'] = true;
 	    }
 	
@@ -11243,16 +11239,18 @@
 	      classNames = (0, _classnames2["default"])(clsPrefix, classes);
 	    }
 	
-	    if (type == "search") {
+	    if (type === "search") {
 	
 	      return _react2["default"].createElement(
 	        'span',
 	        { className: 'u-input-search u-input-affix-wrapper' },
 	        _react2["default"].createElement(Component, _extends({}, others, {
 	          type: type,
-	          onChange: this.onChange,
+	          ref: function ref(el) {
+	            return _this2.input = el;
+	          },
+	          onChange: this.handleChange,
 	          value: this.state.value,
-	          id: id,
 	          className: (0, _classnames2["default"])(className, classNames)
 	        })),
 	        _react2["default"].createElement(
@@ -11266,12 +11264,11 @@
 	
 	    return _react2["default"].createElement(Component, _extends({}, others, {
 	      type: type,
-	      id: id,
 	      ref: function ref(el) {
 	        return _this2.input = el;
 	      },
 	      value: this.state.value,
-	      onChange: this.onChange,
+	      onChange: this.handleChange,
 	      className: (0, _classnames2["default"])(className, classNames)
 	    }));
 	  };
@@ -11567,9 +11564,13 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _tinperBeeCore = __webpack_require__(26);
+	var _elementType = __webpack_require__(33);
 	
-	var _beeLayout = __webpack_require__(1);
+	var _elementType2 = _interopRequireDefault(_elementType);
+	
+	var _Layout = __webpack_require__(7);
+	
+	var _Layout2 = _interopRequireDefault(_Layout);
 	
 	var _NavbarBrand = __webpack_require__(133);
 	
@@ -11605,8 +11606,7 @@
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } // TODO: Remove this pragma once we upgrade eslint-config-airbnb.
-	/* eslint-disable react/no-multi-comp */
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 	
 	//import NavDropdown from './NavDropdown';
 	
@@ -11638,7 +11638,7 @@
 	  /**
 	   * Set a custom element for this component.
 	   */
-	  componentClass: _tinperBeeCore.elementType,
+	  componentClass: _elementType2["default"],
 	  /**
 	   * A callback fired when the `<Navbar>` body collapses or expands. Fired when
 	   * a `<Navbar.Toggle>` is clicked and called with the new `navExpanded`
@@ -11751,7 +11751,7 @@
 	        className: (0, _classnames2["default"])(className, classNames)
 	      }),
 	      _react2["default"].createElement(
-	        _beeLayout.Con,
+	        _Layout2["default"],
 	        { fluid: fluid },
 	        children
 	      )
@@ -11788,7 +11788,7 @@
 	  Wrapper.displayName = displayName;
 	
 	  Wrapper.propTypes = {
-	    componentClass: _tinperBeeCore.elementType,
+	    componentClass: _elementType2["default"],
 	    pullRight: _propTypes2["default"].bool,
 	    pullLeft: _propTypes2["default"].bool
 	  };
@@ -11836,10 +11836,6 @@
 	var _react = __webpack_require__(4);
 	
 	var _react2 = _interopRequireDefault(_react);
-	
-	var _propTypes = __webpack_require__(5);
-	
-	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
 	var _classnames = __webpack_require__(3);
 	
@@ -11918,11 +11914,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _classnames = __webpack_require__(3);
+	var _Collapse = __webpack_require__(16);
 	
-	var _classnames2 = _interopRequireDefault(_classnames);
-	
-	var _beeTransition = __webpack_require__(10);
+	var _Collapse2 = _interopRequireDefault(_Collapse);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
@@ -11963,10 +11957,8 @@
 	
 	    var navbarProps = this.context.u_navbar;
 	
-	    var classes = { 'collapse': true, 'in': navbarProps.expanded };
-	
 	    return _react2["default"].createElement(
-	      _beeTransition.Collapse,
+	      _Collapse2["default"],
 	      _extends({ 'in': navbarProps.expanded }, props),
 	      _react2["default"].createElement(
 	        'div',
@@ -12071,7 +12063,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _tinperBeeCore = __webpack_require__(26);
+	var _createChainedFunction = __webpack_require__(71);
+	
+	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
@@ -12145,7 +12139,7 @@
 	    var buttonProps = _extends({
 	      type: 'button'
 	    }, props, {
-	      onClick: (0, _tinperBeeCore.createChainedFunction)(onClick, this.handleClick.bind(this)),
+	      onClick: (0, _createChainedFunction2["default"])(onClick, this.handleClick.bind(this)),
 	      className: (0, _classnames2["default"])(className, clsPrefix, show && 'show')
 	    });
 	
@@ -12209,11 +12203,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _reactDom = __webpack_require__(12);
+	var _all = __webpack_require__(27);
 	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
-	var _tinperBeeCore = __webpack_require__(26);
+	var _all2 = _interopRequireDefault(_all);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
@@ -12226,7 +12218,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
-	//import warning from 'warning';
 	
 	// TODO: Should we expose `<NavItem>` as `<Nav.Item>`?
 	
@@ -12252,7 +12243,7 @@
 	   */
 	  stacked: _propTypes2["default"].bool,
 	
-	  justified: (0, _tinperBeeCore.all)(_propTypes2["default"].bool, function (_ref) {
+	  justified: (0, _all2["default"])(_propTypes2["default"].bool, function (_ref) {
 	    var justified = _ref.justified,
 	        navbar = _ref.navbar;
 	    return justified && navbar ? Error('justified navbar `Nav`s are not supported') : null;
@@ -12395,8 +12386,6 @@
 	var _propTypes = __webpack_require__(5);
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
-	
-	var _tinperBeeCore = __webpack_require__(26);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
@@ -12688,7 +12677,7 @@
 	    Demo2.prototype.render = function render() {
 	        return _react2['default'].createElement(
 	            _index2['default'],
-	            { onClick: this.handleClick, style: { width: 240 }, defaultOpenKeys: ['demo3sub1'], selectedKeys: [this.state.current], mode: 'inline' },
+	            { theme: 'dark', onClick: this.handleClick, style: { width: 240 }, defaultOpenKeys: ['demo3sub1'], selectedKeys: [this.state.current], mode: 'inline' },
 	            _react2['default'].createElement(
 	                SubMenu,
 	                { key: 'demo3sub1', title: _react2['default'].createElement(

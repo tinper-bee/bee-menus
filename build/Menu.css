@@ -923,6 +923,9 @@
     color: #fff; }
   .u-menu-dark .u-menu-item > a {
     color: #999; }
+  .u-menu-dark .u-menu-item-active,
+  .u-menu-dark .u-menu-submenu-active > .u-menu-submenu-title {
+    background-color: transparent; }
 
 /* 动画定义 */
 .zoom-enter, .zoom-appear {

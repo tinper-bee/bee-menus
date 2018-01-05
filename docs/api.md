@@ -11,7 +11,8 @@
 
 |参数|说明|类型|默认值|
 |:---|:----|:---|:------|
-|theme|主题颜色|String: light dark	light|
+|className|自定义类名|string|-|
+|theme|主题颜色|String: light dark|-|
 |mode|菜单类型，现在支持垂直、水平、和内嵌模式三种	|String: vertical horizontal inline|vertical|
 |selectedKeys|当前选中的菜单项 key 数组|Array|-|	
 |defaultSelectedKeys|初始选中的菜单项 key 数组|Array|-|	
@@ -30,7 +31,7 @@
 |disabled|是否禁用|Boolean|false|
 |key|item 的唯一标志|String|-|
 
-##Menu.SubMenu
+## Menu.SubMenu
 
 |参数|说明|类型|默认值|
 |:---|:----|:---|:------|
