@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import Menu from '../../src/index';
+import Menu from '../../src';
 import FormControl from 'bee-form-control';
 import Badge from 'bee-badge';
 import Icon from 'bee-icon';

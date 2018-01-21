@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import Menu from '../../src/index';
+import Menu from '../../src';
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;

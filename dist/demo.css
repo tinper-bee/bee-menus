@@ -7154,7 +7154,7 @@ a {
       margin-left: 0;
       left: 0; }
     .u-menu-dark.u-menu-inline .u-menu-item-selected {
-      background-color: #108ee9;
+      background-color: transparent;
       color: #fff; }
   .u-menu-dark.u-menu-vertical {
     border-right: 0; }
@@ -8065,22 +8065,5 @@ a {
     right: 100%; }
   .u-col-lg-offset-12 {
     margin-left: 100%; } }
-
-#ReactNavbarDemo1 .navbar[type=base] {
-  margin: auto;
-  width: 60%; }
-
-#ReactNavbarDemo2 {
-  margin-top: 5px; }
-
-#tinperBeeDemo .u-panel-heading .u-navbar > .u-container {
-  width: 100%; }
-
-@media (min-width: 1200px) {
-  .u-container {
-    width: 970px; } }
-
-#demo6 {
-  height: 100%; }
 
 /*# sourceMappingURL=demo.css.map */
