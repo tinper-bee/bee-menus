@@ -30,6 +30,7 @@
 |:---|:----|:---|:------|
 |disabled|是否禁用|Boolean|false|
 |key|item 的唯一标志|String|-|
+|attribute|添加到dom上的属性|Object|-|
 
 ## Menu.SubMenu
 

@@ -30,7 +30,7 @@ class Demo1 extends Component {
                   selectedKeys={[this.state.current]}
                   mode="horizontal"
                 >
-                <Menu.Item key="mail">
+                <Menu.Item key="mail" attribute={{'type': 'mail'}}>
                     组织 1
                 </Menu.Item>
                 <Menu.Item key="app" disabled>
