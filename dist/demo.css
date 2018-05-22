@@ -6906,7 +6906,7 @@ a {
     padding: 7px 7px 7px 16px;
     white-space: nowrap; }
     .u-menu-item.u-menu-item-disabled, .u-menu-item.u-menu-submenu-disabled, .u-menu-submenu-title.u-menu-item-disabled, .u-menu-submenu-title.u-menu-submenu-disabled {
-      color: #999 !important;
+      color: #999;
       cursor: not-allowed; }
   .u-menu > .u-menu-item-divider {
     height: 1px;
@@ -7074,7 +7074,7 @@ a {
   color: #108ee9; }
 
 .u-menu-submenu-inline > .u-menu-submenu-title:after {
-  font-family: "uf" !important;
+  font-family: "uf";
   font-style: normal;
   vertical-align: baseline;
   text-align: center;
@@ -7120,7 +7120,7 @@ a {
 
 .u-menu-vertical .u-menu-submenu-title:after {
   transform: rotate(270deg) scale(0.75);
-  font-family: "uf" !important;
+  font-family: "uf";
   font-style: normal;
   vertical-align: baseline;
   text-align: center;

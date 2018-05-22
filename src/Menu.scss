@@ -82,7 +82,7 @@
 
     // Disabled state sets text to gray and nukes hover/tab effects
     &.u-menu-item-disabled, &.u-menu-submenu-disabled {
-        color: $menu-group-titil-color !important;
+        color: $menu-group-titil-color;
         cursor: not-allowed;
     }
   }
@@ -319,7 +319,7 @@
 }
 
 .u-menu-submenu-inline > .u-menu-submenu-title:after {
-    font-family: "uf" !important;
+    font-family: "uf";
     font-style: normal;
     vertical-align: baseline;
     text-align: center;
@@ -377,7 +377,7 @@
     }
      .u-menu-submenu-title:after{
         transform: rotate(270deg) scale(0.75);
-        font-family: "uf" !important;
+        font-family: "uf";
         font-style: normal;
         vertical-align: baseline;
         text-align: center;
