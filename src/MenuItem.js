@@ -173,7 +173,7 @@ class MenuItem extends Component{
     classes[props.className] = !!props.className;
     const attrs = {
       ...props.attribute,
-      title: props.title,
+      title: props.title?props.title:(typeof props.children === 'string'?props.children:""),
       className: classnames(classes),
       role: 'menuitem',
       'aria-selected': selected,
@@ -198,6 +198,7 @@ class MenuItem extends Component{
         style={style}
         {...attrs}
         {...mouseEvent}
+        
       >
         {props.children}
       </li>
