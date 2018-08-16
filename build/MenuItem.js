@@ -217,7 +217,7 @@ var MenuItem = function (_Component) {
     classes[this.getPrefixCls()] = true;
     classes[props.className] = !!props.className;
     var attrs = _extends({}, props.attribute, {
-      title: props.title,
+      title: props.title ? props.title : typeof props.children === 'string' ? props.children : "",
       className: (0, _classnames2["default"])(classes),
       role: 'menuitem',
       'aria-selected': selected,
