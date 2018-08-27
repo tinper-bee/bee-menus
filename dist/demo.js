@@ -76,7 +76,7 @@
 	
 	var CARETUP = _react2['default'].createElement('i', { className: 'uf uf-arrow-up' });
 	
-	var Demo1 = __webpack_require__(67);var Demo2 = __webpack_require__(88);var Demo3 = __webpack_require__(89);var Demo4 = __webpack_require__(90);var Demo5 = __webpack_require__(91);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 横向Menu纯菜单导航", "code": "/**\n * @title 横向Menu纯菜单导航\n * @description 更简洁，更方便\n */\n\nimport React, { Component } from 'react';\nimport { Menu } from 'tinper-bee';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\nclass Demo1 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: 'mail'\n        }\n    }\n\n    handleClick = (e) => {\n        this.setState({\n            current: e.key,\n        });\n    }\n\n    render() {\n        return (\n            <Menu onClick={this.handleClick}\n                  selectedKeys={[this.state.current]}\n                  mode=\"horizontal\"\n                >\n                <Menu.Item key=\"mail\" attribute={{'type': 'mail'}}>\n                    组织 1\n                </Menu.Item>\n                <Menu.Item key=\"app\" disabled>\n                    组织 2\n                </Menu.Item>\n                <SubMenu title={<span>组织 1 - 子</span>}>\n                    <MenuItemGroup title=\"组 1\">\n                        <Menu.Item key=\"setting:1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"setting:2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"组 2\">\n                        <Menu.Item key=\"setting:3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"setting:4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 更简洁，更方便" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 竖向Menu基础样式", "code": "/**\n * @title 竖向Menu基础样式\n * @description 子菜单竖向显示，可折叠。\n */\n\nimport React, { Component } from 'react';\nimport { Menu } from 'tinper-bee';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\nclass Demo2 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: 1\n        }\n    }\n\n    handleClick = (e) => {\n\n        this.setState({\n            current: e.key,\n        });\n    }\n\n    render() {\n        return (\n            <Menu theme=\"dark\" onClick={this.handleClick} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode=\"inline\">\n                <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\n                    <MenuItemGroup title=\"组 1\">\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"组 2\">\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n                <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"demo3sub3\" title=\"子项\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 子菜单竖向显示，可折叠。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 竖向手风琴Menu", "code": "/**\n * @title 竖向手风琴Menu\n * @description 菜单展开是手风琴形式。\n */\n\n\nimport React, { Component } from 'react';\nimport { Menu } from 'tinper-bee';\n\nconst SubMenu = Menu.SubMenu;\n\n\nclass Demo3 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: '1',\n            openKeys: []\n        }\n    }\n    handleClick = (e) => {\n        console.log('Clicked: ', e);\n        this.setState({current: e.key});\n    }\n    onOpenChange = (openKeys) => {\n        const state = this.state;\n\n        const latestOpenKey = this.myfilter(openKeys,state.openKeys);\n        const latestCloseKey = this.myfilter(state.openKeys,openKeys);\n\n        let nextOpenKeys = [];\n        if (latestOpenKey) {\n            nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);\n        }\n        if (latestCloseKey) {\n            nextOpenKeys = this.getAncestorKeys(latestCloseKey);\n        }\n        this.setState({openKeys: nextOpenKeys});\n    }\n\n    //IE下 array.find（）方法不可用\n    myfilter = (arr1,arr2) => {\n        if(arr2.length === 0 || !arr2) {\n            return arr1[0];\n        }\n\n        for(var i=0;i<arr1.length;i++)\n        {\n          if(arr2.indexOf(arr1[i].toString()) === -1)\n          {\n                return arr1[i];\n          }      \n        }\n        return false;\n    }\n\n    getAncestorKeys = (key) => {\n        const map = {\n            sub3: ['sub2'],\n        };\n        return map[key] || [];\n    }\n\n    render() {\n        return (\n            <Menu\n                mode=\"inline\"\n                openKeys={this.state.openKeys}\n                selectedKeys={[this.state.current]}\n                style={{ width: 240 }}\n                onOpenChange={this.onOpenChange}\n                onClick={this.handleClick}>\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\n                    <Menu.Item key=\"1\">选项 1</Menu.Item>\n                    <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    <Menu.Item key=\"3\">选项 3</Menu.Item>\n                    <Menu.Item key=\"4\">选项 4</Menu.Item>\n                </SubMenu>\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"sub3\" title=\"子项\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 菜单展开是手风琴形式。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 子菜单呼出形式Menu", "code": "/**\n * @title 子菜单呼出形式Menu\n * @description 子菜单在右侧呼出形式显示。\n */\n\nimport React, { Component } from 'react';\nimport { Menu } from 'tinper-bee';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\n\nclass Demo4 extends Component {\n\n    handleClick = (e) => {\n        console.log('click', e);\n    }\n    render() {\n        return (\n            <Menu onClick={this.handleClick} style={{ width: 240 }} mode=\"vertical\">\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\n                    <MenuItemGroup title=\"Item 1\">\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"Iteom 2\">\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"sub3\" title=\"Submenu\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 子菜单在右侧呼出形式显示。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " Navbar和Menus的组合", "code": "/**\n * @title Navbar和Menus的组合\n * @description 示例采取navbar与menus的组合，达到一种PC端常用的复合导航菜单。导航添加了常用的搜索表单消息提醒等组件。\n *\n */\n\nimport React, { Component } from 'react';\nimport { Menu, Navbar, Icon, Badge, FormControl } from 'tinper-bee';\n\n\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\nconst MenuToggle = Menu.MenuToggle;\nconst SideContainer = Menu.SideContainer;\n\nconst NavItem = Navbar.NavItem;\nconst Header = Navbar.Header;\nconst Brand = Navbar.Brand;\nconst Nav = Navbar.Nav;\n\n\nclass Demo5 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            expanded: false,\n            current: 1,\n            searchValue:\"Search\"\n        }\n    }\n\n    onToggle = (value) => {\n        this.setState({expanded: value});\n    }\n\n    handleClick = (e) => {\n        console.log('click ', e);\n        this.setState({\n            current: e.key\n        });\n    }\n\n    onChange = (e) => {\n        this.setState({searchValue:e});\n    }\n\n    render() {\n        return (\n            <div id=\"demo5\">\n                <Navbar expanded={this.state.expanded} onToggle={this.onToggle}>\n                    <MenuToggle show/>\n                    <Header>\n                        <Brand>\n                            <a href=\"#\"><img style={{width:140}} src=\"http://design.yyuap.com/logos/logox.png\"/></a>\n                        </Brand>\n                    </Header>\n\n                    <Nav pullRight>\n                        <NavItem eventKey={1}>\n                            <FormControl\n                                type=\"text\"\n                                placeholder=\"Search\"\n                                onChange={this.onChange}\n                                value={this.state.searchValue}\n                            />\n                        </NavItem>\n                        <NavItem eventKey={2}>\n                            <Badge dataBadge=\"4\" colors=\"warning\">\n                                <Icon\n                                    type=\"uf-bell\"\n                                />\n                            </Badge>\n                        </NavItem>\n                        <NavItem eventKey={3}>\n                            <Icon type=\"uf-bubble-o\" />\n                        </NavItem>\n                        <Menu mode=\"horizontal\" className=\"dropdown\">\n                            <SubMenu title={<span>刘认华<Icon type=\"uf-triangle-down\" /></span>}>\n                                <Menu.Item key=\"setting:1\">选项 1</Menu.Item>\n                                <Menu.Item key=\"setting:2\">选项 2</Menu.Item>\n                                <Menu.Item key=\"setting:3\">选项 3</Menu.Item>\n                                <Menu.Item key=\"setting:4\">选项 4</Menu.Item>\n                            </SubMenu>\n                        </Menu>\n                    </Nav>\n                </Navbar>\n                <SideContainer\n                    onToggle={this.onToggle}\n                    expanded={this.state.expanded}>\n                    <Menu onClick={this.handleClick}\n                          style={{ width: 240 }}\n                          defaultOpenKeys={['demo3sub1']}\n                          selectedKeys={[this.state.current]}\n                          mode=\"inline\"\n                        >\n                        <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\n                            <MenuItemGroup title=\"组 1\">\n                                <Menu.Item key=\"1\">选项 1</Menu.Item>\n                                <Menu.Item key=\"2\">选项 2</Menu.Item>\n                            </MenuItemGroup>\n                            <MenuItemGroup title=\"组 2\">\n                                <Menu.Item key=\"3\">选项 3</Menu.Item>\n                                <Menu.Item key=\"4\">选项 4</Menu.Item>\n                            </MenuItemGroup>\n                        </SubMenu>\n                        <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\n                            <Menu.Item key=\"5\">选项 5</Menu.Item>\n                            <Menu.Item key=\"6\">选项 6</Menu.Item>\n                            <SubMenu key=\"demo3sub3\" title=\"子项\">\n                                <Menu.Item key=\"7\">选项 7</Menu.Item>\n                                <Menu.Item key=\"8\">选项 8</Menu.Item>\n                            </SubMenu>\n                        </SubMenu>\n                        <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\n                            <Menu.Item key=\"9\">选项 9</Menu.Item>\n                            <Menu.Item key=\"10\">选项 10</Menu.Item>\n                            <Menu.Item key=\"11\">选项 11</Menu.Item>\n                            <Menu.Item key=\"12\">选项 12</Menu.Item>\n                        </SubMenu>\n                    </Menu>\n                </SideContainer>\n            </div>\n        )\n    }\n}\n\n", "desc": " 示例采取navbar与menus的组合，达到一种PC端常用的复合导航菜单。导航添加了常用的搜索表单消息提醒等组件。" }];
+	var Demo1 = __webpack_require__(67);var Demo2 = __webpack_require__(88);var Demo3 = __webpack_require__(89);var Demo4 = __webpack_require__(90);var Demo5 = __webpack_require__(91);var Demo6 = __webpack_require__(106);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 横向Menu纯菜单导航", "code": "/**\r\n * @title 横向Menu纯菜单导航\r\n * @description 更简洁，更方便\r\n */\r\n\r\nimport React, { Component } from 'react';\r\nimport { Menu } from 'tinper-bee';\r\n\r\nconst SubMenu = Menu.SubMenu;\r\nconst MenuItemGroup = Menu.ItemGroup;\r\n\r\n\r\nclass Demo1 extends Component {\r\n    constructor(props, context) {\r\n        super(props, context);\r\n        this.state = {\r\n            current: 'mail'\r\n        }\r\n    }\r\n\r\n    handleClick = (e) => {\r\n        this.setState({\r\n            current: e.key,\r\n        });\r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <Menu onClick={this.handleClick}\r\n                  selectedKeys={[this.state.current]}\r\n                  mode=\"horizontal\"\r\n                >\r\n                <Menu.Item key=\"mail\" attribute={{'type': 'mail'}}>\r\n                    组织 1\r\n                </Menu.Item>\r\n                <Menu.Item key=\"app\" disabled>\r\n                    组织 2\r\n                </Menu.Item>\r\n                <SubMenu title={<span>组织 1 - 子</span>}>\r\n                    <MenuItemGroup title=\"组 1\">\r\n                        <Menu.Item key=\"setting:1\">选项 1</Menu.Item>\r\n                        <Menu.Item key=\"setting:2\">选项 2</Menu.Item>\r\n                    </MenuItemGroup>\r\n                    <MenuItemGroup title=\"组 2\">\r\n                        <Menu.Item key=\"setting:3\">选项 3</Menu.Item>\r\n                        <Menu.Item key=\"setting:4\">选项 4</Menu.Item>\r\n                    </MenuItemGroup>\r\n                </SubMenu>\r\n            </Menu>\r\n        )\r\n    }\r\n}\r\n\r\n", "desc": " 更简洁，更方便" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 竖向Menu基础样式", "code": "/**\r\n * @title 竖向Menu基础样式\r\n * @description 子菜单竖向显示，可折叠。\r\n */\r\n\r\nimport React, { Component } from 'react';\r\nimport { Menu } from 'tinper-bee';\r\n\r\nconst SubMenu = Menu.SubMenu;\r\nconst MenuItemGroup = Menu.ItemGroup;\r\n\r\n\r\nclass Demo2 extends Component {\r\n    constructor(props, context) {\r\n        super(props, context);\r\n        this.state = {\r\n            current: 1\r\n        }\r\n    }\r\n\r\n    handleClick = (e) => {\r\n\r\n        this.setState({\r\n            current: e.key,\r\n        });\r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <Menu theme=\"dark\" onClick={this.handleClick} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode=\"inline\">\r\n                <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\r\n                    <MenuItemGroup title=\"组 1\">\r\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\r\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\r\n                    </MenuItemGroup>\r\n                    <MenuItemGroup title=\"组 2\">\r\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\r\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\r\n                    </MenuItemGroup>\r\n                </SubMenu>\r\n                <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\r\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\r\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\r\n                    <SubMenu key=\"demo3sub3\" title=\"子项\">\r\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\r\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\r\n                    </SubMenu>\r\n                </SubMenu>\r\n                <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\r\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\r\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\r\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\r\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\r\n                </SubMenu>\r\n            </Menu>\r\n        )\r\n    }\r\n}\r\n\r\n", "desc": " 子菜单竖向显示，可折叠。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 竖向手风琴Menu", "code": "/**\r\n * @title 竖向手风琴Menu\r\n * @description 菜单展开是手风琴形式。\r\n */\r\n\r\n\r\nimport React, { Component } from 'react';\r\nimport { Menu } from 'tinper-bee';\r\n\r\nconst SubMenu = Menu.SubMenu;\r\n\r\n\r\nclass Demo3 extends Component {\r\n    constructor(props, context) {\r\n        super(props, context);\r\n        this.state = {\r\n            current: '1',\r\n            openKeys: []\r\n        }\r\n    }\r\n    handleClick = (e) => {\r\n        console.log('Clicked: ', e);\r\n        this.setState({current: e.key});\r\n    }\r\n    onOpenChange = (openKeys) => {\r\n        const state = this.state;\r\n\r\n        const latestOpenKey = this.myfilter(openKeys,state.openKeys);\r\n        const latestCloseKey = this.myfilter(state.openKeys,openKeys);\r\n\r\n        let nextOpenKeys = [];\r\n        if (latestOpenKey) {\r\n            nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);\r\n        }\r\n        if (latestCloseKey) {\r\n            nextOpenKeys = this.getAncestorKeys(latestCloseKey);\r\n        }\r\n        this.setState({openKeys: nextOpenKeys});\r\n    }\r\n\r\n    //IE下 array.find（）方法不可用\r\n    myfilter = (arr1,arr2) => {\r\n        if(arr2.length === 0 || !arr2) {\r\n            return arr1[0];\r\n        }\r\n\r\n        for(var i=0;i<arr1.length;i++)\r\n        {\r\n          if(arr2.indexOf(arr1[i].toString()) === -1)\r\n          {\r\n                return arr1[i];\r\n          }      \r\n        }\r\n        return false;\r\n    }\r\n\r\n    getAncestorKeys = (key) => {\r\n        const map = {\r\n            sub3: ['sub2'],\r\n        };\r\n        return map[key] || [];\r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <Menu\r\n                mode=\"inline\"\r\n                openKeys={this.state.openKeys}\r\n                selectedKeys={[this.state.current]}\r\n                style={{ width: 240 }}\r\n                onOpenChange={this.onOpenChange}\r\n                onClick={this.handleClick}>\r\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\r\n                    <Menu.Item key=\"1\">选项 1</Menu.Item>\r\n                    <Menu.Item key=\"2\">选项 2</Menu.Item>\r\n                    <Menu.Item key=\"3\">选项 3</Menu.Item>\r\n                    <Menu.Item key=\"4\">选项 4</Menu.Item>\r\n                </SubMenu>\r\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\r\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\r\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\r\n                    <SubMenu key=\"sub3\" title=\"子项\">\r\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\r\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\r\n                    </SubMenu>\r\n                </SubMenu>\r\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\r\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\r\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\r\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\r\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\r\n                </SubMenu>\r\n            </Menu>\r\n        )\r\n    }\r\n}\r\n\r\n", "desc": " 菜单展开是手风琴形式。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 子菜单呼出形式Menu", "code": "/**\r\n * @title 子菜单呼出形式Menu\r\n * @description 子菜单在右侧呼出形式显示。\r\n */\r\n\r\nimport React, { Component } from 'react';\r\nimport { Menu } from 'tinper-bee';\r\n\r\nconst SubMenu = Menu.SubMenu;\r\nconst MenuItemGroup = Menu.ItemGroup;\r\n\r\n\r\n\r\nclass Demo4 extends Component {\r\n\r\n    handleClick = (e) => {\r\n        console.log('click', e);\r\n    }\r\n    render() {\r\n        return (\r\n            <Menu onClick={this.handleClick} style={{ width: 240 }} mode=\"vertical\">\r\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\r\n                    <MenuItemGroup title=\"Item 1\">\r\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\r\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\r\n                    </MenuItemGroup>\r\n                    <MenuItemGroup title=\"Iteom 2\">\r\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\r\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\r\n                    </MenuItemGroup>\r\n                </SubMenu>\r\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\r\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\r\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\r\n                    <SubMenu key=\"sub3\" title=\"Submenu\">\r\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\r\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\r\n                    </SubMenu>\r\n                </SubMenu>\r\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\r\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\r\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\r\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\r\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\r\n                </SubMenu>\r\n            </Menu>\r\n        )\r\n    }\r\n}\r\n\r\n", "desc": " 子菜单在右侧呼出形式显示。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " Navbar和Menus的组合", "code": "/**\r\n * @title Navbar和Menus的组合\r\n * @description 示例采取navbar与menus的组合，达到一种PC端常用的复合导航菜单。导航添加了常用的搜索表单消息提醒等组件。\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\r\nimport { Menu, Navbar, Icon, Badge, FormControl } from 'tinper-bee';\r\n\n\n\n\r\n\r\n\n\r\nconst SubMenu = Menu.SubMenu;\r\nconst MenuItemGroup = Menu.ItemGroup;\r\nconst MenuToggle = Menu.MenuToggle;\r\nconst SideContainer = Menu.SideContainer;\r\n\r\nconst NavItem = Navbar.NavItem;\r\nconst Header = Navbar.Header;\r\nconst Brand = Navbar.Brand;\r\nconst Nav = Navbar.Nav;\r\n\r\n\r\nclass Demo5 extends Component {\r\n    constructor(props, context) {\r\n        super(props, context);\r\n        this.state = {\r\n            expanded: false,\r\n            current: 1,\r\n            searchValue:\"Search\"\r\n        }\r\n    }\r\n\r\n    onToggle = (value) => {\r\n        this.setState({expanded: value});\r\n    }\r\n\r\n    handleClick = (e) => {\r\n        console.log('click ', e);\r\n        this.setState({\r\n            current: e.key\r\n        });\r\n    }\r\n\r\n    onChange = (e) => {\r\n        this.setState({searchValue:e});\r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <div id=\"demo5\">\r\n                <Navbar expanded={this.state.expanded} onToggle={this.onToggle}>\r\n                    <MenuToggle show/>\r\n                    <Header>\r\n                        <Brand>\r\n                            <a href=\"#\"><img style={{width:140}} src=\"http://design.yyuap.com/logos/logox.png\"/></a>\r\n                        </Brand>\r\n                    </Header>\r\n\r\n                    <Nav pullRight>\r\n                        <NavItem eventKey={1}>\r\n                            <FormControl\r\n                                type=\"text\"\r\n                                placeholder=\"Search\"\r\n                                onChange={this.onChange}\r\n                                value={this.state.searchValue}\r\n                            />\r\n                        </NavItem>\r\n                        <NavItem eventKey={2}>\r\n                            <Badge dataBadge=\"4\" colors=\"warning\">\r\n                                <Icon\r\n                                    type=\"uf-bell\"\r\n                                />\r\n                            </Badge>\r\n                        </NavItem>\r\n                        <NavItem eventKey={3}>\r\n                            <Icon type=\"uf-bubble-o\" />\r\n                        </NavItem>\r\n                        <Menu mode=\"horizontal\" className=\"dropdown\">\r\n                            <SubMenu title={<span>刘认华<Icon type=\"uf-triangle-down\" /></span>}>\r\n                                <Menu.Item key=\"setting:1\">选项 1</Menu.Item>\r\n                                <Menu.Item key=\"setting:2\">选项 2</Menu.Item>\r\n                                <Menu.Item key=\"setting:3\">选项 3</Menu.Item>\r\n                                <Menu.Item key=\"setting:4\">选项 4</Menu.Item>\r\n                            </SubMenu>\r\n                        </Menu>\r\n                    </Nav>\r\n                </Navbar>\r\n                <SideContainer\r\n                    onToggle={this.onToggle}\r\n                    expanded={this.state.expanded}>\r\n                    <Menu onClick={this.handleClick}\r\n                          style={{ width: 240 }}\r\n                          defaultOpenKeys={['demo3sub1']}\r\n                          selectedKeys={[this.state.current]}\r\n                          mode=\"inline\"\r\n                        >\r\n                        <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\r\n                            <MenuItemGroup title=\"组 1\">\r\n                                <Menu.Item key=\"1\">选项 1</Menu.Item>\r\n                                <Menu.Item key=\"2\">选项 2</Menu.Item>\r\n                            </MenuItemGroup>\r\n                            <MenuItemGroup title=\"组 2\">\r\n                                <Menu.Item key=\"3\">选项 3</Menu.Item>\r\n                                <Menu.Item key=\"4\">选项 4</Menu.Item>\r\n                            </MenuItemGroup>\r\n                        </SubMenu>\r\n                        <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\r\n                            <Menu.Item key=\"5\">选项 5</Menu.Item>\r\n                            <Menu.Item key=\"6\">选项 6</Menu.Item>\r\n                            <SubMenu key=\"demo3sub3\" title=\"子项\">\r\n                                <Menu.Item key=\"7\">选项 7</Menu.Item>\r\n                                <Menu.Item key=\"8\">选项 8</Menu.Item>\r\n                            </SubMenu>\r\n                        </SubMenu>\r\n                        <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\r\n                            <Menu.Item key=\"9\">选项 9</Menu.Item>\r\n                            <Menu.Item key=\"10\">选项 10</Menu.Item>\r\n                            <Menu.Item key=\"11\">选项 11</Menu.Item>\r\n                            <Menu.Item key=\"12\">选项 12</Menu.Item>\r\n                        </SubMenu>\r\n                    </Menu>\r\n                </SideContainer>\r\n            </div>\r\n        )\r\n    }\r\n}\r\n\r\n", "desc": " 示例采取navbar与menus的组合，达到一种PC端常用的复合导航菜单。导航添加了常用的搜索表单消息提醒等组件。" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 基础下拉菜单", "code": "/**\r\n * @title 基础下拉菜单\r\n * @description 如何获取选中对象自定义对象和数据\r\n *\r\n */\r\nimport React, { Component } from 'react';\r\nimport { Menu } from 'tinper-bee';\r\n\r\nconst SubMenu = Menu.SubMenu;\r\nconst MenuItemGroup = Menu.ItemGroup;\r\n\r\nclass Demo6 extends Component {\r\n    constructor(props, context) {\r\n        super(props, context);\r\n        this.state = {\r\n            current: 1\r\n        }\r\n    }\r\n\r\n    handleClick = (e) => {\r\n\r\n        this.setState({\r\n            current: e.key,\r\n        });\r\n    }\r\n    \r\n    /**\r\n     * 获取当前选中行的item对象。\r\n     * @param {*} value \r\n     */\r\n    onSelect({item,key,selectedKeys}){ \r\n        console.log(`${key} selected`); //获取key\r\n        let currentObject = {};\r\n        currentObject.value = item.props.children; //获取选中对象的数据\r\n        currentObject.key = item.props.eventKey;\r\n        console.log(currentObject); \r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <Menu theme=\"dark\" onClick={this.handleClick} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode=\"inline\" onSelect={this.onSelect.bind(this)}>\r\n                <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\r\n                    <MenuItemGroup title=\"组 1\">\r\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\r\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\r\n                    </MenuItemGroup>\r\n                    <MenuItemGroup title=\"组 2\">\r\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\r\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\r\n                    </MenuItemGroup>\r\n                </SubMenu>\r\n                <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\r\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\r\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\r\n                    <SubMenu key=\"demo3sub3\" title=\"子项\">\r\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\r\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\r\n                    </SubMenu>\r\n                </SubMenu>\r\n                <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\r\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\r\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\r\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\r\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\r\n                </SubMenu>\r\n            </Menu>\r\n        )\r\n    }\r\n}\r\n\r\n", "desc": " 如何获取选中对象自定义对象和数据" }];
 	
 	var Demo = function (_Component) {
 	    _inherits(Demo, _Component);
@@ -6471,9 +6471,9 @@
 	var _VerticalMenu = __webpack_require__(69);
 	
 	var _VerticalMenu2 = _interopRequireDefault(_VerticalMenu);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
+	
 	exports['default'] = _VerticalMenu2['default'];
 	module.exports = exports['default'];
 
@@ -7929,8 +7929,7 @@
 	          'aria-owns': this._menuId,
 	          'aria-haspopup': 'true'
 	        }),
-	        props.title,
-	        'rrrrrrr'
+	        props.title
 	      ),
 	      this.renderChildren(props.children)
 	    );
@@ -9240,7 +9239,7 @@
 	    classes[this.getPrefixCls()] = true;
 	    classes[props.className] = !!props.className;
 	    var attrs = _extends({}, props.attribute, {
-	      title: props.title,
+	      title: props.title ? props.title : typeof props.children === 'string' ? props.children : "",
 	      className: (0, _classnames2['default'])(classes),
 	      role: 'menuitem',
 	      'aria-selected': selected,
@@ -9258,13 +9257,11 @@
 	    if (props.mode === 'inline') {
 	      style.paddingLeft = props.inlineIndent * props.level;
 	    }
-	    debugger;
 	    return _react2['default'].createElement(
 	      'li',
 	      _extends({
 	        style: style
 	      }, attrs, mouseEvent),
-	      'ttttt ',
 	      props.children
 	    );
 	  };
@@ -9289,7 +9286,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	
 	var _react = __webpack_require__(4);
@@ -9311,65 +9308,63 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 	
 	var propTypes = {
-	  renderMenuItem: _propTypes2['default'].func,
-	  index: _propTypes2['default'].number,
-	  className: _propTypes2['default'].string,
-	  rootPrefixCls: _propTypes2['default'].string,
-	  title: _propTypes2['default'].oneOfType([_propTypes2['default'].string, _propTypes2['default'].node]),
-	  children: _propTypes2['default'].oneOfType([_propTypes2['default'].string, _propTypes2['default'].node])
+	    renderMenuItem: _propTypes2['default'].func,
+	    index: _propTypes2['default'].number,
+	    className: _propTypes2['default'].string,
+	    rootPrefixCls: _propTypes2['default'].string,
+	    title: _propTypes2['default'].oneOfType([_propTypes2['default'].string, _propTypes2['default'].node]),
+	    children: _propTypes2['default'].oneOfType([_propTypes2['default'].string, _propTypes2['default'].node])
 	};
 	
 	var defaultProps = {
-	  disabled: true
+	    disabled: true
 	};
 	
 	var MenuItemGroup = function (_Component) {
-	  _inherits(MenuItemGroup, _Component);
+	    _inherits(MenuItemGroup, _Component);
 	
-	  function MenuItemGroup() {
-	    _classCallCheck(this, MenuItemGroup);
+	    function MenuItemGroup() {
+	        _classCallCheck(this, MenuItemGroup);
 	
-	    return _possibleConstructorReturn(this, _Component.apply(this, arguments));
-	  }
+	        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+	    }
 	
-	  MenuItemGroup.prototype.renderInnerMenuItem = function renderInnerMenuItem(item, subIndex) {
-	    var _props = this.props,
-	        renderMenuItem = _props.renderMenuItem,
-	        index = _props.index;
+	    MenuItemGroup.prototype.renderInnerMenuItem = function renderInnerMenuItem(item, subIndex) {
+	        var _props = this.props,
+	            renderMenuItem = _props.renderMenuItem,
+	            index = _props.index;
 	
-	    return renderMenuItem(item, index, subIndex);
-	  };
+	        return renderMenuItem(item, index, subIndex);
+	    };
 	
-	  MenuItemGroup.prototype.render = function render() {
-	    var _props2 = this.props,
-	        _props2$className = _props2.className,
-	        className = _props2$className === undefined ? '' : _props2$className,
-	        title = _props2.title,
-	        children = _props2.children,
-	        rootPrefixCls = _props2.rootPrefixCls;
+	    MenuItemGroup.prototype.render = function render() {
+	        var _props2 = this.props,
+	            _props2$className = _props2.className,
+	            className = _props2$className === undefined ? '' : _props2$className,
+	            title = _props2.title,
+	            children = _props2.children,
+	            rootPrefixCls = _props2.rootPrefixCls;
 	
-	    var titleClassName = rootPrefixCls + '-item-group-title';
-	    var listClassName = rootPrefixCls + '-item-group-list';
-	    debugger;
-	    return _react2['default'].createElement(
-	      'li',
-	      { className: className + ' ' + rootPrefixCls + '-item-group' },
-	      _react2['default'].createElement(
-	        'div',
-	        { className: titleClassName },
-	        title,
-	        ' wwwwwww '
-	      ),
-	      _react2['default'].createElement(
-	        'ul',
-	        { className: listClassName },
-	        'hhhh',
-	        _react2['default'].Children.map(children, this.renderInnerMenuItem.bind(this))
-	      )
-	    );
-	  };
+	        var titleClassName = rootPrefixCls + '-item-group-title';
+	        var listClassName = rootPrefixCls + '-item-group-list';
 	
-	  return MenuItemGroup;
+	        return _react2['default'].createElement(
+	            'li',
+	            { className: className + ' ' + rootPrefixCls + '-item-group' },
+	            _react2['default'].createElement(
+	                'div',
+	                { className: titleClassName },
+	                title
+	            ),
+	            _react2['default'].createElement(
+	                'ul',
+	                { className: listClassName },
+	                _react2['default'].Children.map(children, this.renderInnerMenuItem.bind(this))
+	            )
+	        );
+	    };
+	
+	    return MenuItemGroup;
 	}(_react.Component);
 	
 	;
@@ -12128,6 +12123,200 @@
 	NavItem.defaultProps = defaultProps;
 	
 	exports["default"] = NavItem;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(68);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 基础下拉菜单
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 如何获取选中对象自定义对象和数据
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	
+	var SubMenu = _src2['default'].SubMenu;
+	var MenuItemGroup = _src2['default'].ItemGroup;
+	
+	var Demo6 = function (_Component) {
+	    _inherits(Demo6, _Component);
+	
+	    function Demo6(props, context) {
+	        _classCallCheck(this, Demo6);
+	
+	        var _this = _possibleConstructorReturn(this, _Component.call(this, props, context));
+	
+	        _this.handleClick = function (e) {
+	
+	            _this.setState({
+	                current: e.key
+	            });
+	        };
+	
+	        _this.state = {
+	            current: 1
+	        };
+	        return _this;
+	    }
+	
+	    /**
+	     * 获取当前选中行的item对象。
+	     * @param {*} value 
+	     */
+	    Demo6.prototype.onSelect = function onSelect(_ref) {
+	        var item = _ref.item,
+	            key = _ref.key,
+	            selectedKeys = _ref.selectedKeys;
+	
+	        console.log(key + ' selected'); //获取key
+	        var currentObject = {};
+	        currentObject.value = item.props.children; //获取选中对象的数据
+	        currentObject.key = item.props.eventKey;
+	        console.log(currentObject);
+	    };
+	
+	    Demo6.prototype.render = function render() {
+	        return _react2['default'].createElement(
+	            _src2['default'],
+	            { theme: 'dark', onClick: this.handleClick, style: { width: 240 }, defaultOpenKeys: ['demo3sub1'], selectedKeys: [this.state.current], mode: 'inline', onSelect: this.onSelect.bind(this) },
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'demo3sub1', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 1'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    MenuItemGroup,
+	                    { title: '\u7EC4 1' },
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '1' },
+	                        '\u9009\u9879 1'
+	                    ),
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '2' },
+	                        '\u9009\u9879 2'
+	                    )
+	                ),
+	                _react2['default'].createElement(
+	                    MenuItemGroup,
+	                    { title: '\u7EC4 2' },
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '3' },
+	                        '\u9009\u9879 3'
+	                    ),
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '4' },
+	                        '\u9009\u9879 4'
+	                    )
+	                )
+	            ),
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'demo3sub2', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 2'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '5' },
+	                    '\u9009\u9879 5'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '6' },
+	                    '\u9009\u9879 6'
+	                ),
+	                _react2['default'].createElement(
+	                    SubMenu,
+	                    { key: 'demo3sub3', title: '\u5B50\u9879' },
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '7' },
+	                        '\u9009\u9879 7'
+	                    ),
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '8' },
+	                        '\u9009\u9879 8'
+	                    )
+	                )
+	            ),
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'demo3sub4', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 3'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '9' },
+	                    '\u9009\u9879 9'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '10' },
+	                    '\u9009\u9879 10'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '11' },
+	                    '\u9009\u9879 11'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '12' },
+	                    '\u9009\u9879 12'
+	                )
+	            )
+	        );
+	    };
+	
+	    return Demo6;
+	}(_react.Component);
+	
+	exports['default'] = Demo6;
 	module.exports = exports['default'];
 
 /***/ })
