@@ -16,6 +16,10 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _util = require('./util');
 
+var _domScrollIntoView = require('dom-scroll-into-view');
+
+var _domScrollIntoView2 = _interopRequireDefault(_domScrollIntoView);
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -516,7 +520,7 @@ var Menu = function (_Component) {
       this.setState({
         activeKey: activeItem.props.eventKey
       }, function () {
-        scrollIntoView(ReactDOM.findDOMNode(activeItem), ReactDOM.findDOMNode(_this2), {
+        (0, _domScrollIntoView2["default"])(ReactDOM.findDOMNode(activeItem), ReactDOM.findDOMNode(_this2), {
           onlyScrollIfNeeded: true
         });
       });

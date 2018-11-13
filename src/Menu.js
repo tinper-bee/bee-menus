@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { noop,getKeyFromChildrenIndex, loopMenuItem  } from './util';
+import scrollIntoView from 'dom-scroll-into-view';
 import classnames from 'classnames';
 import DOMWrap from './DOMWrap';
 import { createChainedFunction, KeyCode } from 'tinper-bee-core';
