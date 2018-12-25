@@ -732,10 +732,7 @@
 .u-motion-collapse {
     overflow: hidden;
 }
-.u-motion-collapse-active {
-    -webkit-transition: height 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-    transition: height 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
+
 .zoom-big-enter, .zoom-big-appear {
     -webkit-animation-duration: 0.2s;
     animation-duration: 0.2s;
@@ -920,4 +917,3 @@
     -webkit-animation-play-state: running;
     animation-play-state: running;
 }
-

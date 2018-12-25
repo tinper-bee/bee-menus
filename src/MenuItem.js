@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import  KeyCode from 'tinper-bee-core/lib/keyCode';
-import classnames from 'classnames';
-import { noop } from './util';
+import KeyCode from 'rc-util/lib/KeyCode';
+import classNames from 'classnames';
+import scrollIntoView from 'dom-scroll-into-view';
+import { connect } from 'mini-store';
+import { noop, menuAllProps } from './util';
 
 /* eslint react/no-is-mounted:0 */
-const propTypes = {
+
+export class MenuItem extends React.Component {
+  static propTypes = {
+    attribute: PropTypes.object,
     rootPrefixCls: PropTypes.string,
     eventKey: PropTypes.string,
     active: PropTypes.bool,
@@ -13,120 +19,103 @@ const propTypes = {
     selectedKeys: PropTypes.array,
     disabled: PropTypes.bool,
     title: PropTypes.string,
+    onItemHover: PropTypes.func,
     onSelect: PropTypes.func,
     onClick: PropTypes.func,
     onDeselect: PropTypes.func,
     parentMenu: PropTypes.object,
-    onItemHover: PropTypes.func,
     onDestroy: PropTypes.func,
     onMouseEnter: PropTypes.func,
     onMouseLeave: PropTypes.func,
-}
+    multiple: PropTypes.bool,
+    isSelected: PropTypes.bool,
+    manualRef: PropTypes.func,
+    itemIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  };
 
-const defaultProps = {
+  static defaultProps = {
     onSelect: noop,
     onMouseEnter: noop,
     onMouseLeave: noop,
-}
-class MenuItem extends Component{
+    manualRef: noop,
+  };
+
   constructor(props) {
     super(props);
-    this.onMouseLeave = this.onMouseLeave.bind(this);
-    this.onMouseEnter = this.onMouseEnter.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
-    this.onClick = this.onClick.bind(this);
-    this.getPrefixCls = this.getPrefixCls.bind(this);
-    this.getActiveClassName = this.getActiveClassName.bind(this);
-    this.getDisabledClassName = this.getDisabledClassName.bind(this);
-    this.getSelectedClassName  = this.getSelectedClassName.bind(this);
-    this.clearMenuItemMouseLeaveTimer= this.clearMenuItemMouseLeaveTimer.bind(this);
-    this.isSelected = this.isSelected.bind(this);
   }
+
+  componentDidMount() {
+    // invoke customized ref to expose component to mixin
+    this.callRef();
+  }
+
+  componentDidUpdate() {
+    if (this.props.active) {
+      scrollIntoView(ReactDOM.findDOMNode(this), ReactDOM.findDOMNode(this.props.parentMenu), {
+        onlyScrollIfNeeded: true,
+      });
+    }
+    this.callRef();
+  }
+
   componentWillUnmount() {
     const props = this.props;
-    this.mounted = false;
     if (props.onDestroy) {
       props.onDestroy(props.eventKey);
     }
-    if (props.parentMenu.menuItemInstance === this) {
-      this.clearMenuItemMouseLeaveTimer();
-    }
-  }
-  componentDidMount() {
-    this.mounted = true;
   }
 
-  onKeyDown(e) {
+  onKeyDown = (e) => {
     const keyCode = e.keyCode;
     if (keyCode === KeyCode.ENTER) {
       this.onClick(e);
       return true;
     }
-  }
+  };
 
-  onMouseLeave(e) {
-    const props = this.props;
-    const { eventKey, parentMenu } = props;
-    parentMenu.menuItemInstance = this;
-    parentMenu.menuItemMouseLeaveFn = () => {
-      if (this.mounted && props.active) {
-        props.onItemHover({
-          key: eventKey,
-          item: this,
-          hover: false,
-          domEvent: e,
-          trigger: 'mouseleave',
-        });
-      }
-    };
-    parentMenu.menuItemMouseLeaveTimer = setTimeout(parentMenu.menuItemMouseLeaveFn, 30);
-    props.onMouseLeave({
+  onMouseLeave = (e) => {
+    const { eventKey, onItemHover, onMouseLeave } = this.props;
+    onItemHover({
+      key: eventKey,
+      hover: false,
+    });
+    onMouseLeave({
       key: eventKey,
       domEvent: e,
     });
-  }
+  };
 
-  onMouseEnter(e) {
-    const props = this.props;
-    const { eventKey, parentMenu } = props;
-    this.clearMenuItemMouseLeaveTimer(parentMenu.menuItemInstance !== this);
-    if (parentMenu.subMenuInstance) {
-      parentMenu.subMenuInstance.clearSubMenuTimers();
-    }
-    props.onItemHover({
+  onMouseEnter = (e) => {
+    const { eventKey, onItemHover, onMouseEnter } = this.props;
+    onItemHover({
       key: eventKey,
-      item: this,
       hover: true,
-      domEvent: e,
-      trigger: 'mouseenter',
     });
-    props.onMouseEnter({
+    onMouseEnter({
       key: eventKey,
       domEvent: e,
     });
-  }
+  };
 
-  onClick(e) {
-    const props = this.props;
-    const selected = this.isSelected();
-    const eventKey = props.eventKey;
+  onClick = (e) => {
+    const { eventKey, multiple, onClick, onSelect, onDeselect, isSelected } = this.props;
     const info = {
       key: eventKey,
       keyPath: [eventKey],
       item: this,
       domEvent: e,
     };
-    props.onClick(info);
-    if (props.multiple) {
-      if (selected) {
-        props.onDeselect(info);
+    onClick(info);
+    if (multiple) {
+      if (isSelected) {
+        onDeselect(info);
       } else {
-        props.onSelect(info);
+        onSelect(info);
       }
-    } else if (!selected) {
-      props.onSelect(info);
+    } else if (!isSelected) {
+      onSelect(info);
     }
-  }
+  };
 
   getPrefixCls() {
     return `${this.props.rootPrefixCls}-item`;
@@ -144,71 +133,79 @@ class MenuItem extends Component{
     return `${this.getPrefixCls()}-disabled`;
   }
 
-  clearMenuItemMouseLeaveTimer() {
-    const props = this.props;
-    let callFn;
-    const parentMenu = props.parentMenu;
-    if (parentMenu.menuItemMouseLeaveTimer) {
-      clearTimeout(parentMenu.menuItemMouseLeaveTimer);
-      parentMenu.menuItemMouseLeaveTimer = null;
-      if (callFn && parentMenu.menuItemMouseLeaveFn) {
-        parentMenu.menuItemMouseLeaveFn();
-      }
-      parentMenu.menuItemMouseLeaveFn = null;
+  callRef() {
+    if (this.props.manualRef) {
+      this.props.manualRef(this);
     }
-  }
-
-  isSelected() {
-    return this.props.selectedKeys.indexOf(this.props.eventKey) !== -1;
   }
 
   render() {
-    const props = this.props;
-    const selected = this.isSelected();
-    const classes = {};
-    classes[this.getActiveClassName()] = !props.disabled && props.active;
-    classes[this.getSelectedClassName()] = selected;
-    classes[this.getDisabledClassName()] = props.disabled;
-    classes[this.getPrefixCls()] = true;
-    classes[props.className] = !!props.className;
-    const attrs = {
+    const props = { ...this.props };
+    const className = classNames(this.getPrefixCls(), props.className, {
+      [this.getActiveClassName()]: !props.disabled && props.active,
+      [this.getSelectedClassName()]: props.isSelected,
+      [this.getDisabledClassName()]: props.disabled,
+    });
+    let attrs = {
       ...props.attribute,
-      title: props.title?props.title:(typeof props.children === 'string'?props.children:""),
-      className: classnames(classes),
-      role: 'menuitem',
-      'aria-selected': selected,
+      title: props.title,
+      className,
+      // set to menuitem by default
+      role: props.role || 'menuitem',
       'aria-disabled': props.disabled,
     };
-    let mouseEvent = {};
-    if (!props.disabled) {
-      mouseEvent = {
-        onClick: this.onClick,
-        onMouseLeave: this.onMouseLeave,
-        onMouseEnter: this.onMouseEnter,
+
+    if (props.role === 'option') {
+      // overwrite to option
+      attrs = {
+        ...attrs,
+        role: 'option',
+        'aria-selected': props.isSelected,
       };
+    } else if (props.role === null || props.role === 'none') {
+      // sometimes we want to specify role inside <li/> element
+      // <li><a role='menuitem'>Link</a></li> would be a good example
+      // in this case the role on <li/> should be "none" to
+      // remove the implied listitem role.
+      // https://www.w3.org/TR/wai-aria-practices-1.1/examples/menubar/menubar-1/menubar-1.html
+      attrs.role = 'none';
     }
+    // In case that onClick/onMouseLeave/onMouseEnter is passed down from owner
+    const mouseEvent = {
+      onClick: props.disabled ? null : this.onClick,
+      onMouseLeave: props.disabled ? null : this.onMouseLeave,
+      onMouseEnter: props.disabled ? null : this.onMouseEnter,
+    };
     const style = {
       ...props.style,
     };
     if (props.mode === 'inline') {
       style.paddingLeft = props.inlineIndent * props.level;
     }
+    menuAllProps.forEach(key => delete props[key]);
+    let icon = this.props.itemIcon;
+    if (typeof this.props.itemIcon === 'function') {
+      icon = React.createElement(this.props.itemIcon, this.props);
+    }
     return (
       <li
-        style={style}
+        {...props}
         {...attrs}
         {...mouseEvent}
-        
+        style={style}
       >
         {props.children}
+        {icon}
       </li>
     );
   }
-};
+}
 
-MenuItem.isMenuItem = 1;
+MenuItem.isMenuItem = true;
 
-MenuItem.defaultProps = defaultProps;
-MenuItem.propTypes = propTypes;
+const connected = connect(({ activeKey, selectedKeys }, { eventKey, subMenuKey }) => ({
+  active: activeKey[subMenuKey] === eventKey,
+  isSelected: selectedKeys.indexOf(eventKey) !== -1,
+}))(MenuItem);
 
-export default MenuItem;
+export default connected;
