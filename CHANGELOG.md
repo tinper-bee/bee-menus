@@ -1,3 +1,8 @@
+<a name="1.0.9-beta"></a>
+## [1.0.9-beta](https://github.com/tinper-bee/menus/compare/v1.0.8...v1.0.9-beta) (2018-12-27)
+
+
+
 <a name="1.0.8"></a>
 ## [1.0.8](https://github.com/tinper-bee/menus/compare/v1.0.7...v1.0.8) (2018-11-13)
 

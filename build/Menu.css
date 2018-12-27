@@ -580,7 +580,6 @@
     transform: scaleY(0); } }
 
 .u-menu {
-  font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
   font-variant: tabular-nums;
   line-height: 1.5;
@@ -599,7 +598,9 @@
   line-height: 0;
   -webkit-transition: background 0.3s, width 0.2s;
   transition: background 0.3s, width 0.2s;
-  zoom: 1; }
+  zoom: 1;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0 0 4px #d9d9d9; }
 
 .u-menu:before,
 .u-menu:after {
@@ -772,7 +773,7 @@
 .u-menu-submenu-popup {
   position: absolute;
   border-radius: 4px;
-  z-index: 1050;
+  z-index: 1400;
   background: #fff; }
 
 .u-menu-submenu-popup .submenu-title-wrapper {
