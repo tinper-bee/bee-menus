@@ -76,7 +76,7 @@
 	
 	var CARETUP = _react2['default'].createElement('i', { className: 'uf uf-arrow-up' });
 	
-	var Demo3 = __webpack_require__(83);var Demo4 = __webpack_require__(220);var DemoArray = [{ "example": _react2['default'].createElement(Demo3, null), "title": " 竖向手风琴Menu", "code": "/**\n * @title 竖向手风琴Menu\n * @description 菜单展开是手风琴形式。\n */\n\n\nimport React, { Component } from 'react';\nimport { Menu } from 'tinper-bee';\n\nconst SubMenu = Menu.SubMenu;\n\n\nclass Demo3 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: '5',\n            openKeys: []\n        }\n    }\n    handleClick = (e) => {\n        console.log('Clicked: ', e);\n        this.setState({current: e.key});\n    }\n    onOpenChange = (openKeys) => {\n        const state = this.state;\n\n        const latestOpenKey = this.myfilter(openKeys,state.openKeys);\n        const latestCloseKey = this.myfilter(state.openKeys,openKeys);\n\n        let nextOpenKeys = [];\n        if (latestOpenKey) {\n            nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);\n        }\n        if (latestCloseKey) {\n            nextOpenKeys = this.getAncestorKeys(latestCloseKey);\n        }\n        this.setState({openKeys: nextOpenKeys});\n    }\n\n    //IE下 array.find（）方法不可用\n    myfilter = (arr1,arr2) => {\n        if(arr2.length === 0 || !arr2) {\n            return arr1[0];\n        }\n\n        for(var i=0;i<arr1.length;i++)\n        {\n          if(arr2.indexOf(arr1[i].toString()) === -1)\n          {\n                return arr1[i];\n          }      \n        }\n        return false;\n    }\n\n    getAncestorKeys = (key) => {\n        const map = {\n            sub3: ['sub2'],\n        };\n        return map[key] || [];\n    }\n\n    render() {\n        return (\n            <div>\n                <input placeholder='123'/>\n                \n            <Menu\n                mode=\"inline\"\n                openKeys={this.state.openKeys}\n                selectedKeys={[this.state.current]}\n                style={{ width: 240 }}\n                onOpenChange={this.onOpenChange}\n                onClick={this.handleClick}>\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\n                    <Menu.Item key=\"1\" >选项 1</Menu.Item>\n                    <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    <Menu.Item key=\"3\">选项 3</Menu.Item>\n                    <Menu.Item key=\"4\">选项 4</Menu.Item>\n                </SubMenu>\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"sub3\" title=\"子项\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n            <input placeholder='456'/>\n            </div>\n            \n        )\n    }\n}\n\n", "desc": " 菜单展开是手风琴形式。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 子菜单呼出形式Menu", "code": "/**\n * @title 子菜单呼出形式Menu\n * @description 子菜单在右侧呼出形式显示。\n */\n\nimport React, { Component } from 'react';\nimport { Menu } from 'tinper-bee';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\n\nclass Demo4 extends Component {\n\n    handleClick = (e) => {\n        console.log('click', e);\n    }\n    render() {\n        return (\n            <div><input placeholder='123'/>\n                <Menu onClick={this.handleClick} style={{ width: 240 }} mode=\"vertical\">\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\n                    <MenuItemGroup title=\"Item 1\">\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"Iteom 2\">\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"sub3\" title=\"Submenu\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n            <input placeholder='456'/>\n                </div>\n            \n        )\n    }\n}\n\n", "desc": " 子菜单在右侧呼出形式显示。" }];
+	var Demo1 = __webpack_require__(83);var Demo2 = __webpack_require__(220);var Demo3 = __webpack_require__(221);var Demo4 = __webpack_require__(222);var Demo5 = __webpack_require__(223);var Demo6 = __webpack_require__(238);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 横向Menu纯菜单导航", "code": "/**\n * @title 横向Menu纯菜单导航\n * @description 更简洁，更方便\n */\n\nimport React, { Component } from 'react';\nimport { Menu } from 'tinper-bee';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\nclass Demo1 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: 'mail'\n        }\n    }\n\n    handleClick = (e) => {\n        this.setState({\n            current: e.key,\n        });\n    }\n\n    render() {\n        return (\n            <Menu onClick={this.handleClick}\n                  selectedKeys={[this.state.current]}\n                  mode=\"horizontal\"\n                >\n                <Menu.Item key=\"mail\" attribute={{'type': 'mail'}}>\n                    组织 1\n                </Menu.Item>\n                <Menu.Item key=\"app\" disabled>\n                    组织 2\n                </Menu.Item>\n                <SubMenu title={<span>组织 1 - 子</span>}>\n                    <MenuItemGroup title=\"组 1\">\n                        <Menu.Item key=\"setting:1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"setting:2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"组 2\">\n                        <Menu.Item key=\"setting:3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"setting:4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 更简洁，更方便" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 竖向Menu基础样式", "code": "/**\n * @title 竖向Menu基础样式\n * @description 子菜单竖向显示，可折叠。\n */\n\nimport React, { Component } from 'react';\nimport { Menu } from 'tinper-bee';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\nclass Demo2 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: 1\n        }\n    }\n\n    handleClick = (e) => {\n\n        this.setState({\n            current: e.key,\n        });\n    }\n\n    render() {\n        return (\n            <Menu theme=\"dark\" onClick={this.handleClick} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode=\"inline\">\n                <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\n                    <MenuItemGroup title=\"组 1\">\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"组 2\">\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n                <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"demo3sub3\" title=\"子项\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 子菜单竖向显示，可折叠。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 竖向手风琴Menu", "code": "/**\n * @title 竖向手风琴Menu\n * @description 菜单展开是手风琴形式。\n */\n\n\nimport React, { Component } from 'react';\nimport { Menu } from 'tinper-bee';\n\nconst SubMenu = Menu.SubMenu;\n\n\nclass Demo3 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: '1',\n            openKeys: []\n        }\n    }\n    handleClick = (e) => {\n        console.log('Clicked: ', e);\n        this.setState({current: e.key});\n    }\n    onOpenChange = (openKeys) => {\n        const state = this.state;\n\n        const latestOpenKey = this.myfilter(openKeys,state.openKeys);\n        const latestCloseKey = this.myfilter(state.openKeys,openKeys);\n\n        let nextOpenKeys = [];\n        if (latestOpenKey) {\n            nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);\n        }\n        if (latestCloseKey) {\n            nextOpenKeys = this.getAncestorKeys(latestCloseKey);\n        }\n        this.setState({openKeys: nextOpenKeys});\n    }\n\n    //IE下 array.find（）方法不可用\n    myfilter = (arr1,arr2) => {\n        if(arr2.length === 0 || !arr2) {\n            return arr1[0];\n        }\n\n        for(var i=0;i<arr1.length;i++)\n        {\n          if(arr2.indexOf(arr1[i].toString()) === -1)\n          {\n                return arr1[i];\n          }      \n        }\n        return false;\n    }\n\n    getAncestorKeys = (key) => {\n        const map = {\n            sub3: ['sub2'],\n        };\n        return map[key] || [];\n    }\n\n    render() {\n        return (\n            <Menu\n                mode=\"inline\"\n                openKeys={this.state.openKeys}\n                selectedKeys={[this.state.current]}\n                style={{ width: 240 }}\n                onOpenChange={this.onOpenChange}\n                onClick={this.handleClick}>\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\n                    <Menu.Item key=\"1\">选项 1</Menu.Item>\n                    <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    <Menu.Item key=\"3\">选项 3</Menu.Item>\n                    <Menu.Item key=\"4\">选项 4</Menu.Item>\n                </SubMenu>\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"sub3\" title=\"子项\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 菜单展开是手风琴形式。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 子菜单呼出形式Menu", "code": "/**\n * @title 子菜单呼出形式Menu\n * @description 子菜单在右侧呼出形式显示。\n */\n\nimport React, { Component } from 'react';\nimport { Menu } from 'tinper-bee';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\n\n\nclass Demo4 extends Component {\n\n    handleClick = (e) => {\n        console.log('click', e);\n    }\n    render() {\n        return (\n            <Menu onClick={this.handleClick} style={{ width: 240 }} mode=\"vertical\">\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\n                    <MenuItemGroup title=\"Item 1\">\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"Iteom 2\">\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"sub3\" title=\"Submenu\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 子菜单在右侧呼出形式显示。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " Navbar和Menus的组合", "code": "/**\n * @title Navbar和Menus的组合\n * @description 示例采取navbar与menus的组合，达到一种PC端常用的复合导航菜单。导航添加了常用的搜索表单消息提醒等组件。\n *\n */\n\nimport React, { Component } from 'react';\nimport { Menu, Navbar, Icon, Badge, FormControl } from 'tinper-bee';\n\n\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\nconst MenuToggle = Menu.MenuToggle;\nconst SideContainer = Menu.SideContainer;\n\nconst NavItem = Navbar.NavItem;\nconst Header = Navbar.Header;\nconst Brand = Navbar.Brand;\nconst Nav = Navbar.Nav;\n\n\nclass Demo5 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            expanded: false,\n            current: 1,\n            searchValue:\"Search\"\n        }\n    }\n\n    onToggle = (value) => {\n        this.setState({expanded: value});\n    }\n\n    handleClick = (e) => {\n        console.log('click ', e);\n        this.setState({\n            current: e.key\n        });\n    }\n\n    onChange = (e) => {\n        this.setState({searchValue:e});\n    }\n\n    render() {\n        return (\n            <div id=\"demo5\">\n                <Navbar expanded={this.state.expanded} onToggle={this.onToggle}>\n                    <MenuToggle show/>\n                    <Header>\n                        <Brand>\n                            <a href=\"#\"><img style={{width:140}} src=\"http://design.yyuap.com/logos/logox.png\"/></a>\n                        </Brand>\n                    </Header>\n\n                    <Nav pullRight>\n                        <NavItem eventKey={1}>\n                            <FormControl\n                                type=\"text\"\n                                placeholder=\"Search\"\n                                onChange={this.onChange}\n                                value={this.state.searchValue}\n                            />\n                        </NavItem>\n                        <NavItem eventKey={2}>\n                            <Badge dataBadge=\"4\" colors=\"warning\">\n                                <Icon\n                                    type=\"uf-bell\"\n                                />\n                            </Badge>\n                        </NavItem>\n                        <NavItem eventKey={3}>\n                            <Icon type=\"uf-bubble-o\" />\n                        </NavItem>\n                        <Menu mode=\"horizontal\" className=\"dropdown\">\n                            <SubMenu title={<span>刘认华<Icon type=\"uf-triangle-down\" /></span>}>\n                                <Menu.Item key=\"setting:1\">选项 1</Menu.Item>\n                                <Menu.Item key=\"setting:2\">选项 2</Menu.Item>\n                                <Menu.Item key=\"setting:3\">选项 3</Menu.Item>\n                                <Menu.Item key=\"setting:4\">选项 4</Menu.Item>\n                            </SubMenu>\n                        </Menu>\n                    </Nav>\n                </Navbar>\n                <SideContainer\n                    onToggle={this.onToggle}\n                    expanded={this.state.expanded}>\n                    <Menu onClick={this.handleClick}\n                          style={{ width: 240 }}\n                          defaultOpenKeys={['demo3sub1']}\n                          selectedKeys={[this.state.current]}\n                          mode=\"inline\"\n                        >\n                        <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\n                            <MenuItemGroup title=\"组 1\">\n                                <Menu.Item key=\"1\">选项 1</Menu.Item>\n                                <Menu.Item key=\"2\">选项 2</Menu.Item>\n                            </MenuItemGroup>\n                            <MenuItemGroup title=\"组 2\">\n                                <Menu.Item key=\"3\">选项 3</Menu.Item>\n                                <Menu.Item key=\"4\">选项 4</Menu.Item>\n                            </MenuItemGroup>\n                        </SubMenu>\n                        <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\n                            <Menu.Item key=\"5\">选项 5</Menu.Item>\n                            <Menu.Item key=\"6\">选项 6</Menu.Item>\n                            <SubMenu key=\"demo3sub3\" title=\"子项\">\n                                <Menu.Item key=\"7\">选项 7</Menu.Item>\n                                <Menu.Item key=\"8\">选项 8</Menu.Item>\n                            </SubMenu>\n                        </SubMenu>\n                        <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\n                            <Menu.Item key=\"9\">选项 9</Menu.Item>\n                            <Menu.Item key=\"10\">选项 10</Menu.Item>\n                            <Menu.Item key=\"11\">选项 11</Menu.Item>\n                            <Menu.Item key=\"12\">选项 12</Menu.Item>\n                        </SubMenu>\n                    </Menu>\n                </SideContainer>\n            </div>\n        )\n    }\n}\n\n", "desc": " 示例采取navbar与menus的组合，达到一种PC端常用的复合导航菜单。导航添加了常用的搜索表单消息提醒等组件。" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 基础下拉菜单", "code": "/**\n * @title 基础下拉菜单\n * @description 如何获取选中对象自定义对象和数据\n *\n */\nimport React, { Component } from 'react';\nimport { Menu } from 'tinper-bee';\n\nconst SubMenu = Menu.SubMenu;\nconst MenuItemGroup = Menu.ItemGroup;\n\nclass Demo6 extends Component {\n    constructor(props, context) {\n        super(props, context);\n        this.state = {\n            current: 1\n        }\n    }\n\n    handleClick = (e) => {\n\n        this.setState({\n            current: e.key,\n        });\n    }\n    \n    /**\n     * 获取当前选中行的item对象。\n     * @param {*} value \n     */\n    onSelect({item,key,selectedKeys}){ \n        console.log(`${key} selected`); //获取key\n        let currentObject = {};\n        currentObject.value = item.props.children; //获取选中对象的数据\n        currentObject.key = item.props.eventKey;\n        console.log(currentObject); \n    }\n\n    render() {\n        return (\n            <Menu theme=\"dark\" onClick={this.handleClick} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode=\"inline\" onSelect={this.onSelect.bind(this)}>\n                <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\n                    <MenuItemGroup title=\"组 1\">\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\n                    </MenuItemGroup>\n                    <MenuItemGroup title=\"组 2\">\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\n                    </MenuItemGroup>\n                </SubMenu>\n                <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\n                    <SubMenu key=\"demo3sub3\" title=\"子项\">\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\n                    </SubMenu>\n                </SubMenu>\n                <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\n                </SubMenu>\n            </Menu>\n        )\n    }\n}\n\n", "desc": " 如何获取选中对象自定义对象和数据" }];
 	
 	var Demo = function (_Component) {
 	    _inherits(Demo, _Component);
@@ -7969,194 +7969,93 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 竖向手风琴Menu
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 菜单展开是手风琴形式。
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 横向Menu纯菜单导航
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 更简洁，更方便
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
 	var SubMenu = _src2['default'].SubMenu;
+	var MenuItemGroup = _src2['default'].ItemGroup;
 	
-	var Demo3 = function (_Component) {
-	    _inherits(Demo3, _Component);
+	var Demo1 = function (_Component) {
+	    _inherits(Demo1, _Component);
 	
-	    function Demo3(props, context) {
-	        _classCallCheck(this, Demo3);
+	    function Demo1(props, context) {
+	        _classCallCheck(this, Demo1);
 	
 	        var _this = _possibleConstructorReturn(this, _Component.call(this, props, context));
 	
 	        _this.handleClick = function (e) {
-	            console.log('Clicked: ', e);
-	            _this.setState({ current: e.key });
-	        };
-	
-	        _this.onOpenChange = function (openKeys) {
-	            var state = _this.state;
-	
-	            var latestOpenKey = _this.myfilter(openKeys, state.openKeys);
-	            var latestCloseKey = _this.myfilter(state.openKeys, openKeys);
-	
-	            var nextOpenKeys = [];
-	            if (latestOpenKey) {
-	                nextOpenKeys = _this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);
-	            }
-	            if (latestCloseKey) {
-	                nextOpenKeys = _this.getAncestorKeys(latestCloseKey);
-	            }
-	            _this.setState({ openKeys: nextOpenKeys });
-	        };
-	
-	        _this.myfilter = function (arr1, arr2) {
-	            if (arr2.length === 0 || !arr2) {
-	                return arr1[0];
-	            }
-	
-	            for (var i = 0; i < arr1.length; i++) {
-	                if (arr2.indexOf(arr1[i].toString()) === -1) {
-	                    return arr1[i];
-	                }
-	            }
-	            return false;
-	        };
-	
-	        _this.getAncestorKeys = function (key) {
-	            var map = {
-	                sub3: ['sub2']
-	            };
-	            return map[key] || [];
+	            _this.setState({
+	                current: e.key
+	            });
 	        };
 	
 	        _this.state = {
-	            current: '5',
-	            openKeys: []
+	            current: 'mail'
 	        };
 	        return _this;
 	    }
 	
-	    //IE下 array.find（）方法不可用
-	
-	
-	    Demo3.prototype.render = function render() {
+	    Demo1.prototype.render = function render() {
 	        return _react2['default'].createElement(
-	            'div',
-	            null,
-	            _react2['default'].createElement('input', { placeholder: '123' }),
+	            _src2['default'],
+	            { onClick: this.handleClick,
+	                selectedKeys: [this.state.current],
+	                mode: 'horizontal'
+	            },
 	            _react2['default'].createElement(
-	                _src2['default'],
-	                {
-	                    mode: 'inline',
-	                    openKeys: this.state.openKeys,
-	                    selectedKeys: [this.state.current],
-	                    style: { width: 240 },
-	                    onOpenChange: this.onOpenChange,
-	                    onClick: this.handleClick },
+	                _src2['default'].Item,
+	                { key: 'mail', attribute: { 'type': 'mail' } },
+	                '\u7EC4\u7EC7 1'
+	            ),
+	            _react2['default'].createElement(
+	                _src2['default'].Item,
+	                { key: 'app', disabled: true },
+	                '\u7EC4\u7EC7 2'
+	            ),
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        '\u7EC4\u7EC7 1 - \u5B50'
+	                    ) },
 	                _react2['default'].createElement(
-	                    SubMenu,
-	                    { key: 'sub1', title: _react2['default'].createElement(
-	                            'span',
-	                            null,
-	                            _react2['default'].createElement(
-	                                'span',
-	                                null,
-	                                '\u7EC4\u7EC7 1'
-	                            )
-	                        ) },
+	                    MenuItemGroup,
+	                    { title: '\u7EC4 1' },
 	                    _react2['default'].createElement(
 	                        _src2['default'].Item,
-	                        { key: '1' },
+	                        { key: 'setting:1' },
 	                        '\u9009\u9879 1'
 	                    ),
 	                    _react2['default'].createElement(
 	                        _src2['default'].Item,
-	                        { key: '2' },
+	                        { key: 'setting:2' },
 	                        '\u9009\u9879 2'
-	                    ),
+	                    )
+	                ),
+	                _react2['default'].createElement(
+	                    MenuItemGroup,
+	                    { title: '\u7EC4 2' },
 	                    _react2['default'].createElement(
 	                        _src2['default'].Item,
-	                        { key: '3' },
+	                        { key: 'setting:3' },
 	                        '\u9009\u9879 3'
 	                    ),
 	                    _react2['default'].createElement(
 	                        _src2['default'].Item,
-	                        { key: '4' },
+	                        { key: 'setting:4' },
 	                        '\u9009\u9879 4'
 	                    )
-	                ),
-	                _react2['default'].createElement(
-	                    SubMenu,
-	                    { key: 'sub2', title: _react2['default'].createElement(
-	                            'span',
-	                            null,
-	                            _react2['default'].createElement(
-	                                'span',
-	                                null,
-	                                '\u7EC4\u7EC7 2'
-	                            )
-	                        ) },
-	                    _react2['default'].createElement(
-	                        _src2['default'].Item,
-	                        { key: '5' },
-	                        '\u9009\u9879 5'
-	                    ),
-	                    _react2['default'].createElement(
-	                        _src2['default'].Item,
-	                        { key: '6' },
-	                        '\u9009\u9879 6'
-	                    ),
-	                    _react2['default'].createElement(
-	                        SubMenu,
-	                        { key: 'sub3', title: '\u5B50\u9879' },
-	                        _react2['default'].createElement(
-	                            _src2['default'].Item,
-	                            { key: '7' },
-	                            '\u9009\u9879 7'
-	                        ),
-	                        _react2['default'].createElement(
-	                            _src2['default'].Item,
-	                            { key: '8' },
-	                            '\u9009\u9879 8'
-	                        )
-	                    )
-	                ),
-	                _react2['default'].createElement(
-	                    SubMenu,
-	                    { key: 'sub4', title: _react2['default'].createElement(
-	                            'span',
-	                            null,
-	                            _react2['default'].createElement(
-	                                'span',
-	                                null,
-	                                '\u7EC4\u7EC7 3'
-	                            )
-	                        ) },
-	                    _react2['default'].createElement(
-	                        _src2['default'].Item,
-	                        { key: '9' },
-	                        '\u9009\u9879 9'
-	                    ),
-	                    _react2['default'].createElement(
-	                        _src2['default'].Item,
-	                        { key: '10' },
-	                        '\u9009\u9879 10'
-	                    ),
-	                    _react2['default'].createElement(
-	                        _src2['default'].Item,
-	                        { key: '11' },
-	                        '\u9009\u9879 11'
-	                    ),
-	                    _react2['default'].createElement(
-	                        _src2['default'].Item,
-	                        { key: '12' },
-	                        '\u9009\u9879 12'
-	                    )
 	                )
-	            ),
-	            _react2['default'].createElement('input', { placeholder: '456' })
+	            )
 	        );
 	    };
 	
-	    return Demo3;
+	    return Demo1;
 	}(_react.Component);
 	
-	exports['default'] = Demo3;
+	exports['default'] = Demo1;
 	module.exports = exports['default'];
 
 /***/ }),
@@ -8668,6 +8567,7 @@
 	
 	  this.focus = function () {
 	    (0, _util.fireKeyEvent)(_reactDom2['default'].findDOMNode(_this3.innerMenu), 'keydown', 40);
+	    _this3.props.onFocus && _this3.props.onFocus();
 	  };
 	};
 	
@@ -9704,7 +9604,9 @@
 	      builtinPlacements: props.builtinPlacements,
 	      itemIcon: childProps.itemIcon || _this3.props.itemIcon,
 	      expandIcon: childProps.expandIcon || _this3.props.expandIcon
-	    }, extraProps);
+	    }, extraProps, {
+	      tabIndex: '0'
+	    });
 	    if (props.mode === 'inline') {
 	      newChildProps.triggerSubMenuAction = 'click';
 	    }
@@ -11617,7 +11519,7 @@
 	
 	    if (keyCode === _tinperBeeCore.KeyCode.ENTER) {
 	      // this.onTitleClick(e);
-	      menu && menu.onKeyDown(e);
+	      menu.onKeyDown(e);
 	      updateDefaultActiveFirst(store, _this3.props.eventKey, true);
 	      return true;
 	    }
@@ -16743,7 +16645,6 @@
 	      'li',
 	      _extends({}, props, attrs, mouseEvent, {
 	        style: style
-	
 	      }),
 	      props.children,
 	      icon
@@ -17897,6 +17798,393 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 竖向Menu基础样式
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 子菜单竖向显示，可折叠。
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var SubMenu = _src2['default'].SubMenu;
+	var MenuItemGroup = _src2['default'].ItemGroup;
+	
+	var Demo2 = function (_Component) {
+	    _inherits(Demo2, _Component);
+	
+	    function Demo2(props, context) {
+	        _classCallCheck(this, Demo2);
+	
+	        var _this = _possibleConstructorReturn(this, _Component.call(this, props, context));
+	
+	        _this.handleClick = function (e) {
+	
+	            _this.setState({
+	                current: e.key
+	            });
+	        };
+	
+	        _this.state = {
+	            current: 1
+	        };
+	        return _this;
+	    }
+	
+	    Demo2.prototype.render = function render() {
+	        return _react2['default'].createElement(
+	            _src2['default'],
+	            { theme: 'dark', onClick: this.handleClick, style: { width: 240 }, defaultOpenKeys: ['demo3sub1'], selectedKeys: [this.state.current], mode: 'inline' },
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'demo3sub1', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 1'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    MenuItemGroup,
+	                    { title: '\u7EC4 1' },
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '1' },
+	                        '\u9009\u9879 1'
+	                    ),
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '2' },
+	                        '\u9009\u9879 2'
+	                    )
+	                ),
+	                _react2['default'].createElement(
+	                    MenuItemGroup,
+	                    { title: '\u7EC4 2' },
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '3' },
+	                        '\u9009\u9879 3'
+	                    ),
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '4' },
+	                        '\u9009\u9879 4'
+	                    )
+	                )
+	            ),
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'demo3sub2', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 2'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '5' },
+	                    '\u9009\u9879 5'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '6' },
+	                    '\u9009\u9879 6'
+	                ),
+	                _react2['default'].createElement(
+	                    SubMenu,
+	                    { key: 'demo3sub3', title: '\u5B50\u9879' },
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '7' },
+	                        '\u9009\u9879 7'
+	                    ),
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '8' },
+	                        '\u9009\u9879 8'
+	                    )
+	                )
+	            ),
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'demo3sub4', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 3'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '9' },
+	                    '\u9009\u9879 9'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '10' },
+	                    '\u9009\u9879 10'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '11' },
+	                    '\u9009\u9879 11'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '12' },
+	                    '\u9009\u9879 12'
+	                )
+	            )
+	        );
+	    };
+	
+	    return Demo2;
+	}(_react.Component);
+	
+	exports['default'] = Demo2;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 221 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(84);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 竖向手风琴Menu
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 菜单展开是手风琴形式。
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var SubMenu = _src2['default'].SubMenu;
+	
+	var Demo3 = function (_Component) {
+	    _inherits(Demo3, _Component);
+	
+	    function Demo3(props, context) {
+	        _classCallCheck(this, Demo3);
+	
+	        var _this = _possibleConstructorReturn(this, _Component.call(this, props, context));
+	
+	        _this.handleClick = function (e) {
+	            console.log('Clicked: ', e);
+	            _this.setState({ current: e.key });
+	        };
+	
+	        _this.onOpenChange = function (openKeys) {
+	            var state = _this.state;
+	
+	            var latestOpenKey = _this.myfilter(openKeys, state.openKeys);
+	            var latestCloseKey = _this.myfilter(state.openKeys, openKeys);
+	
+	            var nextOpenKeys = [];
+	            if (latestOpenKey) {
+	                nextOpenKeys = _this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);
+	            }
+	            if (latestCloseKey) {
+	                nextOpenKeys = _this.getAncestorKeys(latestCloseKey);
+	            }
+	            _this.setState({ openKeys: nextOpenKeys });
+	        };
+	
+	        _this.myfilter = function (arr1, arr2) {
+	            if (arr2.length === 0 || !arr2) {
+	                return arr1[0];
+	            }
+	
+	            for (var i = 0; i < arr1.length; i++) {
+	                if (arr2.indexOf(arr1[i].toString()) === -1) {
+	                    return arr1[i];
+	                }
+	            }
+	            return false;
+	        };
+	
+	        _this.getAncestorKeys = function (key) {
+	            var map = {
+	                sub3: ['sub2']
+	            };
+	            return map[key] || [];
+	        };
+	
+	        _this.state = {
+	            current: '1',
+	            openKeys: []
+	        };
+	        return _this;
+	    }
+	
+	    //IE下 array.find（）方法不可用
+	
+	
+	    Demo3.prototype.render = function render() {
+	        return _react2['default'].createElement(
+	            _src2['default'],
+	            {
+	                mode: 'inline',
+	                openKeys: this.state.openKeys,
+	                selectedKeys: [this.state.current],
+	                style: { width: 240 },
+	                onOpenChange: this.onOpenChange,
+	                onClick: this.handleClick },
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'sub1', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 1'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '1' },
+	                    '\u9009\u9879 1'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '2' },
+	                    '\u9009\u9879 2'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '3' },
+	                    '\u9009\u9879 3'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '4' },
+	                    '\u9009\u9879 4'
+	                )
+	            ),
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'sub2', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 2'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '5' },
+	                    '\u9009\u9879 5'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '6' },
+	                    '\u9009\u9879 6'
+	                ),
+	                _react2['default'].createElement(
+	                    SubMenu,
+	                    { key: 'sub3', title: '\u5B50\u9879' },
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '7' },
+	                        '\u9009\u9879 7'
+	                    ),
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '8' },
+	                        '\u9009\u9879 8'
+	                    )
+	                )
+	            ),
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'sub4', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 3'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '9' },
+	                    '\u9009\u9879 9'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '10' },
+	                    '\u9009\u9879 10'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '11' },
+	                    '\u9009\u9879 11'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '12' },
+	                    '\u9009\u9879 12'
+	                )
+	            )
+	        );
+	    };
+	
+	    return Demo3;
+	}(_react.Component);
+	
+	exports['default'] = Demo3;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 222 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(84);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 子菜单呼出形式Menu
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 子菜单在右侧呼出形式显示。
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
@@ -17923,122 +18211,116 @@
 	
 	    Demo4.prototype.render = function render() {
 	        return _react2['default'].createElement(
-	            'div',
-	            null,
-	            _react2['default'].createElement('input', { placeholder: '123' }),
+	            _src2['default'],
+	            { onClick: this.handleClick, style: { width: 240 }, mode: 'vertical' },
 	            _react2['default'].createElement(
-	                _src2['default'],
-	                { onClick: this.handleClick, style: { width: 240 }, mode: 'vertical' },
-	                _react2['default'].createElement(
-	                    SubMenu,
-	                    { key: 'sub1', title: _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'sub1', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
 	                            'span',
 	                            null,
-	                            _react2['default'].createElement(
-	                                'span',
-	                                null,
-	                                '\u7EC4\u7EC7 1'
-	                            )
-	                        ) },
-	                    _react2['default'].createElement(
-	                        MenuItemGroup,
-	                        { title: 'Item 1' },
-	                        _react2['default'].createElement(
-	                            _src2['default'].Item,
-	                            { key: '1' },
-	                            '\u9009\u9879 1'
-	                        ),
-	                        _react2['default'].createElement(
-	                            _src2['default'].Item,
-	                            { key: '2' },
-	                            '\u9009\u9879 2'
+	                            '\u7EC4\u7EC7 1'
 	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    MenuItemGroup,
+	                    { title: 'Item 1' },
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '1' },
+	                        '\u9009\u9879 1'
 	                    ),
 	                    _react2['default'].createElement(
-	                        MenuItemGroup,
-	                        { title: 'Iteom 2' },
-	                        _react2['default'].createElement(
-	                            _src2['default'].Item,
-	                            { key: '3' },
-	                            '\u9009\u9879 3'
-	                        ),
-	                        _react2['default'].createElement(
-	                            _src2['default'].Item,
-	                            { key: '4' },
-	                            '\u9009\u9879 4'
-	                        )
+	                        _src2['default'].Item,
+	                        { key: '2' },
+	                        '\u9009\u9879 2'
 	                    )
 	                ),
 	                _react2['default'].createElement(
-	                    SubMenu,
-	                    { key: 'sub2', title: _react2['default'].createElement(
-	                            'span',
-	                            null,
-	                            _react2['default'].createElement(
-	                                'span',
-	                                null,
-	                                '\u7EC4\u7EC7 2'
-	                            )
-	                        ) },
+	                    MenuItemGroup,
+	                    { title: 'Iteom 2' },
 	                    _react2['default'].createElement(
 	                        _src2['default'].Item,
-	                        { key: '5' },
-	                        '\u9009\u9879 5'
+	                        { key: '3' },
+	                        '\u9009\u9879 3'
 	                    ),
 	                    _react2['default'].createElement(
 	                        _src2['default'].Item,
-	                        { key: '6' },
-	                        '\u9009\u9879 6'
-	                    ),
-	                    _react2['default'].createElement(
-	                        SubMenu,
-	                        { key: 'sub3', title: 'Submenu' },
-	                        _react2['default'].createElement(
-	                            _src2['default'].Item,
-	                            { key: '7' },
-	                            '\u9009\u9879 7'
-	                        ),
-	                        _react2['default'].createElement(
-	                            _src2['default'].Item,
-	                            { key: '8' },
-	                            '\u9009\u9879 8'
-	                        )
-	                    )
-	                ),
-	                _react2['default'].createElement(
-	                    SubMenu,
-	                    { key: 'sub4', title: _react2['default'].createElement(
-	                            'span',
-	                            null,
-	                            _react2['default'].createElement(
-	                                'span',
-	                                null,
-	                                '\u7EC4\u7EC7 3'
-	                            )
-	                        ) },
-	                    _react2['default'].createElement(
-	                        _src2['default'].Item,
-	                        { key: '9' },
-	                        '\u9009\u9879 9'
-	                    ),
-	                    _react2['default'].createElement(
-	                        _src2['default'].Item,
-	                        { key: '10' },
-	                        '\u9009\u9879 10'
-	                    ),
-	                    _react2['default'].createElement(
-	                        _src2['default'].Item,
-	                        { key: '11' },
-	                        '\u9009\u9879 11'
-	                    ),
-	                    _react2['default'].createElement(
-	                        _src2['default'].Item,
-	                        { key: '12' },
-	                        '\u9009\u9879 12'
+	                        { key: '4' },
+	                        '\u9009\u9879 4'
 	                    )
 	                )
 	            ),
-	            _react2['default'].createElement('input', { placeholder: '456' })
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'sub2', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 2'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '5' },
+	                    '\u9009\u9879 5'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '6' },
+	                    '\u9009\u9879 6'
+	                ),
+	                _react2['default'].createElement(
+	                    SubMenu,
+	                    { key: 'sub3', title: 'Submenu' },
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '7' },
+	                        '\u9009\u9879 7'
+	                    ),
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '8' },
+	                        '\u9009\u9879 8'
+	                    )
+	                )
+	            ),
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'sub4', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 3'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '9' },
+	                    '\u9009\u9879 9'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '10' },
+	                    '\u9009\u9879 10'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '11' },
+	                    '\u9009\u9879 11'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '12' },
+	                    '\u9009\u9879 12'
+	                )
+	            )
 	        );
 	    };
 	
@@ -18046,6 +18328,2021 @@
 	}(_react.Component);
 	
 	exports['default'] = Demo4;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 223 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(84);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	var _beeFormControl = __webpack_require__(224);
+	
+	var _beeFormControl2 = _interopRequireDefault(_beeFormControl);
+	
+	var _beeBadge = __webpack_require__(228);
+	
+	var _beeBadge2 = _interopRequireDefault(_beeBadge);
+	
+	var _beeIcon = __webpack_require__(226);
+	
+	var _beeIcon2 = _interopRequireDefault(_beeIcon);
+	
+	var _beeNavbar = __webpack_require__(230);
+	
+	var _beeNavbar2 = _interopRequireDefault(_beeNavbar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title Navbar和Menus的组合
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 示例采取navbar与menus的组合，达到一种PC端常用的复合导航菜单。导航添加了常用的搜索表单消息提醒等组件。
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var SubMenu = _src2['default'].SubMenu;
+	var MenuItemGroup = _src2['default'].ItemGroup;
+	var MenuToggle = _src2['default'].MenuToggle;
+	var SideContainer = _src2['default'].SideContainer;
+	
+	var NavItem = _beeNavbar2['default'].NavItem;
+	var Header = _beeNavbar2['default'].Header;
+	var Brand = _beeNavbar2['default'].Brand;
+	var Nav = _beeNavbar2['default'].Nav;
+	
+	var Demo5 = function (_Component) {
+	    _inherits(Demo5, _Component);
+	
+	    function Demo5(props, context) {
+	        _classCallCheck(this, Demo5);
+	
+	        var _this = _possibleConstructorReturn(this, _Component.call(this, props, context));
+	
+	        _this.onToggle = function (value) {
+	            _this.setState({ expanded: value });
+	        };
+	
+	        _this.handleClick = function (e) {
+	            console.log('click ', e);
+	            _this.setState({
+	                current: e.key
+	            });
+	        };
+	
+	        _this.onChange = function (e) {
+	            _this.setState({ searchValue: e });
+	        };
+	
+	        _this.state = {
+	            expanded: false,
+	            current: 1,
+	            searchValue: "Search"
+	        };
+	        return _this;
+	    }
+	
+	    Demo5.prototype.render = function render() {
+	        return _react2['default'].createElement(
+	            'div',
+	            { id: 'demo5' },
+	            _react2['default'].createElement(
+	                _beeNavbar2['default'],
+	                { expanded: this.state.expanded, onToggle: this.onToggle },
+	                _react2['default'].createElement(MenuToggle, { show: true }),
+	                _react2['default'].createElement(
+	                    Header,
+	                    null,
+	                    _react2['default'].createElement(
+	                        Brand,
+	                        null,
+	                        _react2['default'].createElement(
+	                            'a',
+	                            { href: '#' },
+	                            _react2['default'].createElement('img', { style: { width: 140 }, src: 'http://design.yyuap.com/logos/logox.png' })
+	                        )
+	                    )
+	                ),
+	                _react2['default'].createElement(
+	                    Nav,
+	                    { pullRight: true },
+	                    _react2['default'].createElement(
+	                        NavItem,
+	                        { eventKey: 1 },
+	                        _react2['default'].createElement(_beeFormControl2['default'], {
+	                            type: 'text',
+	                            placeholder: 'Search',
+	                            onChange: this.onChange,
+	                            value: this.state.searchValue
+	                        })
+	                    ),
+	                    _react2['default'].createElement(
+	                        NavItem,
+	                        { eventKey: 2 },
+	                        _react2['default'].createElement(
+	                            _beeBadge2['default'],
+	                            { dataBadge: '4', colors: 'warning' },
+	                            _react2['default'].createElement(_beeIcon2['default'], {
+	                                type: 'uf-bell'
+	                            })
+	                        )
+	                    ),
+	                    _react2['default'].createElement(
+	                        NavItem,
+	                        { eventKey: 3 },
+	                        _react2['default'].createElement(_beeIcon2['default'], { type: 'uf-bubble-o' })
+	                    ),
+	                    _react2['default'].createElement(
+	                        _src2['default'],
+	                        { mode: 'horizontal', className: 'dropdown' },
+	                        _react2['default'].createElement(
+	                            SubMenu,
+	                            { title: _react2['default'].createElement(
+	                                    'span',
+	                                    null,
+	                                    '\u5218\u8BA4\u534E',
+	                                    _react2['default'].createElement(_beeIcon2['default'], { type: 'uf-triangle-down' })
+	                                ) },
+	                            _react2['default'].createElement(
+	                                _src2['default'].Item,
+	                                { key: 'setting:1' },
+	                                '\u9009\u9879 1'
+	                            ),
+	                            _react2['default'].createElement(
+	                                _src2['default'].Item,
+	                                { key: 'setting:2' },
+	                                '\u9009\u9879 2'
+	                            ),
+	                            _react2['default'].createElement(
+	                                _src2['default'].Item,
+	                                { key: 'setting:3' },
+	                                '\u9009\u9879 3'
+	                            ),
+	                            _react2['default'].createElement(
+	                                _src2['default'].Item,
+	                                { key: 'setting:4' },
+	                                '\u9009\u9879 4'
+	                            )
+	                        )
+	                    )
+	                )
+	            ),
+	            _react2['default'].createElement(
+	                SideContainer,
+	                {
+	                    onToggle: this.onToggle,
+	                    expanded: this.state.expanded },
+	                _react2['default'].createElement(
+	                    _src2['default'],
+	                    { onClick: this.handleClick,
+	                        style: { width: 240 },
+	                        defaultOpenKeys: ['demo3sub1'],
+	                        selectedKeys: [this.state.current],
+	                        mode: 'inline'
+	                    },
+	                    _react2['default'].createElement(
+	                        SubMenu,
+	                        { key: 'demo3sub1', title: _react2['default'].createElement(
+	                                'span',
+	                                null,
+	                                _react2['default'].createElement(
+	                                    'span',
+	                                    null,
+	                                    '\u7EC4\u7EC7 1'
+	                                )
+	                            ) },
+	                        _react2['default'].createElement(
+	                            MenuItemGroup,
+	                            { title: '\u7EC4 1' },
+	                            _react2['default'].createElement(
+	                                _src2['default'].Item,
+	                                { key: '1' },
+	                                '\u9009\u9879 1'
+	                            ),
+	                            _react2['default'].createElement(
+	                                _src2['default'].Item,
+	                                { key: '2' },
+	                                '\u9009\u9879 2'
+	                            )
+	                        ),
+	                        _react2['default'].createElement(
+	                            MenuItemGroup,
+	                            { title: '\u7EC4 2' },
+	                            _react2['default'].createElement(
+	                                _src2['default'].Item,
+	                                { key: '3' },
+	                                '\u9009\u9879 3'
+	                            ),
+	                            _react2['default'].createElement(
+	                                _src2['default'].Item,
+	                                { key: '4' },
+	                                '\u9009\u9879 4'
+	                            )
+	                        )
+	                    ),
+	                    _react2['default'].createElement(
+	                        SubMenu,
+	                        { key: 'demo3sub2', title: _react2['default'].createElement(
+	                                'span',
+	                                null,
+	                                _react2['default'].createElement(
+	                                    'span',
+	                                    null,
+	                                    '\u7EC4\u7EC7 2'
+	                                )
+	                            ) },
+	                        _react2['default'].createElement(
+	                            _src2['default'].Item,
+	                            { key: '5' },
+	                            '\u9009\u9879 5'
+	                        ),
+	                        _react2['default'].createElement(
+	                            _src2['default'].Item,
+	                            { key: '6' },
+	                            '\u9009\u9879 6'
+	                        ),
+	                        _react2['default'].createElement(
+	                            SubMenu,
+	                            { key: 'demo3sub3', title: '\u5B50\u9879' },
+	                            _react2['default'].createElement(
+	                                _src2['default'].Item,
+	                                { key: '7' },
+	                                '\u9009\u9879 7'
+	                            ),
+	                            _react2['default'].createElement(
+	                                _src2['default'].Item,
+	                                { key: '8' },
+	                                '\u9009\u9879 8'
+	                            )
+	                        )
+	                    ),
+	                    _react2['default'].createElement(
+	                        SubMenu,
+	                        { key: 'demo3sub4', title: _react2['default'].createElement(
+	                                'span',
+	                                null,
+	                                _react2['default'].createElement(
+	                                    'span',
+	                                    null,
+	                                    '\u7EC4\u7EC7 3'
+	                                )
+	                            ) },
+	                        _react2['default'].createElement(
+	                            _src2['default'].Item,
+	                            { key: '9' },
+	                            '\u9009\u9879 9'
+	                        ),
+	                        _react2['default'].createElement(
+	                            _src2['default'].Item,
+	                            { key: '10' },
+	                            '\u9009\u9879 10'
+	                        ),
+	                        _react2['default'].createElement(
+	                            _src2['default'].Item,
+	                            { key: '11' },
+	                            '\u9009\u9879 11'
+	                        ),
+	                        _react2['default'].createElement(
+	                            _src2['default'].Item,
+	                            { key: '12' },
+	                            '\u9009\u9879 12'
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    };
+	
+	    return Demo5;
+	}(_react.Component);
+	
+	exports['default'] = Demo5;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _FormControl = __webpack_require__(225);
+	
+	var _FormControl2 = _interopRequireDefault(_FormControl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	exports["default"] = _FormControl2["default"];
+	module.exports = exports['default'];
+
+/***/ }),
+/* 225 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(3);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _beeIcon = __webpack_require__(226);
+	
+	var _beeIcon2 = _interopRequireDefault(_beeIcon);
+	
+	var _propTypes = __webpack_require__(5);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+	
+	var propTypes = {
+	    componentClass: _propTypes2["default"].oneOfType([_propTypes2["default"].element, _propTypes2["default"].string]),
+	    type: _propTypes2["default"].string,
+	    size: _propTypes2["default"].oneOf(['sm', 'md', 'lg']),
+	    onSearch: _propTypes2["default"].func,
+	    onChange: _propTypes2["default"].func,
+	    onBlur: _propTypes2["default"].func,
+	    showClose: _propTypes2["default"].bool
+	};
+	
+	var defaultProps = {
+	    componentClass: 'input',
+	    clsPrefix: 'u-form-control',
+	    type: 'text',
+	    size: 'md'
+	};
+	
+	var FormControl = function (_React$Component) {
+	    _inherits(FormControl, _React$Component);
+	
+	    function FormControl(props) {
+	        _classCallCheck(this, FormControl);
+	
+	        var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+	
+	        _this.handleSearchChange = function (e) {
+	            var onChange = _this.props.onChange;
+	
+	            var value = _this.input.value;
+	            _this.setState({
+	                value: value,
+	                showSearch: value == null || value === ""
+	            });
+	            if (onChange) {
+	                onChange(value, e);
+	            }
+	        };
+	
+	        _this.handleChange = function (e) {
+	            var onChange = _this.props.onChange;
+	
+	            var value = _this.input.value;
+	            _this.setState({
+	                showClose: true
+	            });
+	            if (onChange) {
+	                onChange(value, e);
+	            }
+	        };
+	
+	        _this.clearValue = function () {
+	            var onChange = _this.props.onChange;
+	
+	            _this.setState({
+	                showSearch: true,
+	                value: "",
+	                showClose: false
+	            });
+	            if (onChange) {
+	                onChange("");
+	            }
+	            _this.input.focus();
+	        };
+	
+	        _this.handleKeyDown = function (e) {
+	            var _this$props = _this.props,
+	                onSearch = _this$props.onSearch,
+	                value = _this$props.value,
+	                type = _this$props.type;
+	
+	            if (e.keyCode === 13 && type === "search") {
+	                if (onSearch) {
+	                    onSearch(value);
+	                }
+	            }
+	        };
+	
+	        _this.handleBlur = function (e) {
+	            var value = _this.state.value;
+	            var onBlur = _this.props.onBlur;
+	
+	
+	            if (onBlur) {
+	                onBlur(value, e);
+	            }
+	        };
+	
+	        _this.handleFocus = function (e) {
+	            var value = _this.state.value;
+	            var onFocus = _this.props.onFocus;
+	
+	            if (onFocus) {
+	                onFocus(value, e);
+	            }
+	        };
+	
+	        _this.handleClick = function (e) {
+	            alert();
+	        };
+	
+	        _this.renderInput = function () {
+	            var _this$props2 = _this.props,
+	                Component = _this$props2.componentClass,
+	                type = _this$props2.type,
+	                className = _this$props2.className,
+	                size = _this$props2.size,
+	                clsPrefix = _this$props2.clsPrefix,
+	                value = _this$props2.value,
+	                onChange = _this$props2.onChange,
+	                onSearch = _this$props2.onSearch,
+	                onBlur = _this$props2.onBlur,
+	                showClose = _this$props2.showClose,
+	                others = _objectWithoutProperties(_this$props2, ['componentClass', 'type', 'className', 'size', 'clsPrefix', 'value', 'onChange', 'onSearch', 'onBlur', 'showClose']);
+	            // input[type="file"] 不应该有类名 .form-control.
+	
+	
+	            var classes = {};
+	            if (size) {
+	                classes['' + size] = true;
+	            }
+	
+	            var classNames = void 0;
+	            if (type !== 'file') {
+	                classNames = (0, _classnames2["default"])(clsPrefix, classes);
+	            }
+	
+	            return showClose ? _react2["default"].createElement(
+	                'div',
+	                { className: (0, _classnames2["default"])(clsPrefix + '-close', clsPrefix + '-affix-wrapper', className) },
+	                _react2["default"].createElement(Component, _extends({}, others, {
+	                    type: type,
+	                    ref: function ref(el) {
+	                        return _this.input = el;
+	                    },
+	                    value: value,
+	                    onChange: _this.handleChange,
+	                    onBlur: _this.handleBlur,
+	                    onFocus: _this.handleFocus,
+	                    className: (0, _classnames2["default"])(className, classNames)
+	                })),
+	                _react2["default"].createElement(
+	                    'div',
+	                    { className: clsPrefix + '-suffix' },
+	                    _this.state.showClose ? _react2["default"].createElement(_beeIcon2["default"], { onClick: _this.clearValue, type: 'uf-close-c' }) : ''
+	                )
+	            ) : _react2["default"].createElement(Component, _extends({}, others, {
+	                type: type,
+	                ref: function ref(el) {
+	                    return _this.input = el;
+	                },
+	                value: value,
+	                onChange: _this.handleChange,
+	                onBlur: _this.handleBlur,
+	                className: (0, _classnames2["default"])(className, classNames)
+	            }));
+	        };
+	
+	        _this.renderSearch = function () {
+	            var _this$props3 = _this.props,
+	                Component = _this$props3.componentClass,
+	                type = _this$props3.type,
+	                className = _this$props3.className,
+	                size = _this$props3.size,
+	                clsPrefix = _this$props3.clsPrefix,
+	                value = _this$props3.value,
+	                onChange = _this$props3.onChange,
+	                onSearch = _this$props3.onSearch,
+	                onBlur = _this$props3.onBlur,
+	                others = _objectWithoutProperties(_this$props3, ['componentClass', 'type', 'className', 'size', 'clsPrefix', 'value', 'onChange', 'onSearch', 'onBlur']);
+	            // input[type="file"] 不应该有类名 .form-control.
+	
+	
+	            var classes = {};
+	            if (size) {
+	                classes['' + size] = true;
+	            }
+	            classes[clsPrefix + '-search'] = true;
+	
+	            if (type === "search") {
+	                return _react2["default"].createElement(
+	                    'div',
+	                    { className: (0, _classnames2["default"])(clsPrefix + '-search', clsPrefix + '-affix-wrapper', className) },
+	                    _react2["default"].createElement(Component, _extends({}, others, {
+	                        type: type,
+	                        ref: function ref(el) {
+	                            return _this.input = el;
+	                        },
+	                        onChange: _this.handleSearchChange,
+	                        value: value,
+	                        onKeyDown: _this.handleKeyDown,
+	                        onBlur: _this.handleBlur,
+	                        className: (0, _classnames2["default"])(className, clsPrefix, classes)
+	                    })),
+	                    _react2["default"].createElement(
+	                        'div',
+	                        { className: clsPrefix + '-suffix' },
+	                        _this.state.showSearch || others.disabled ? _react2["default"].createElement(_beeIcon2["default"], { type: 'uf-search' }) : _react2["default"].createElement(_beeIcon2["default"], { onClick: _this.clearValue, type: 'uf-close-c' })
+	                    )
+	                );
+	            }
+	        };
+	
+	        _this.state = {
+	            showSearch: !props.value,
+	            value: props.value == null ? "" : props.value,
+	            showClose: false
+	        };
+	        _this.input = {};
+	        return _this;
+	    }
+	
+	    FormControl.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProp) {
+	        if (nextProp.value !== this.state.value) {
+	            this.setState({ value: nextProp.value });
+	        }
+	    };
+	
+	    FormControl.prototype.render = function render() {
+	
+	        if (this.props.type === "search") {
+	            return this.renderSearch();
+	        }
+	
+	        return this.renderInput();
+	    };
+	
+	    return FormControl;
+	}(_react2["default"].Component);
+	
+	FormControl.propTypes = propTypes;
+	FormControl.defaultProps = defaultProps;
+	
+	exports["default"] = FormControl;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _Icon = __webpack_require__(227);
+	
+	var _Icon2 = _interopRequireDefault(_Icon);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	exports["default"] = _Icon2["default"];
+	module.exports = exports['default'];
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(3);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _propTypes = __webpack_require__(5);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+	
+	var propTypes = {
+		type: _propTypes2["default"].string
+	
+	};
+	/**
+	 *  badge 默认显示内容1
+	 */
+	var defaultProps = {
+		clsPrefix: 'uf'
+	};
+	
+	var Icon = function (_Component) {
+		_inherits(Icon, _Component);
+	
+		function Icon(props) {
+			_classCallCheck(this, Icon);
+	
+			return _possibleConstructorReturn(this, _Component.call(this, props));
+		}
+	
+		Icon.prototype.render = function render() {
+			var _props = this.props,
+			    type = _props.type,
+			    className = _props.className,
+			    clsPrefix = _props.clsPrefix,
+			    others = _objectWithoutProperties(_props, ['type', 'className', 'clsPrefix']);
+	
+			var clsObj = {};
+	
+			var classNames = (0, _classnames2["default"])(clsPrefix, type);
+	
+			return _react2["default"].createElement('i', _extends({}, others, { className: (0, _classnames2["default"])(classNames, className) }));
+		};
+	
+		return Icon;
+	}(_react.Component);
+	
+	Icon.defaultProps = defaultProps;
+	Icon.propTypes = propTypes;
+	
+	exports["default"] = Icon;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _Badge = __webpack_require__(229);
+	
+	var _Badge2 = _interopRequireDefault(_Badge);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	exports["default"] = _Badge2["default"];
+	module.exports = exports['default'];
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(3);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _propTypes = __webpack_require__(5);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+	
+	/**
+	 *  badge 默认显示内容1
+	 */
+	
+	var propTypes = {
+		/**
+	  * @title 颜色
+	  */
+		colors: _propTypes2["default"].oneOf(['primary', 'accent', 'success', 'info', 'warning', 'danger', 'default']),
+		/**
+	  * @title 边角显示内容
+	  */
+		dataBadge: _propTypes2["default"].oneOfType([_propTypes2["default"].node, _propTypes2["default"].string, _propTypes2["default"].object]),
+		dataBadgePlacement: _propTypes2["default"].oneOf(['topbottom'])
+	};
+	
+	var defaultProps = {
+		clsPrefix: 'u-badge'
+	};
+	
+	var Badge = function (_React$Component) {
+		_inherits(Badge, _React$Component);
+	
+		function Badge(props) {
+			_classCallCheck(this, Badge);
+	
+			return _possibleConstructorReturn(this, _React$Component.call(this, props));
+		}
+	
+		Badge.prototype.render = function render() {
+			var _props = this.props,
+			    colors = _props.colors,
+			    className = _props.className,
+			    children = _props.children,
+			    clsPrefix = _props.clsPrefix,
+			    dataBadge = _props.dataBadge,
+			    dataBadgePlacement = _props.dataBadgePlacement,
+			    others = _objectWithoutProperties(_props, ['colors', 'className', 'children', 'clsPrefix', 'dataBadge', 'dataBadgePlacement']);
+	
+			var clsObj = {};
+			if (className) {
+				clsObj[className] = true;
+			}
+			/**
+	   *  以u-badge起头的颜色类判断
+	   */
+			if (colors) {
+				clsObj[clsPrefix + '-' + colors] = true;
+			}
+			if (dataBadge) {
+				clsObj['data-badge'] = true;
+			}
+			if (dataBadgePlacement) {
+				clsObj['data-badge-' + dataBadgePlacement] = true;
+			}
+			var classNames = (0, _classnames2["default"])(clsPrefix, clsObj);
+	
+			return _react2["default"].createElement(
+				'span',
+				_extends({ className: classNames }, others),
+				dataBadge && _react2["default"].createElement(
+					'span',
+					null,
+					children,
+					_react2["default"].createElement(
+						'span',
+						{ className: 'data-icon' },
+						dataBadge
+					)
+				),
+				!dataBadge && _react2["default"].createElement(
+					'span',
+					{ className: 'badge-single' },
+					children
+				)
+			);
+		};
+	
+		return Badge;
+	}(_react2["default"].Component);
+	
+	Badge.defaultProps = defaultProps;
+	
+	exports["default"] = Badge;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _Navbar = __webpack_require__(231);
+	
+	var _Navbar2 = _interopRequireDefault(_Navbar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	exports["default"] = _Navbar2["default"];
+	module.exports = exports['default'];
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _classnames = __webpack_require__(3);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(5);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _elementType = __webpack_require__(33);
+	
+	var _elementType2 = _interopRequireDefault(_elementType);
+	
+	var _Layout = __webpack_require__(7);
+	
+	var _Layout2 = _interopRequireDefault(_Layout);
+	
+	var _NavbarBrand = __webpack_require__(232);
+	
+	var _NavbarBrand2 = _interopRequireDefault(_NavbarBrand);
+	
+	var _NavbarCollapse = __webpack_require__(233);
+	
+	var _NavbarCollapse2 = _interopRequireDefault(_NavbarCollapse);
+	
+	var _NavbarHeader = __webpack_require__(234);
+	
+	var _NavbarHeader2 = _interopRequireDefault(_NavbarHeader);
+	
+	var _NavbarToggle = __webpack_require__(235);
+	
+	var _NavbarToggle2 = _interopRequireDefault(_NavbarToggle);
+	
+	var _Nav = __webpack_require__(236);
+	
+	var _Nav2 = _interopRequireDefault(_Nav);
+	
+	var _NavItem = __webpack_require__(237);
+	
+	var _NavItem2 = _interopRequireDefault(_NavItem);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+	
+	//import NavDropdown from './NavDropdown';
+	
+	var propTypes = {
+	  /**
+	   * Create a fixed navbar along the top of the screen, that scrolls with the
+	   * page
+	   */
+	  fixedTop: _propTypes2["default"].bool,
+	  /**
+	   * Create a fixed navbar along the bottom of the screen, that scrolls with
+	   * the page
+	   */
+	  fixedBottom: _propTypes2["default"].bool,
+	  /**
+	   * Create a full-width navbar that scrolls away with the page
+	   */
+	  staticTop: _propTypes2["default"].bool,
+	  /**
+	   * An alternative dark visual style for the Navbar
+	   */
+	  inverse: _propTypes2["default"].bool,
+	  /**
+	   * Allow the Navbar to fluidly adjust to the page or container width, instead
+	   * of at the predefined screen breakpoints
+	   */
+	  fluid: _propTypes2["default"].bool,
+	
+	  /**
+	   * Set a custom element for this component.
+	   */
+	  componentClass: _elementType2["default"],
+	  /**
+	   * A callback fired when the `<Navbar>` body collapses or expands. Fired when
+	   * a `<Navbar.Toggle>` is clicked and called with the new `navExpanded`
+	   * boolean value.
+	   *
+	   * @controllable navExpanded
+	   */
+	  onToggle: _propTypes2["default"].func,
+	
+	  /**
+	   * Explicitly set the visiblity of the navbar body
+	   *
+	   * @controllable onToggle
+	   */
+	  expanded: _propTypes2["default"].bool,
+	
+	  role: _propTypes2["default"].string
+	};
+	
+	var defaultProps = {
+	  componentClass: 'nav',
+	  fixedTop: false,
+	  fixedBottom: false,
+	  staticTop: false,
+	  inverse: false,
+	  fluid: false,
+	  clsPrefix: 'u-navbar'
+	};
+	
+	var childContextTypes = {
+	  u_navbar: _propTypes2["default"].shape({
+	    expanded: _propTypes2["default"].bool,
+	    onToggle: _propTypes2["default"].func
+	  })
+	};
+	
+	var Navbar = function (_React$Component) {
+	  _inherits(Navbar, _React$Component);
+	
+	  function Navbar(props, context) {
+	    _classCallCheck(this, Navbar);
+	
+	    return _possibleConstructorReturn(this, _React$Component.call(this, props, context));
+	
+	    //this.handleToggle = this.handleToggle.bind(this);
+	  }
+	
+	  Navbar.prototype.getChildContext = function getChildContext() {
+	    var _props = this.props,
+	        expanded = _props.expanded,
+	        onToggle = _props.onToggle;
+	
+	
+	    return {
+	      u_navbar: {
+	        expanded: expanded,
+	        //onToggle: this.handleToggle,
+	        onToggle: onToggle
+	      }
+	    };
+	  };
+	
+	  // handleToggle() {
+	  //   const { onToggle, expanded } = this.props;
+	
+	  //   onToggle(!expanded);
+	  //   console.log(expanded);
+	  // }
+	
+	  Navbar.prototype.render = function render() {
+	    var _props2 = this.props,
+	        Component = _props2.componentClass,
+	        fixedTop = _props2.fixedTop,
+	        fixedBottom = _props2.fixedBottom,
+	        staticTop = _props2.staticTop,
+	        inverse = _props2.inverse,
+	        fluid = _props2.fluid,
+	        className = _props2.className,
+	        children = _props2.children,
+	        clsPrefix = _props2.clsPrefix,
+	        expanded = _props2.expanded,
+	        onToggle = _props2.onToggle,
+	        others = _objectWithoutProperties(_props2, ['componentClass', 'fixedTop', 'fixedBottom', 'staticTop', 'inverse', 'fluid', 'className', 'children', 'clsPrefix', 'expanded', 'onToggle']);
+	
+	    // const [bsProps, elementProps] = splitBsPropsAndOmit(props, [
+	    //   'expanded', 'onToggle',
+	    // ]);
+	
+	    var classes = {};
+	
+	    if (inverse) {
+	      classes[clsPrefix + '-inverse'] = true;
+	    } else {
+	      classes[clsPrefix + '-default'] = true;
+	    }
+	    if (fixedTop) {
+	      classes[clsPrefix + '-fixed-top'] = true;
+	    }
+	    if (fixedBottom) {
+	      classes[clsPrefix + '-fixed-bottom'] = true;
+	    }
+	    if (staticTop) {
+	      classes[clsPrefix + '-static-top'] = true;
+	    }
+	
+	    var classNames = (0, _classnames2["default"])(clsPrefix, classes);
+	    return _react2["default"].createElement(
+	      Component,
+	      _extends({}, others, {
+	        className: (0, _classnames2["default"])(className, classNames)
+	      }),
+	      _react2["default"].createElement(
+	        _Layout2["default"],
+	        { fluid: fluid },
+	        children
+	      )
+	    );
+	  };
+	
+	  return Navbar;
+	}(_react2["default"].Component);
+	
+	Navbar.propTypes = propTypes;
+	Navbar.defaultProps = defaultProps;
+	Navbar.childContextTypes = childContextTypes;
+	
+	//const Navbar = uncontrollable(Navbar, { expanded: 'onToggle' });
+	
+	function createSimpleWrapper(tag, suffix, displayName) {
+	  var Wrapper = function Wrapper(_ref, _ref2) {
+	    var _ref2$u_navbar = _ref2.u_navbar,
+	        navbarProps = _ref2$u_navbar === undefined ? { preClass: 'navbar' } : _ref2$u_navbar;
+	
+	    var Component = _ref.componentClass,
+	        className = _ref.className,
+	        pullRight = _ref.pullRight,
+	        pullLeft = _ref.pullLeft,
+	        props = _objectWithoutProperties(_ref, ['componentClass', 'className', 'pullRight', 'pullLeft']);
+	
+	    return _react2["default"].createElement(Component, _extends({}, props, {
+	      className: (0, _classnames2["default"])(className,
+	      //prefix(navbarProps, suffix),
+	      'u-navbar-' + suffix, pullRight && 'u-navbar-right', pullLeft && 'u-navbar-left')
+	    }));
+	  };
+	
+	  Wrapper.displayName = displayName;
+	
+	  Wrapper.propTypes = {
+	    componentClass: _elementType2["default"],
+	    pullRight: _propTypes2["default"].bool,
+	    pullLeft: _propTypes2["default"].bool
+	  };
+	
+	  Wrapper.defaultProps = {
+	    componentClass: tag,
+	    pullRight: false,
+	    pullLeft: false
+	  };
+	
+	  Wrapper.contextTypes = {
+	    u_navbar: _propTypes2["default"].shape({})
+	  };
+	
+	  return Wrapper;
+	}
+	
+	Navbar.Brand = _NavbarBrand2["default"];
+	Navbar.Header = _NavbarHeader2["default"];
+	Navbar.Toggle = _NavbarToggle2["default"];
+	Navbar.Collapse = _NavbarCollapse2["default"];
+	Navbar.Nav = _Nav2["default"];
+	//Navbar.NavDropdown = NavDropdown;
+	Navbar.NavItem = _NavItem2["default"];
+	
+	Navbar.Form = createSimpleWrapper('div', 'form', 'NavbarForm');
+	Navbar.Text = createSimpleWrapper('p', 'text', 'NavbarText');
+	Navbar.Link = createSimpleWrapper('a', 'link', 'NavbarLink');
+	
+	exports["default"] = Navbar;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(3);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+	
+	var defaultProps = {
+	  clsPrefix: "u-navbar-brand"
+	};
+	
+	var NavbarBrand = function (_React$Component) {
+	  _inherits(NavbarBrand, _React$Component);
+	
+	  function NavbarBrand() {
+	    _classCallCheck(this, NavbarBrand);
+	
+	    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+	  }
+	
+	  NavbarBrand.prototype.render = function render() {
+	    var _props = this.props,
+	        className = _props.className,
+	        children = _props.children,
+	        clsPrefix = _props.clsPrefix,
+	        props = _objectWithoutProperties(_props, ['className', 'children', 'clsPrefix']);
+	
+	    if (_react2["default"].isValidElement(children)) {
+	      return _react2["default"].cloneElement(children, {
+	        className: (0, _classnames2["default"])(children.props.className, className, clsPrefix)
+	      });
+	    }
+	
+	    return _react2["default"].createElement(
+	      'span',
+	      _extends({}, props, { className: (0, _classnames2["default"])(className, clsPrefix) }),
+	      children
+	    );
+	  };
+	
+	  return NavbarBrand;
+	}(_react2["default"].Component);
+	
+	NavbarBrand.defaultProps = defaultProps;
+	
+	exports["default"] = NavbarBrand;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(5);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _Collapse = __webpack_require__(16);
+	
+	var _Collapse2 = _interopRequireDefault(_Collapse);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+	
+	var contextTypes = {
+	  u_navbar: _propTypes2["default"].shape({
+	    expanded: _propTypes2["default"].bool
+	  })
+	};
+	
+	var defaultProps = {
+	  clsPrefix: 'u-navbar-collapse'
+	};
+	
+	var NavbarCollapse = function (_React$Component) {
+	  _inherits(NavbarCollapse, _React$Component);
+	
+	  function NavbarCollapse() {
+	    _classCallCheck(this, NavbarCollapse);
+	
+	    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+	  }
+	
+	  NavbarCollapse.prototype.render = function render() {
+	    var _props = this.props,
+	        children = _props.children,
+	        clsPrefix = _props.clsPrefix,
+	        props = _objectWithoutProperties(_props, ['children', 'clsPrefix']);
+	
+	    var navbarProps = this.context.u_navbar;
+	
+	    return _react2["default"].createElement(
+	      _Collapse2["default"],
+	      _extends({ 'in': navbarProps.expanded }, props),
+	      _react2["default"].createElement(
+	        'div',
+	        { className: clsPrefix },
+	        children
+	      )
+	    );
+	  };
+	
+	  return NavbarCollapse;
+	}(_react2["default"].Component);
+	
+	NavbarCollapse.contextTypes = contextTypes;
+	NavbarCollapse.defaultProps = defaultProps;
+	
+	exports["default"] = NavbarCollapse;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _classnames = __webpack_require__(3);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+	
+	var defaultProps = {
+	  clsPrefix: 'u-navbar-header'
+	};
+	
+	var NavbarHeader = function (_React$Component) {
+	  _inherits(NavbarHeader, _React$Component);
+	
+	  function NavbarHeader() {
+	    _classCallCheck(this, NavbarHeader);
+	
+	    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+	  }
+	
+	  NavbarHeader.prototype.render = function render() {
+	    var _props = this.props,
+	        className = _props.className,
+	        clsPrefix = _props.clsPrefix,
+	        props = _objectWithoutProperties(_props, ['className', 'clsPrefix']);
+	
+	    return _react2["default"].createElement('div', _extends({}, props, { className: (0, _classnames2["default"])(className, clsPrefix) }));
+	  };
+	
+	  return NavbarHeader;
+	}(_react2["default"].Component);
+	
+	NavbarHeader.defaultProps = defaultProps;
+	
+	exports["default"] = NavbarHeader;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _classnames = __webpack_require__(3);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(5);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _createChainedFunction = __webpack_require__(36);
+	
+	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+	
+	var propTypes = {
+	  onClick: _propTypes2["default"].func,
+	  /**
+	   * The toggle content, if left empty it will render the default toggle (seen above).
+	   */
+	  show: _propTypes2["default"].bool,
+	  children: _propTypes2["default"].node
+	};
+	
+	var contextTypes = {
+	  u_navbar: _propTypes2["default"].shape({
+	    expanded: _propTypes2["default"].bool,
+	    onToggle: _propTypes2["default"].func
+	  })
+	};
+	
+	var defaultProps = {
+	  clsPrefix: 'u-navbar-toggle',
+	  show: false
+	};
+	
+	var NavbarToggle = function (_React$Component) {
+	  _inherits(NavbarToggle, _React$Component);
+	
+	  function NavbarToggle(props) {
+	    _classCallCheck(this, NavbarToggle);
+	
+	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+	
+	    _this.state = {
+	      toggleState: false
+	      //this.handleRender = this.handleRender.bind(this);
+	    };return _this;
+	  }
+	
+	  NavbarToggle.prototype.handleClick = function handleClick() {
+	    var _context$u_navbar = this.context.u_navbar,
+	        expanded = _context$u_navbar.expanded,
+	        onToggle = _context$u_navbar.onToggle;
+	
+	    this.setState({ toggleState: !this.state.toggleState });
+	    if (onToggle) {
+	      onToggle(!expanded);
+	    }
+	  };
+	
+	  NavbarToggle.prototype.render = function render() {
+	    var _props = this.props,
+	        onClick = _props.onClick,
+	        className = _props.className,
+	        children = _props.children,
+	        clsPrefix = _props.clsPrefix,
+	        show = _props.show,
+	        props = _objectWithoutProperties(_props, ['onClick', 'className', 'children', 'clsPrefix', 'show']);
+	    //const navbarProps = this.context.u_navbar || { bsClass: 'navbar' };
+	    //console.log(navbarProps.onToggle, navbarProps.expanded);
+	
+	    var buttonProps = _extends({
+	      type: 'button'
+	    }, props, {
+	      onClick: (0, _createChainedFunction2["default"])(onClick, this.handleClick.bind(this)),
+	      className: (0, _classnames2["default"])(className, clsPrefix, show && 'show')
+	    });
+	
+	    if (children) {
+	      return _react2["default"].createElement(
+	        'button',
+	        buttonProps,
+	        children
+	      );
+	    }
+	    //当show存在时，渲染左侧静态面包按钮
+	    return _react2["default"].createElement(
+	      'div',
+	      null,
+	      !show && _react2["default"].createElement(
+	        'button',
+	        buttonProps,
+	        _react2["default"].createElement(
+	          'span',
+	          { className: 'sr-only' },
+	          'Toggle navigation'
+	        ),
+	        _react2["default"].createElement('span', { className: 'icon-bar' }),
+	        _react2["default"].createElement('span', { className: 'icon-bar' }),
+	        _react2["default"].createElement('span', { className: 'icon-bar' })
+	      )
+	    );
+	  };
+	
+	  return NavbarToggle;
+	}(_react2["default"].Component);
+	
+	NavbarToggle.propTypes = propTypes;
+	NavbarToggle.defaultProps = defaultProps;
+	NavbarToggle.contextTypes = contextTypes;
+	
+	exports["default"] = NavbarToggle;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _classnames = __webpack_require__(3);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(5);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _all = __webpack_require__(27);
+	
+	var _all2 = _interopRequireDefault(_all);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+	
+	// TODO: Should we expose `<NavItem>` as `<Nav.Item>`?
+	
+	// TODO: This `bsStyle` is very unlike the others. Should we rename it?
+	
+	// TODO: `pullRight` and `pullLeft` don't render right outside of `navbar`.
+	// Consider renaming or replacing them.
+	
+	var propTypes = {
+	  /**
+	   * Marks the NavItem with a matching `eventKey` as active. Has a
+	   * higher precedence over `activeHref`.
+	   */
+	  activeKey: _propTypes2["default"].any,
+	
+	  /**
+	   * Marks the child NavItem with a matching `href` prop as active.
+	   */
+	  activeHref: _propTypes2["default"].string,
+	
+	  /**
+	   * NavItems are be positioned vertically.
+	   */
+	  stacked: _propTypes2["default"].bool,
+	
+	  justified: (0, _all2["default"])(_propTypes2["default"].bool, function (_ref) {
+	    var justified = _ref.justified,
+	        navbar = _ref.navbar;
+	    return justified && navbar ? Error('justified navbar `Nav`s are not supported') : null;
+	  }),
+	
+	  /**
+	   * A callback fired when a NavItem is selected.
+	   *
+	   * ```js
+	   * function (
+	   * 	Any eventKey,
+	   * 	SyntheticEvent event?
+	   * )
+	   * ```
+	   */
+	  onSelect: _propTypes2["default"].func,
+	
+	  /**
+	   * Apply styling an alignment for use in a Navbar. This prop will be set
+	   * automatically when the Nav is used inside a Navbar.
+	   */
+	  navbar: _propTypes2["default"].bool,
+	
+	  /**
+	   * Float the Nav to the right. When `navbar` is `true` the appropriate
+	   * contextual classes are added as well.
+	   */
+	  pullRight: _propTypes2["default"].bool,
+	
+	  /**
+	   * Float the Nav to the left. When `navbar` is `true` the appropriate
+	   * contextual classes are added as well.
+	   */
+	  pullLeft: _propTypes2["default"].bool
+	};
+	
+	var defaultProps = {
+	  pullRight: false,
+	  pullLeft: false,
+	  clsPrefix: 'u-navbar'
+	};
+	
+	var childContextTypes = {
+	  u_nav: _propTypes2["default"].object
+	};
+	
+	var Nav = function (_React$Component) {
+	  _inherits(Nav, _React$Component);
+	
+	  function Nav() {
+	    _classCallCheck(this, Nav);
+	
+	    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+	  }
+	
+	  Nav.prototype.getChildContext = function getChildContext() {
+	    var _props = this.props,
+	        selectedkey = _props.selectedkey,
+	        onSelect = _props.onSelect;
+	
+	    return {
+	      u_nav: {
+	        selectedkey: selectedkey, onSelect: onSelect
+	      }
+	    };
+	  };
+	
+	  Nav.prototype.render = function render() {
+	    var _props2 = this.props,
+	        onSelect = _props2.onSelect,
+	        selectedkey = _props2.selectedkey,
+	        propsRole = _props2.role,
+	        pullRight = _props2.pullRight,
+	        pullLeft = _props2.pullLeft,
+	        className = _props2.className,
+	        children = _props2.children,
+	        clsPrefix = _props2.clsPrefix,
+	        props = _objectWithoutProperties(_props2, ['onSelect', 'selectedkey', 'role', 'pullRight', 'pullLeft', 'className', 'children', 'clsPrefix']);
+	
+	    //const tabContainer = this.context.$bs_tabContainer;
+	    //const role = propsRole || (tabContainer ? 'tablist' : null);
+	
+	    //const { activeKey, activeHref } = this.getActiveProps();
+	
+	
+	    delete props.activeKey; // Accessed via this.getActiveProps().
+	    delete props.activeHref; // Accessed via this.getActiveProps().
+	
+	
+	    var classes = { 'u-nav': true, 'u-navbar-nav': true };
+	
+	    if (pullRight) {
+	      classes[clsPrefix + '-right'] = true;
+	    }
+	    if (pullLeft) {
+	      classes[clsPrefix + '-left'] = true;
+	    }
+	
+	    //classes[prefix(navbarProps, 'nav')] = true;
+	
+	    return _react2["default"].createElement(
+	      'ul',
+	      _extends({}, props, {
+	        className: (0, _classnames2["default"])(className, classes)
+	      }),
+	      children
+	    );
+	  };
+	
+	  return Nav;
+	}(_react2["default"].Component);
+	
+	Nav.propTypes = propTypes;
+	Nav.defaultProps = defaultProps;
+	Nav.childContextTypes = childContextTypes;
+	
+	exports["default"] = Nav;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _classnames = __webpack_require__(3);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(5);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+	
+	var propTypes = {
+	  active: _propTypes2["default"].bool,
+	  disabled: _propTypes2["default"].bool,
+	  role: _propTypes2["default"].string,
+	  href: _propTypes2["default"].string,
+	  skey: _propTypes2["default"].oneOfType([_propTypes2["default"].element, _propTypes2["default"].string, _propTypes2["default"].number]),
+	  onClick: _propTypes2["default"].func,
+	  eventKey: _propTypes2["default"].any,
+	  children: _propTypes2["default"].oneOfType([_propTypes2["default"].element, _propTypes2["default"].string, _propTypes2["default"].node])
+	};
+	
+	var defaultProps = {
+	  active: false,
+	  disabled: false
+	};
+	
+	var contextTypes = {
+	  u_nav: _propTypes2["default"].object
+	};
+	
+	var NavItem = function (_React$Component) {
+	  _inherits(NavItem, _React$Component);
+	
+	  function NavItem(props, context) {
+	    _classCallCheck(this, NavItem);
+	
+	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props, context));
+	
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    return _this;
+	  }
+	
+	  NavItem.prototype.handleClick = function handleClick(e) {
+	    var _context$u_nav = this.context.u_nav,
+	        onSelect = _context$u_nav.onSelect,
+	        selectedkey = _context$u_nav.selectedkey;
+	
+	
+	    if (this.props.disabled) {
+	      return;
+	    }
+	
+	    if (onSelect) {
+	      onSelect(this.props.eventKey);
+	    }
+	  };
+	
+	  NavItem.prototype.render = function render() {
+	    var _props = this.props,
+	        active = _props.active,
+	        eventKey = _props.eventKey,
+	        disabled = _props.disabled,
+	        skey = _props.skey,
+	        className = _props.className,
+	        style = _props.style,
+	        children = _props.children,
+	        props = _objectWithoutProperties(_props, ['active', 'eventKey', 'disabled', 'skey', 'className', 'style', 'children']);
+	
+	    var selectedkey = this.context.u_nav.selectedkey;
+	
+	
+	    var activeItem = this.props.eventKey === selectedkey;
+	
+	    var classes = { 'active': activeItem, 'disabled': disabled };
+	
+	    var dom = props.href ? _react2["default"].createElement(
+	      'li',
+	      {
+	        role: 'presentation',
+	        className: (0, _classnames2["default"])(className, classes),
+	        style: style,
+	        onClick: this.handleClick
+	      },
+	      _react2["default"].createElement(
+	        'a',
+	        _extends({}, props, {
+	          disabled: disabled
+	        }),
+	        children
+	      )
+	    ) : _react2["default"].createElement(
+	      'li',
+	      {
+	        role: 'presentation',
+	        className: (0, _classnames2["default"])(className, classes),
+	        style: style,
+	        key: skey,
+	        onClick: this.handleClick
+	      },
+	      children
+	    );
+	    return dom;
+	  };
+	
+	  return NavItem;
+	}(_react2["default"].Component);
+	
+	NavItem.contextTypes = contextTypes;
+	NavItem.propTypes = propTypes;
+	NavItem.defaultProps = defaultProps;
+	
+	exports["default"] = NavItem;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(84);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 基础下拉菜单
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 如何获取选中对象自定义对象和数据
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	
+	var SubMenu = _src2['default'].SubMenu;
+	var MenuItemGroup = _src2['default'].ItemGroup;
+	
+	var Demo6 = function (_Component) {
+	    _inherits(Demo6, _Component);
+	
+	    function Demo6(props, context) {
+	        _classCallCheck(this, Demo6);
+	
+	        var _this = _possibleConstructorReturn(this, _Component.call(this, props, context));
+	
+	        _this.handleClick = function (e) {
+	
+	            _this.setState({
+	                current: e.key
+	            });
+	        };
+	
+	        _this.state = {
+	            current: 1
+	        };
+	        return _this;
+	    }
+	
+	    /**
+	     * 获取当前选中行的item对象。
+	     * @param {*} value 
+	     */
+	    Demo6.prototype.onSelect = function onSelect(_ref) {
+	        var item = _ref.item,
+	            key = _ref.key,
+	            selectedKeys = _ref.selectedKeys;
+	
+	        console.log(key + ' selected'); //获取key
+	        var currentObject = {};
+	        currentObject.value = item.props.children; //获取选中对象的数据
+	        currentObject.key = item.props.eventKey;
+	        console.log(currentObject);
+	    };
+	
+	    Demo6.prototype.render = function render() {
+	        return _react2['default'].createElement(
+	            _src2['default'],
+	            { theme: 'dark', onClick: this.handleClick, style: { width: 240 }, defaultOpenKeys: ['demo3sub1'], selectedKeys: [this.state.current], mode: 'inline', onSelect: this.onSelect.bind(this) },
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'demo3sub1', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 1'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    MenuItemGroup,
+	                    { title: '\u7EC4 1' },
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '1' },
+	                        '\u9009\u9879 1'
+	                    ),
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '2' },
+	                        '\u9009\u9879 2'
+	                    )
+	                ),
+	                _react2['default'].createElement(
+	                    MenuItemGroup,
+	                    { title: '\u7EC4 2' },
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '3' },
+	                        '\u9009\u9879 3'
+	                    ),
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '4' },
+	                        '\u9009\u9879 4'
+	                    )
+	                )
+	            ),
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'demo3sub2', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 2'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '5' },
+	                    '\u9009\u9879 5'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '6' },
+	                    '\u9009\u9879 6'
+	                ),
+	                _react2['default'].createElement(
+	                    SubMenu,
+	                    { key: 'demo3sub3', title: '\u5B50\u9879' },
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '7' },
+	                        '\u9009\u9879 7'
+	                    ),
+	                    _react2['default'].createElement(
+	                        _src2['default'].Item,
+	                        { key: '8' },
+	                        '\u9009\u9879 8'
+	                    )
+	                )
+	            ),
+	            _react2['default'].createElement(
+	                SubMenu,
+	                { key: 'demo3sub4', title: _react2['default'].createElement(
+	                        'span',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'span',
+	                            null,
+	                            '\u7EC4\u7EC7 3'
+	                        )
+	                    ) },
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '9' },
+	                    '\u9009\u9879 9'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '10' },
+	                    '\u9009\u9879 10'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '11' },
+	                    '\u9009\u9879 11'
+	                ),
+	                _react2['default'].createElement(
+	                    _src2['default'].Item,
+	                    { key: '12' },
+	                    '\u9009\u9879 12'
+	                )
+	            )
+	        );
+	    };
+	
+	    return Demo6;
+	}(_react.Component);
+	
+	exports['default'] = Demo6;
 	module.exports = exports['default'];
 
 /***/ })
