@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'mini-store';
-import KeyCode from 'rc-util/lib/KeyCode';
+import { KeyCode } from 'tinper-bee-core';
 import createChainedFunction from 'rc-util/lib/createChainedFunction';
 import classNames from 'classnames';
 import { getKeyFromChildrenIndex, loopMenuItem, noop, menuAllProps } from './util';
@@ -298,6 +298,7 @@ export class SubPopupMenu extends React.Component {
       itemIcon: childProps.itemIcon || this.props.itemIcon,
       expandIcon: childProps.expandIcon || this.props.expandIcon,
       ...extraProps,
+      tabIndex:'0'
     };
     if (props.mode === 'inline') {
       newChildProps.triggerSubMenuAction = 'click';

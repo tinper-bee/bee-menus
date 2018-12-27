@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Trigger from 'rc-trigger';
-import KeyCode from 'rc-util/lib/KeyCode';
+import { KeyCode } from 'tinper-bee-core';
 import classNames from 'classnames';
 import { connect } from 'mini-store';
 import SubPopupMenu from './SubPopupMenu';
@@ -144,7 +144,8 @@ export class SubMenu extends React.Component {
     } = this.props;
 
     if (keyCode === KeyCode.ENTER) {
-      this.onTitleClick(e);
+      // this.onTitleClick(e);
+      menu.onKeyDown(e);
       updateDefaultActiveFirst(store, this.props.eventKey, true);
       return true;
     }
