@@ -297,8 +297,7 @@ export class SubPopupMenu extends React.Component {
       builtinPlacements: props.builtinPlacements,
       itemIcon: childProps.itemIcon || this.props.itemIcon,
       expandIcon: childProps.expandIcon || this.props.expandIcon,
-      ...extraProps,
-      tabIndex:'0'
+      ...extraProps
     };
     if (props.mode === 'inline') {
       newChildProps.triggerSubMenuAction = 'click';

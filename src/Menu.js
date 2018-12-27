@@ -213,11 +213,10 @@ class Menu extends React.Component {
       onSelect: this.onSelect,
       openTransitionName: this.getOpenTransitionName(),
       parentMenu: this,
-      tabIndex:'0'
     };
     return (
       <Provider store={this.store}>
-        <SubPopupMenu {...props} onFocus={this.focus}  ref={c => this.innerMenu = c}>{this.props.children}</SubPopupMenu>
+        <SubPopupMenu {...props} tabIndex='0' onFocus={this.focus}  ref={c => this.innerMenu = c}>{this.props.children}</SubPopupMenu>
       </Provider>
     );
   }
