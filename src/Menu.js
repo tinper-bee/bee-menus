@@ -1,8 +1,9 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Provider, create } from 'mini-store';
 import { default as SubPopupMenu, getActiveKey } from './SubPopupMenu';
-import { noop } from './util';
+import { noop,fireKeyEvent } from './util';
 
 class Menu extends React.Component {
   static propTypes = {
@@ -196,6 +197,10 @@ class Menu extends React.Component {
       });
     }
   }
+  focus=()=>{
+    fireKeyEvent(ReactDOM.findDOMNode(this.innerMenu),'keydown',40);
+    this.props.onFocus&&this.props.onFocus();
+  }
 
   render() {
     let { ...props } = this.props;
@@ -208,10 +213,11 @@ class Menu extends React.Component {
       onSelect: this.onSelect,
       openTransitionName: this.getOpenTransitionName(),
       parentMenu: this,
+      tabIndex:'0'
     };
     return (
       <Provider store={this.store}>
-        <SubPopupMenu {...props} ref={c => this.innerMenu = c}>{this.props.children}</SubPopupMenu>
+        <SubPopupMenu {...props} onFocus={this.focus}  ref={c => this.innerMenu = c}>{this.props.children}</SubPopupMenu>
       </Provider>
     );
   }

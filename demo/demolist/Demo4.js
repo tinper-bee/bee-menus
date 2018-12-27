@@ -18,7 +18,8 @@ class Demo4 extends Component {
     }
     render() {
         return (
-            <Menu onClick={this.handleClick} style={{ width: 240 }} mode="vertical">
+            <div><input placeholder='123'/>
+                <Menu onClick={this.handleClick} style={{ width: 240 }} mode="vertical">
                 <SubMenu key="sub1" title={<span><span>组织 1</span></span>}>
                     <MenuItemGroup title="Item 1">
                         <Menu.Item key="1">选项 1</Menu.Item>
@@ -44,6 +45,9 @@ class Demo4 extends Component {
                     <Menu.Item key="12">选项 12</Menu.Item>
                 </SubMenu>
             </Menu>
+            <input placeholder='456'/>
+                </div>
+            
         )
     }
 }

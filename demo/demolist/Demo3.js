@@ -14,7 +14,7 @@ class Demo3 extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            current: '1',
+            current: '5',
             openKeys: []
         }
     }
@@ -63,6 +63,9 @@ class Demo3 extends Component {
 
     render() {
         return (
+            <div>
+                <input placeholder='123'/>
+                
             <Menu
                 mode="inline"
                 openKeys={this.state.openKeys}
@@ -71,7 +74,7 @@ class Demo3 extends Component {
                 onOpenChange={this.onOpenChange}
                 onClick={this.handleClick}>
                 <SubMenu key="sub1" title={<span><span>组织 1</span></span>}>
-                    <Menu.Item key="1">选项 1</Menu.Item>
+                    <Menu.Item key="1" >选项 1</Menu.Item>
                     <Menu.Item key="2">选项 2</Menu.Item>
                     <Menu.Item key="3">选项 3</Menu.Item>
                     <Menu.Item key="4">选项 4</Menu.Item>
@@ -91,6 +94,9 @@ class Demo3 extends Component {
                     <Menu.Item key="12">选项 12</Menu.Item>
                 </SubMenu>
             </Menu>
+            <input placeholder='456'/>
+            </div>
+            
         )
     }
 }
