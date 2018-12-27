@@ -416,6 +416,7 @@ export class SubMenu extends React.Component {
   }
 
   render() {
+    
     const props = { ...this.props };
     const isOpen = props.isOpen;
     const prefixCls = this.getPrefixCls();
@@ -515,7 +516,6 @@ export class SubMenu extends React.Component {
     menuAllProps.forEach(key => delete props[key]);
     // Set onClick to null, to ignore propagated onClick event
     delete props.onClick;
-
     return (
       <li
         {...props}

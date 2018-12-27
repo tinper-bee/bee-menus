@@ -307,6 +307,7 @@ export class SubPopupMenu extends React.Component {
 
   renderMenuItem = (c, i, subMenuKey) => {
     /* istanbul ignore if */
+    
     if (!c) {
       return null;
     }

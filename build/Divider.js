@@ -22,34 +22,40 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 
-var propTypes = {
-  className: _propTypes2["default"].string,
-  rootPrefixCls: _propTypes2["default"].string
-};
-
-var Divider = function (_Component) {
-  _inherits(Divider, _Component);
+var Divider = function (_React$Component) {
+  _inherits(Divider, _React$Component);
 
   function Divider() {
     _classCallCheck(this, Divider);
 
-    return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
   }
 
   Divider.prototype.render = function render() {
     var _props = this.props,
         className = _props.className,
-        rootPrefixCls = _props.rootPrefixCls;
+        rootPrefixCls = _props.rootPrefixCls,
+        style = _props.style;
 
-    return _react2["default"].createElement('li', { className: className + ' ' + rootPrefixCls + '-item-divider' });
+    return _react2["default"].createElement('li', {
+      className: className + ' ' + rootPrefixCls + '-item-divider',
+      style: style
+    });
   };
 
   return Divider;
-}(_react.Component);
+}(_react2["default"].Component);
 
-;
-
-Divider.propTypes = propTypes;
-
+Divider.propTypes = {
+  className: _propTypes2["default"].string,
+  rootPrefixCls: _propTypes2["default"].string,
+  style: _propTypes2["default"].object
+};
+Divider.defaultProps = {
+  // To fix keyboard UX.
+  disabled: true,
+  className: '',
+  style: {}
+};
 exports["default"] = Divider;
 module.exports = exports['default'];
