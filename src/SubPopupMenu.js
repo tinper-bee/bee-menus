@@ -171,9 +171,12 @@ export class SubPopupMenu extends React.Component {
       return 1;
     }
     let activeItem = null;
-    if (keyCode === KeyCode.UP || keyCode === KeyCode.DOWN) {
-      activeItem = this.step(keyCode === KeyCode.UP ? -1 : 1);
-    }
+      if (keyCode === KeyCode.UP || keyCode === KeyCode.DOWN) {
+        if(this.props.store.getState().keyboard){//是否启用键盘操作
+          activeItem = this.step(keyCode === KeyCode.UP ? -1 : 1);
+        }
+      }
+    
     if (activeItem) {
       e.preventDefault();
       updateActiveKey(this.props.store, getEventKey(this.props), activeItem.props.eventKey);
@@ -346,6 +349,7 @@ export class SubPopupMenu extends React.Component {
 
     // Otherwise, the propagated click event will trigger another onClick
     delete props.onClick;
+    delete props.keyboard;
 
     return (
       // ESLint is not smart enough to know that the type of `children` was checked.

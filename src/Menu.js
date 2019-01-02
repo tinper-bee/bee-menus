@@ -36,6 +36,7 @@ class Menu extends React.Component {
     itemIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
     expandIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
     overflowedIndicator: PropTypes.node,
+    keyboard: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -55,6 +56,7 @@ class Menu extends React.Component {
     style: {},
     builtinPlacements: {},
     overflowedIndicator: <span>···</span>,
+    keyboard:false
   };
 
   constructor(props) {
@@ -189,11 +191,13 @@ class Menu extends React.Component {
     if ('selectedKeys' in this.props) {
       this.store.setState({
         selectedKeys: this.props.selectedKeys || [],
+        keyboard:this.props.keyboard||false
       });
     }
     if ('openKeys' in this.props) {
       this.store.setState({
         openKeys: this.props.openKeys || [],
+        keyboard:this.props.keyboard||false
       });
     }
   }

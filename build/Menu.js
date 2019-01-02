@@ -83,12 +83,14 @@ var Menu = function (_React$Component) {
   Menu.prototype.updateMiniStore = function updateMiniStore() {
     if ('selectedKeys' in this.props) {
       this.store.setState({
-        selectedKeys: this.props.selectedKeys || []
+        selectedKeys: this.props.selectedKeys || [],
+        keyboard: this.props.keyboard || false
       });
     }
     if ('openKeys' in this.props) {
       this.store.setState({
-        openKeys: this.props.openKeys || []
+        openKeys: this.props.openKeys || [],
+        keyboard: this.props.keyboard || false
       });
     }
   };
@@ -152,7 +154,8 @@ Menu.propTypes = {
   builtinPlacements: _propTypes2["default"].object,
   itemIcon: _propTypes2["default"].oneOfType([_propTypes2["default"].func, _propTypes2["default"].node]),
   expandIcon: _propTypes2["default"].oneOfType([_propTypes2["default"].func, _propTypes2["default"].node]),
-  overflowedIndicator: _propTypes2["default"].node
+  overflowedIndicator: _propTypes2["default"].node,
+  keyboard: _propTypes2["default"].bool
 };
 Menu.defaultProps = {
   selectable: true,
@@ -174,7 +177,8 @@ Menu.defaultProps = {
     'span',
     null,
     '\xB7\xB7\xB7'
-  )
+  ),
+  keyboard: false
 };
 
 var _initialiseProps = function _initialiseProps() {

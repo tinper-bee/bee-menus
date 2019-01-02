@@ -142,40 +142,40 @@ export class SubMenu extends React.Component {
       isOpen,
       store,
     } = this.props;
-
-    if (keyCode === KeyCode.ENTER) {
-      // this.onTitleClick(e);
-      menu.onKeyDown(e);
-      updateDefaultActiveFirst(store, this.props.eventKey, true);
-      return true;
-    }
-
-    if (keyCode === KeyCode.RIGHT) {
-      if (isOpen) {
-        menu.onKeyDown(e);
-      } else {
-        this.triggerOpenChange(true);
-        // need to update current menu's defaultActiveFirst value
+    if(this.props.store.getState().keyboard){//是否启用键盘操作
+      if (keyCode === KeyCode.ENTER) {
+        // this.onTitleClick(e);
+        menu&&menu.onKeyDown&&menu.onKeyDown(e);
         updateDefaultActiveFirst(store, this.props.eventKey, true);
+        return true;
       }
-      return true;
-    }
-    if (keyCode === KeyCode.LEFT) {
-      let handled;
-      if (isOpen) {
-        handled = menu.onKeyDown(e);
-      } else {
-        return undefined;
+  
+      if (keyCode === KeyCode.RIGHT) {
+        if (isOpen) {
+          menu.onKeyDown(e);
+        } else {
+          this.triggerOpenChange(true);
+          // need to update current menu's defaultActiveFirst value
+          updateDefaultActiveFirst(store, this.props.eventKey, true);
+        }
+        return true;
       }
-      if (!handled) {
-        this.triggerOpenChange(false);
-        handled = true;
+      if (keyCode === KeyCode.LEFT) {
+        let handled;
+        if (isOpen) {
+          handled = menu.onKeyDown(e);
+        } else {
+          return undefined;
+        }
+        if (!handled) {
+          this.triggerOpenChange(false);
+          handled = true;
+        }
+        return handled;
       }
-      return handled;
-    }
-
-    if (isOpen && (keyCode === KeyCode.UP || keyCode === KeyCode.DOWN)) {
-      return menu.onKeyDown(e);
+      if (isOpen && (keyCode === KeyCode.UP || keyCode === KeyCode.DOWN)) {
+        return menu.onKeyDown(e);
+      }
     }
   };
 

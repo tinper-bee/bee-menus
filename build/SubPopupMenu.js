@@ -193,6 +193,7 @@ var SubPopupMenu = exports.SubPopupMenu = function (_React$Component) {
 
     // Otherwise, the propagated click event will trigger another onClick
     delete props.onClick;
+    delete props.keyboard;
 
     return (
       // ESLint is not smart enough to know that the type of `children` was checked.
@@ -284,8 +285,12 @@ var _initialiseProps = function _initialiseProps() {
     }
     var activeItem = null;
     if (keyCode === _tinperBeeCore.KeyCode.UP || keyCode === _tinperBeeCore.KeyCode.DOWN) {
-      activeItem = _this3.step(keyCode === _tinperBeeCore.KeyCode.UP ? -1 : 1);
+      if (_this3.props.store.getState().keyboard) {
+        //是否启用键盘操作
+        activeItem = _this3.step(keyCode === _tinperBeeCore.KeyCode.UP ? -1 : 1);
+      }
     }
+
     if (activeItem) {
       e.preventDefault();
       updateActiveKey(_this3.props.store, getEventKey(_this3.props), activeItem.props.eventKey);

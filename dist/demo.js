@@ -8373,12 +8373,14 @@
 	  Menu.prototype.updateMiniStore = function updateMiniStore() {
 	    if ('selectedKeys' in this.props) {
 	      this.store.setState({
-	        selectedKeys: this.props.selectedKeys || []
+	        selectedKeys: this.props.selectedKeys || [],
+	        keyboard: this.props.keyboard || false
 	      });
 	    }
 	    if ('openKeys' in this.props) {
 	      this.store.setState({
-	        openKeys: this.props.openKeys || []
+	        openKeys: this.props.openKeys || [],
+	        keyboard: this.props.keyboard || false
 	      });
 	    }
 	  };
@@ -8442,7 +8444,8 @@
 	  builtinPlacements: _propTypes2['default'].object,
 	  itemIcon: _propTypes2['default'].oneOfType([_propTypes2['default'].func, _propTypes2['default'].node]),
 	  expandIcon: _propTypes2['default'].oneOfType([_propTypes2['default'].func, _propTypes2['default'].node]),
-	  overflowedIndicator: _propTypes2['default'].node
+	  overflowedIndicator: _propTypes2['default'].node,
+	  keyboard: _propTypes2['default'].bool
 	};
 	Menu.defaultProps = {
 	  selectable: true,
@@ -8464,7 +8467,8 @@
 	    'span',
 	    null,
 	    '\xB7\xB7\xB7'
-	  )
+	  ),
+	  keyboard: false
 	};
 	
 	var _initialiseProps = function _initialiseProps() {
@@ -9390,6 +9394,7 @@
 	
 	    // Otherwise, the propagated click event will trigger another onClick
 	    delete props.onClick;
+	    delete props.keyboard;
 	
 	    return (
 	      // ESLint is not smart enough to know that the type of `children` was checked.
@@ -9481,8 +9486,12 @@
 	    }
 	    var activeItem = null;
 	    if (keyCode === _tinperBeeCore.KeyCode.UP || keyCode === _tinperBeeCore.KeyCode.DOWN) {
-	      activeItem = _this3.step(keyCode === _tinperBeeCore.KeyCode.UP ? -1 : 1);
+	      if (_this3.props.store.getState().keyboard) {
+	        //是否启用键盘操作
+	        activeItem = _this3.step(keyCode === _tinperBeeCore.KeyCode.UP ? -1 : 1);
+	      }
 	    }
+	
 	    if (activeItem) {
 	      e.preventDefault();
 	      updateActiveKey(_this3.props.store, getEventKey(_this3.props), activeItem.props.eventKey);
@@ -11513,40 +11522,41 @@
 	        isOpen = _props3.isOpen,
 	        store = _props3.store;
 	
-	
-	    if (keyCode === _tinperBeeCore.KeyCode.ENTER) {
-	      // this.onTitleClick(e);
-	      menu.onKeyDown(e);
-	      updateDefaultActiveFirst(store, _this3.props.eventKey, true);
-	      return true;
-	    }
-	
-	    if (keyCode === _tinperBeeCore.KeyCode.RIGHT) {
-	      if (isOpen) {
-	        menu.onKeyDown(e);
-	      } else {
-	        _this3.triggerOpenChange(true);
-	        // need to update current menu's defaultActiveFirst value
+	    if (_this3.props.store.getState().keyboard) {
+	      //是否启用键盘操作
+	      if (keyCode === _tinperBeeCore.KeyCode.ENTER) {
+	        // this.onTitleClick(e);
+	        menu && menu.onKeyDown && menu.onKeyDown(e);
 	        updateDefaultActiveFirst(store, _this3.props.eventKey, true);
+	        return true;
 	      }
-	      return true;
-	    }
-	    if (keyCode === _tinperBeeCore.KeyCode.LEFT) {
-	      var handled = void 0;
-	      if (isOpen) {
-	        handled = menu.onKeyDown(e);
-	      } else {
-	        return undefined;
-	      }
-	      if (!handled) {
-	        _this3.triggerOpenChange(false);
-	        handled = true;
-	      }
-	      return handled;
-	    }
 	
-	    if (isOpen && (keyCode === _tinperBeeCore.KeyCode.UP || keyCode === _tinperBeeCore.KeyCode.DOWN)) {
-	      return menu.onKeyDown(e);
+	      if (keyCode === _tinperBeeCore.KeyCode.RIGHT) {
+	        if (isOpen) {
+	          menu.onKeyDown(e);
+	        } else {
+	          _this3.triggerOpenChange(true);
+	          // need to update current menu's defaultActiveFirst value
+	          updateDefaultActiveFirst(store, _this3.props.eventKey, true);
+	        }
+	        return true;
+	      }
+	      if (keyCode === _tinperBeeCore.KeyCode.LEFT) {
+	        var handled = void 0;
+	        if (isOpen) {
+	          handled = menu.onKeyDown(e);
+	        } else {
+	          return undefined;
+	        }
+	        if (!handled) {
+	          _this3.triggerOpenChange(false);
+	          handled = true;
+	        }
+	        return handled;
+	      }
+	      if (isOpen && (keyCode === _tinperBeeCore.KeyCode.UP || keyCode === _tinperBeeCore.KeyCode.DOWN)) {
+	        return menu.onKeyDown(e);
+	      }
 	    }
 	  };
 	
