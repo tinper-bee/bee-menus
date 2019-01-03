@@ -287,7 +287,7 @@ var _initialiseProps = function _initialiseProps() {
     if (keyCode === _tinperBeeCore.KeyCode.UP || keyCode === _tinperBeeCore.KeyCode.DOWN) {
       if (_this3.props.store.getState().keyboard) {
         //是否启用键盘操作
-        activeItem = _this3.step(keyCode === _tinperBeeCore.KeyCode.UP ? -1 : 1);
+        activeItem = _this3.step(keyCode === _tinperBeeCore.KeyCode.UP ? -2 : 2);
       }
     }
 

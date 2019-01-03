@@ -235,7 +235,7 @@ class DOMWrap extends React.Component {
               childNode,
               // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
               {
-                style: { display: 'none' },
+                style: { display: 'none'},
                 eventKey: `${childNode.props.eventKey}-hidden`,
                 className: `${childNode.className} ${MENUITEM_OVERFLOWED_CLASSNAME}`,
               },
@@ -258,7 +258,8 @@ class DOMWrap extends React.Component {
           }
         }
 
-        const ret = [...acc, overflowed, item];
+        // const ret = [...acc, overflowed, item];//更改
+        const ret = [...acc, item];
 
         if (index === children.length - 1) {
           // need a placeholder for calculating overflowed indicator width

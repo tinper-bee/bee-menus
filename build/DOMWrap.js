@@ -303,7 +303,8 @@ var DOMWrap = function (_React$Component) {
           }
         }
 
-        var ret = [].concat(_toConsumableArray(acc), [overflowed, item]);
+        // const ret = [...acc, overflowed, item];//更改
+        var ret = [].concat(_toConsumableArray(acc), [item]);
 
         if (index === children.length - 1) {
           // need a placeholder for calculating overflowed indicator width

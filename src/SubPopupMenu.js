@@ -173,7 +173,7 @@ export class SubPopupMenu extends React.Component {
     let activeItem = null;
       if (keyCode === KeyCode.UP || keyCode === KeyCode.DOWN) {
         if(this.props.store.getState().keyboard){//是否启用键盘操作
-          activeItem = this.step(keyCode === KeyCode.UP ? -1 : 1);
+          activeItem = this.step(keyCode === KeyCode.UP ? -2 : 2)
         }
       }
     
