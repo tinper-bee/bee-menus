@@ -13,9 +13,9 @@
  "engines": {
   "node": ">=4.0.0"
  },
- "homepage": "https://github.com/tinper-bee/menus",
+ "homepage": "https://github.com/tinper-bee/bee-menus",
  "author": "",
- "repository": "http://github.com/tinper-bee/menus",
+ "repository": "http://github.com/tinper-bee/bee-menus",
  "bugs": "https://github.com/tinper-bee/menus/issues",
  "license": "MIT",
  "main": "./build/index",
