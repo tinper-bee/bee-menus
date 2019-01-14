@@ -24,6 +24,7 @@
 |onClick|点击 menuitem 调用此函数，参数为 {item, key, keyPath}|	function|-|
 |style|根节点样式|Object|-|	
 |keyboard|是否使用键盘操作|bool|false|	
+|Children|MenuItem组件/SubMenu组件/MenuItemGroup组件|node|-|
 
 ## Menu.Item
 
@@ -44,6 +45,7 @@
 |onTitleClick|点击子菜单标题|Function({ eventKey, domEvent })|
 |disabled|是否禁用|Boolean|false|
 |key|item 的唯一标志|String|-|
+|Children|MenuItem组件/SubMenu组件/MenuItemGroup组件|node|-|
 
 
 ## 已支持的键盘操作
