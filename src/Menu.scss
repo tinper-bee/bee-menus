@@ -107,7 +107,7 @@
 .u-menu:not(.u-menu-inline) .u-menu-submenu-open,
 .u-menu-submenu-active,
 .u-menu-submenu-title:hover {
-    background-color: #eaf8fe;
+    background-color: $hover-bg-color-base;
 }
 
 .u-menu-horizontal .u-menu-item,
@@ -122,16 +122,16 @@
 }
 
 .u-menu-item-selected {
-    color: #108ee9;
+    color: $brand-primary;
 }
 
 .u-menu-item-selected>a,
 .u-menu-item-selected>a:hover {
-    color: #108ee9;
+    color: $brand-primary;
 }
 
 .u-menu:not(.u-menu-horizontal) .u-menu-item-selected {
-    background-color: #e6f7ff;
+    background-color: $hover-bg-color-base;
 }
 
 .u-menu-inline,
@@ -321,9 +321,9 @@
 .u-menu-submenu-vertical-left>.u-menu-submenu-title:hover .u-menu-submenu-arrow:before,
 .u-menu-submenu-vertical-right>.u-menu-submenu-title:hover .u-menu-submenu-arrow:before,
 .u-menu-submenu-inline>.u-menu-submenu-title:hover .u-menu-submenu-arrow:before {
-    background: -webkit-gradient(linear, left top, right top, from(#108ee9), to(#108ee9));
-    background: -webkit-linear-gradient(left, #108ee9, #108ee9);
-    background: linear-gradient(to right, #108ee9, #108ee9);
+    background: -webkit-gradient(linear, left top, right top, from($brand-primary), to($brand-primary));
+    background: -webkit-linear-gradient(left, $brand-primary, $brand-primary);
+    background: linear-gradient(to right, $brand-primary, $brand-primary);
 }
 
 .u-menu-submenu-inline>.u-menu-submenu-title .u-menu-submenu-arrow:before {
@@ -359,13 +359,13 @@
 .u-menu-vertical .u-menu-submenu-selected,
 .u-menu-vertical-left .u-menu-submenu-selected,
 .u-menu-vertical-right .u-menu-submenu-selected {
-    color: #108ee9;
+    color: $brand-primary;
 }
 
 .u-menu-vertical .u-menu-submenu-selected>a,
 .u-menu-vertical-left .u-menu-submenu-selected>a,
 .u-menu-vertical-right .u-menu-submenu-selected>a {
-    color: #108ee9;
+    color: $brand-primary;
 }
 
 .u-menu-horizontal {
@@ -394,8 +394,8 @@
 .u-menu-horizontal>.u-menu-submenu-open,
 .u-menu-horizontal>.u-menu-item-selected,
 .u-menu-horizontal>.u-menu-submenu-selected {
-    border-bottom: 2px solid #108ee9;
-    color: #108ee9;
+    border-bottom: 2px solid $brand-primary;
+    color: $brand-primary;
 }
 
 .u-menu-horizontal>.u-menu-item>a {
@@ -404,7 +404,7 @@
 }
 
 .u-menu-horizontal>.u-menu-item>a:hover {
-    color: #108ee9;
+    color: $brand-primary;
 }
 
 .u-menu-horizontal>.u-menu-item>a:before {
@@ -412,7 +412,7 @@
 }
 
 .u-menu-horizontal>.u-menu-item-selected>a {
-    color: #108ee9;
+    color: $brand-primary;
 }
 
 .u-menu-horizontal:after {
@@ -438,7 +438,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    border-right: 3px solid #108ee9;
+    border-right: 3px solid $brand-primary;
     -webkit-transform: scaleY(0.0001);
     -ms-transform: scaleY(0.0001);
     transform: scaleY(0.0001);
