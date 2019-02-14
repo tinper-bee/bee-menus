@@ -1,3 +1,7 @@
+/**
+* This source code is quoted from rc-menu.
+* homepage: https://github.com/react-component/menu
+*/
 import React from 'react';
 
 export function noop() {
