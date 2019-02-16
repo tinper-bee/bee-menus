@@ -3,6 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+/**
+* This source code is quoted from rc-menu.
+* homepage: https://github.com/react-component/menu
+*/
 var autoAdjustOverflow = {
   adjustX: 1,
   adjustY: 1

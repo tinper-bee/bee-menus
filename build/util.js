@@ -5,7 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setStyle = exports.getWidth = exports.menuAllProps = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /**
+                                                                                                                                                                                                                                                                              * This source code is quoted from rc-menu.
+                                                                                                                                                                                                                                                                              * homepage: https://github.com/react-component/menu
+                                                                                                                                                                                                                                                                              */
+
 
 exports.noop = noop;
 exports.getKeyFromChildrenIndex = getKeyFromChildrenIndex;
