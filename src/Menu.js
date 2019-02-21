@@ -60,7 +60,8 @@ class Menu extends React.Component {
     style: {},
     builtinPlacements: {},
     overflowedIndicator: <span>···</span>,
-    keyboard:false
+    keyboard:false,
+    tabIndex:'0'
   };
 
   constructor(props) {
@@ -224,7 +225,7 @@ class Menu extends React.Component {
     };
     return (
       <Provider store={this.store}>
-        <SubPopupMenu {...props} tabIndex='0' onFocus={this.focus}  ref={c => this.innerMenu = c}>{this.props.children}</SubPopupMenu>
+        <SubPopupMenu {...props} onFocus={this.focus}  ref={c => this.innerMenu = c}>{this.props.children}</SubPopupMenu>
       </Provider>
     );
   }

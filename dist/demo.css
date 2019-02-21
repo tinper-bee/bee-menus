@@ -3529,9 +3529,6 @@ a, .mdl-accordion, .mdl-button, .mdl-card, .mdl-checkbox, .mdl-dropdown-menu,
 .uf-minimize:before {
   content: "\e9da"; }
 
-.uf-globe:before {
-  content: "\e9db"; }
-
 /* FormGroup */
 /*  Navlayout  */
 .vertical-align {

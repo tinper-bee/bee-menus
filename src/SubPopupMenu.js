@@ -345,7 +345,7 @@ export class SubPopupMenu extends React.Component {
       domProps.id = props.id;
     }
     if (props.focusable) {
-      domProps.tabIndex = '0';
+      domProps.tabIndex = this.props.tabIndex;
       domProps.onKeyDown = this.onKeyDown;
     }
     const { prefixCls, eventKey, visible, level, mode, overflowedIndicator, theme } = props;

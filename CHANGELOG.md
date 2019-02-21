@@ -1,3 +1,8 @@
+<a name="1.0.11"></a>
+## [1.0.11](https://github.com/tinper-bee/bee-menus/compare/v2.0.1...v1.0.11) (2019-02-21)
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/tinper-bee/bee-menus/compare/v2.0.0...v2.0.1) (2019-02-20)
 

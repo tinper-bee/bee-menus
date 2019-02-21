@@ -118,7 +118,7 @@ var Menu = function (_React$Component) {
       { store: this.store },
       _react2["default"].createElement(
         _SubPopupMenu2["default"],
-        _extends({}, props, { tabIndex: '0', onFocus: this.focus, ref: function ref(c) {
+        _extends({}, props, { onFocus: this.focus, ref: function ref(c) {
             return _this2.innerMenu = c;
           } }),
         this.props.children
@@ -182,7 +182,8 @@ Menu.defaultProps = {
     null,
     '\xB7\xB7\xB7'
   ),
-  keyboard: false
+  keyboard: false,
+  tabIndex: '0'
 };
 
 var _initialiseProps = function _initialiseProps() {
