@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+/**
+* This source code is quoted from rc-menu.
+* homepage: https://github.com/react-component/menu
+*/
+import React from 'react';
 import PropTypes from 'prop-types';
-import Animate from 'bee-animate';
-import classnames from 'classnames';
-import createChainedFunction from 'tinper-bee-core/lib/createChainedFunction';
-import { getKeyFromChildrenIndex, loopMenuItem } from './util';
+import { connect } from 'mini-store';
+import { KeyCode } from 'tinper-bee-core';
+import createChainedFunction from 'rc-util/lib/createChainedFunction';
+import classNames from 'classnames';
+import { getKeyFromChildrenIndex, loopMenuItem, noop, menuAllProps } from './util';
 import DOMWrap from './DOMWrap';
 
 function allDisabled(arr) {
@@ -13,7 +18,22 @@ function allDisabled(arr) {
   return arr.every(c => !!c.props.disabled);
 }
 
-function getActiveKey(props, originalActiveKey) {
+function updateActiveKey(store, menuId, activeKey) {
+  const state = store.getState();
+  store.setState({
+    activeKey: {
+      ...state.activeKey,
+      [menuId]: activeKey,
+    },
+  });
+}
+
+function getEventKey(props) {
+  // when eventKey not available ,it's menu and return menu id '0-menu-'
+  return props.eventKey || '0-menu-';
+}
+
+export function getActiveKey(props, originalActiveKey) {
   let activeKey = originalActiveKey;
   const { children, eventKey } = props;
   if (activeKey) {
@@ -39,18 +59,21 @@ function getActiveKey(props, originalActiveKey) {
   return activeKey;
 }
 
-function saveRef(index, subIndex, c) {
+export function saveRef(c) {
   if (c) {
-    if (subIndex !== undefined) {
-      this.instanceArray[index] = this.instanceArray[index] || [];
-      this.instanceArray[index][subIndex] = c;
-    } else {
+    const index = this.instanceArray.indexOf(c);
+    if (index !== -1) {
+      // update component if it's already inside instanceArray
       this.instanceArray[index] = c;
+    } else {
+      // add component if it's not in instanceArray yet;
+      this.instanceArray.push(c);
     }
   }
 }
 
-const propTypes = {
+export class SubPopupMenu extends React.Component {
+  static propTypes = {
     onSelect: PropTypes.func,
     onClick: PropTypes.func,
     onDeselect: PropTypes.func,
@@ -58,247 +81,304 @@ const propTypes = {
     onDestroy: PropTypes.func,
     openTransitionName: PropTypes.string,
     openAnimation: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    openKeys: PropTypes.array,
-    closeSubMenuOnMouseLeave: PropTypes.bool,
+    openKeys: PropTypes.arrayOf(PropTypes.string),
     visible: PropTypes.bool,
-    children: PropTypes.any
-}
+    children: PropTypes.any,
+    parentMenu: PropTypes.object,
+    eventKey: PropTypes.string,
+    store: PropTypes.shape({
+      getState: PropTypes.func,
+      setState: PropTypes.func,
+    }),
 
-class SubPopupMenu extends Component{
+    // adding in refactor
+    focusable: PropTypes.bool,
+    multiple: PropTypes.bool,
+    style: PropTypes.object,
+    defaultActiveFirst: PropTypes.bool,
+    activeKey: PropTypes.string,
+    selectedKeys: PropTypes.arrayOf(PropTypes.string),
+    defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
+    defaultOpenKeys: PropTypes.arrayOf(PropTypes.string),
+    level: PropTypes.number,
+    mode: PropTypes.oneOf(['horizontal', 'vertical', 'vertical-left', 'vertical-right', 'inline']),
+    triggerSubMenuAction: PropTypes.oneOf(['click', 'hover']),
+    inlineIndent: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    manualRef: PropTypes.func,
+    itemIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+    expandIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  };
+
+  static defaultProps = {
+    prefixCls: 'rc-menu',
+    className: '',
+    mode: 'vertical',
+    level: 1,
+    inlineIndent: 24,
+    visible: true,
+    focusable: true,
+    style: {},
+    manualRef: noop,
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-        activeKey: getActiveKey(this.props, this.props.activeKey),
-    }
-    this.getOpenChangesOnItemHover = this.getOpenChangesOnItemHover.bind(this);
-    this.onDeselect = this.onDeselect.bind(this);
-    this.onClick = this.onClick.bind(this);
-    this.onOpenChange = this.onOpenChange.bind(this);
-    this.onDestroy = this.onDestroy.bind(this);
-    this.onSelect = this.onSelect.bind(this);
 
-    this.onItemHover = this.onItemHover.bind(this);
-    this.getOpenTransitionName = this.getOpenTransitionName.bind(this);
-    this.renderMenuItem = this.renderMenuItem.bind(this);
+    props.store.setState({
+      activeKey: {
+        ...props.store.getState().activeKey,
+        [props.eventKey]: getActiveKey(props, props.activeKey),
+      },
+    });
 
-    this.getFlatInstanceArray = this.getFlatInstanceArray.bind(this);
-    this.renderCommonMenuItem = this.renderCommonMenuItem.bind(this);
-    this.renderRoot = this.renderRoot.bind(this);
-
+    this.instanceArray = [];
   }
-  componentWillReceiveProps(nextProps) {
-    let props;
-    if ('activeKey' in nextProps) {
-      props = {
-        activeKey: getActiveKey(nextProps, nextProps.activeKey),
-      };
-    } else {
-      const originalActiveKey = this.state.activeKey;
-      const activeKey = getActiveKey(nextProps, originalActiveKey);
-      // fix: this.setState(), parent.render(),
-      if (activeKey !== originalActiveKey) {
-        props = {
-          activeKey,
-        };
-      }
-    }
-    if (props) {
-      this.setState(props);
+
+  componentDidMount() {
+    // invoke customized ref to expose component to mixin
+    if (this.props.manualRef) {
+      this.props.manualRef(this);
     }
   }
+
   shouldComponentUpdate(nextProps) {
     return this.props.visible || nextProps.visible;
   }
 
-  onDeselect(selectInfo) {
-    this.props.onDeselect(selectInfo);
-  }
-
-  onSelect(selectInfo) {
-    this.props.onSelect(selectInfo);
-  }
-
-  onClick(e) {
-    this.props.onClick(e);
-  }
-
-  onOpenChange(e) {
-    this.props.onOpenChange(e);
-  }
-
-  onDestroy(key) {
-    this.props.onDestroy(key);
-  }
-
-  onItemHover(e) {
-    let { openChanges = [] } = e;
-    openChanges = openChanges.concat(this.getOpenChangesOnItemHover(e));
-    if (openChanges.length) {
-      this.onOpenChange(openChanges);
-    }
-  }
-
-  getOpenTransitionName() {
-    return this.props.openTransitionName;
-  }
-
-  renderMenuItem(c, i, subIndex) {
+  componentDidUpdate(prevProps) {
     const props = this.props;
-    const extraProps = {
-      openKeys: props.openKeys,
-      selectedKeys: props.selectedKeys,
-      openSubMenuOnMouseEnter: true,
-    };
-    return this.renderCommonMenuItem(c, i, subIndex, extraProps);
-  }
-  getOpenChangesOnItemHover(e) {
-    const { mode } = this.props;
-    const { key, hover, trigger } = e;
-    const activeKey = this.state.activeKey;
-    if (!trigger || hover ||
-      this.props.closeSubMenuOnMouseLeave || !e.item.isSubMenu || mode === 'inline') {
-      this.setState({
-        activeKey: hover ? key : null,
-      });
-    } else {
-      // keep active for sub menu for click active
-      // empty
-    }
-    // clear last open status
-    if (hover && mode !== 'inline') {
-      const activeItem = this.getFlatInstanceArray().filter((c) => {
-        return c && c.props.eventKey === activeKey;
-      })[0];
-      if (activeItem && activeItem.isSubMenu && activeItem.props.eventKey !== key) {
-        return ({
-          item: activeItem,
-          originalEvent: e,
-          key: activeItem.props.eventKey,
-          open: false,
-        });
+    const originalActiveKey = 'activeKey' in props ? props.activeKey :
+      props.store.getState().activeKey[getEventKey(props)];
+    const activeKey = getActiveKey(props, originalActiveKey);
+    if (activeKey !== originalActiveKey) {
+      updateActiveKey(props.store, getEventKey(props), activeKey);
+    } else if ('activeKey' in prevProps) {
+      // If prev activeKey is not same as current activeKey,
+      // we should set it.
+      const prevActiveKey = getActiveKey(prevProps, prevProps.activeKey);
+      if (activeKey !== prevActiveKey) {
+        updateActiveKey(props.store, getEventKey(props), activeKey);
       }
     }
-    return [];
   }
-  renderCommonMenuItem(child, i, subIndex, extraProps) {
-    const state = this.state;
+
+  // all keyboard events callbacks run from here at first
+  onKeyDown = (e, callback) => {
+    const keyCode = e.keyCode;
+    let handled;
+    this.getFlatInstanceArray().forEach((obj) => {
+      if (obj && obj.props.active && obj.onKeyDown) {
+        handled = obj.onKeyDown(e);
+      }
+    });
+    if (handled) {
+      return 1;
+    }
+    let activeItem = null;
+      if (keyCode === KeyCode.UP || keyCode === KeyCode.DOWN) {
+        if(this.props.store.getState().keyboard){//是否启用键盘操作
+          activeItem = this.step(keyCode === KeyCode.UP ? -2 : 2)
+        }
+      }
+    
+    if (activeItem) {
+      e.preventDefault();
+      updateActiveKey(this.props.store, getEventKey(this.props), activeItem.props.eventKey);
+
+      if (typeof callback === 'function') {
+        callback(activeItem);
+      }
+
+      return 1;
+    }
+  };
+
+  onItemHover = (e) => {
+    const { key, hover } = e;
+    updateActiveKey(this.props.store, getEventKey(this.props), hover ? key : null);
+  };
+
+  onDeselect = (selectInfo) => {
+    this.props.onDeselect(selectInfo);
+  };
+
+  onSelect = (selectInfo) => {
+    this.props.onSelect(selectInfo);
+  };
+
+  onClick = (e) => {
+    this.props.onClick(e);
+  };
+
+  onOpenChange = (e) => {
+    this.props.onOpenChange(e);
+  };
+
+  onDestroy = (key) => {
+    /* istanbul ignore next */
+    this.props.onDestroy(key);
+  };
+
+  getFlatInstanceArray = () => {
+    return this.instanceArray;
+  };
+
+  getOpenTransitionName = () => {
+    return this.props.openTransitionName;
+  };
+
+  step = (direction) => {
+    let children = this.getFlatInstanceArray();
+    const activeKey = this.props.store.getState().activeKey[getEventKey(this.props)];
+    const len = children.length;
+    if (!len) {
+      return null;
+    }
+    if (direction < 0) {
+      children = children.concat().reverse();
+    }
+    // find current activeIndex
+    let activeIndex = -1;
+    children.every((c, ci) => {
+      if (c && c.props.eventKey === activeKey) {
+        activeIndex = ci;
+        return false;
+      }
+      return true;
+    });
+    if (
+      !this.props.defaultActiveFirst && activeIndex !== -1
+      &&
+      allDisabled(children.slice(activeIndex, len - 1))
+    ) {
+      return undefined;
+    }
+    const start = (activeIndex + 1) % len;
+    let i = start;
+
+    do {
+      const child = children[i];
+      if (!child || child.props.disabled) {
+        i = (i + 1) % len;
+      } else {
+        return child;
+      }
+    } while (i !== start);
+
+    return null;
+  };
+
+  renderCommonMenuItem = (child, i, extraProps) => {
+    const state = this.props.store.getState();
     const props = this.props;
     const key = getKeyFromChildrenIndex(child, props.eventKey, i);
     const childProps = child.props;
     const isActive = key === state.activeKey;
     const newChildProps = {
-      mode: props.mode,
+      mode: childProps.mode || props.mode,
       level: props.level,
       inlineIndent: props.inlineIndent,
       renderMenuItem: this.renderMenuItem,
       rootPrefixCls: props.prefixCls,
       index: i,
-      parentMenu: this,
-      ref: childProps.disabled ? undefined :
-        createChainedFunction(child.ref, saveRef.bind(this, i, subIndex)),
+      parentMenu: props.parentMenu,
+      // customized ref function, need to be invoked manually in child's componentDidMount
+      manualRef: childProps.disabled ? undefined :
+        createChainedFunction(child.ref, saveRef.bind(this)),
       eventKey: key,
-      closeSubMenuOnMouseLeave: props.closeSubMenuOnMouseLeave,
-      onItemHover: this.onItemHover,
       active: !childProps.disabled && isActive,
       multiple: props.multiple,
-      onClick: this.onClick,
+      onClick: (e) => {
+        (childProps.onClick || noop)(e);
+        this.onClick(e);
+      },
+      onItemHover: this.onItemHover,
       openTransitionName: this.getOpenTransitionName(),
       openAnimation: props.openAnimation,
+      subMenuOpenDelay: props.subMenuOpenDelay,
+      subMenuCloseDelay: props.subMenuCloseDelay,
+      forceSubMenuRender: props.forceSubMenuRender,
       onOpenChange: this.onOpenChange,
       onDeselect: this.onDeselect,
-      onDestroy: this.onDestroy,
       onSelect: this.onSelect,
-      ...extraProps,
+      builtinPlacements: props.builtinPlacements,
+      itemIcon: childProps.itemIcon || this.props.itemIcon,
+      expandIcon: childProps.expandIcon || this.props.expandIcon,
+      ...extraProps
     };
     if (props.mode === 'inline') {
-      newChildProps.closeSubMenuOnMouseLeave = newChildProps.openSubMenuOnMouseEnter = false;
+      newChildProps.triggerSubMenuAction = 'click';
     }
     return React.cloneElement(child, newChildProps);
-  }
-  getFlatInstanceArray() {
-    let instanceArray = this.instanceArray;
-    const hasInnerArray = instanceArray.some((a) => {
-      return Array.isArray(a);
-    });
-    if (hasInnerArray) {
-      instanceArray = [];
-      this.instanceArray.forEach((a) => {
-        if (Array.isArray(a)) {
-          instanceArray.push.apply(instanceArray, a);
-        } else {
-          instanceArray.push(a);
-        }
-      });
-      this.instanceArray = instanceArray;
+  };
+
+  renderMenuItem = (c, i, subMenuKey) => {
+    /* istanbul ignore if */
+    
+    if (!c) {
+      return null;
     }
-    return instanceArray;
-  }
-  renderRoot(props) {
-    this.instanceArray = [];
-    const classes = {
-      [props.prefixCls]: 1,
-      [`${props.prefixCls}-${props.mode}`]: 1,
-      [props.className]: !!props.className,
+    const state = this.props.store.getState();
+    const extraProps = {
+      openKeys: state.openKeys,
+      selectedKeys: state.selectedKeys,
+      triggerSubMenuAction: this.props.triggerSubMenuAction,
+      subMenuKey,
     };
+    return this.renderCommonMenuItem(c, i, extraProps);
+  };
+
+  render() {
+    const { ...props } = this.props;
+    this.instanceArray = [];
+    const className = classNames(
+      props.prefixCls,
+      props.className,
+      `${props.prefixCls}-${props.mode}`,
+    );
     const domProps = {
-      className: classnames(classes),
-      role: 'menu',
-      'aria-activedescendant': '',
+      className,
+      // role could be 'select' and by default set to menu
+      role: props.role || 'menu',
     };
     if (props.id) {
       domProps.id = props.id;
     }
     if (props.focusable) {
-      domProps.tabIndex = '0';
+      domProps.tabIndex = this.props.tabIndex;
       domProps.onKeyDown = this.onKeyDown;
     }
+    const { prefixCls, eventKey, visible, level, mode, overflowedIndicator, theme } = props;
+    menuAllProps.forEach(key => delete props[key]);
+
+    // Otherwise, the propagated click event will trigger another onClick
+    delete props.onClick;
+    delete props.keyboard;
+
     return (
       // ESLint is not smart enough to know that the type of `children` was checked.
       /* eslint-disable */
       <DOMWrap
-        style={props.style}
+        {...props}
+        prefixCls={prefixCls}
+        mode={mode}
         tag="ul"
-        hiddenClassName={`${props.prefixCls}-hidden`}
-        visible={props.visible}
+        level={level}
+        theme={theme}
+        hiddenClassName={`${prefixCls}-hidden`}
+        visible={visible}
+        overflowedIndicator={overflowedIndicator}
         {...domProps}
       >
-        {React.Children.map(props.children, this.renderMenuItem.bind(this))}
+        {React.Children.map(
+          props.children,
+          (c, i) => this.renderMenuItem(c, i, eventKey || '0-menu-'),
+        )}
       </DOMWrap>
       /*eslint-enable */
     );
   }
-  render() {
-    const renderFirst = this.renderFirst;
-    this.renderFirst = 1;
-    this.haveOpened = this.haveOpened || this.props.visible;
-    if (!this.haveOpened) {
-      return null;
-    }
-    let transitionAppear = true;
-    if (!renderFirst && this.props.visible) {
-      transitionAppear = false;
-    }
-    const props = { ...this.props };
-    props.className += ` ${props.prefixCls}-sub`;
-    const animProps = {};
-    if (props.openTransitionName) {
-      animProps.transitionName = props.openTransitionName;
-    } else if (typeof props.openAnimation === 'object') {
-      animProps.animation = { ...props.openAnimation };
-      if (!transitionAppear) {
-        delete animProps.animation.appear;
-      }
-    }
-    return (
-      <Animate
-        {...animProps}
-        showProp="visible"
-        component=""
-        transitionAppear={transitionAppear}
-      >
-        {this.renderRoot(props)}
-      </Animate>);
-  }
-};
-SubPopupMenu.propTypes = propTypes;
-export default SubPopupMenu;
+}
+const connected = connect()(SubPopupMenu);
+
+export default connected;

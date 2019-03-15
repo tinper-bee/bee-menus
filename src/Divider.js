@@ -1,17 +1,31 @@
-import React, { Component } from 'react';
+/**
+* This source code is quoted from rc-menu.
+* homepage: https://github.com/react-component/menu
+*/
+import React from 'react';
 import PropTypes from 'prop-types';
-const propTypes = {
+
+export default class Divider extends React.Component {
+  static propTypes = {
     className: PropTypes.string,
-    rootPrefixCls: PropTypes.string
-};
-class Divider extends Component{
+    rootPrefixCls: PropTypes.string,
+    style: PropTypes.object,
+  };
+
+  static defaultProps = {
+    // To fix keyboard UX.
+    disabled: true,
+    className: '',
+    style: {},
+  };
 
   render() {
-    const { className, rootPrefixCls } = this.props;
-    return <li className={`${className} ${rootPrefixCls}-item-divider`}/>;
+    const { className, rootPrefixCls, style } = this.props;
+    return (
+      <li
+        className={`${className} ${rootPrefixCls}-item-divider`}
+        style={style}
+      />
+    );
   }
-};
-
-Divider.propTypes = propTypes;
-
-export default Divider;
+}

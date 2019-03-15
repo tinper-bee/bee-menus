@@ -42,5 +42,9 @@ exports.MenuItemGroup = _MenuItemGroup2["default"];
 exports.ItemGroup = _MenuItemGroup2["default"];
 exports.Divider = _Divider2["default"];
 exports.SideContainer = _SideContainer2["default"];
-exports.MenuToggle = _MenuToggle2["default"];
+exports.MenuToggle = _MenuToggle2["default"]; /**
+                                           * This source code is quoted from rc-menu.
+                                           * homepage: https://github.com/react-component/menu
+                                           */
+
 exports["default"] = _Menu2["default"];

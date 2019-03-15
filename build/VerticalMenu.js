@@ -89,13 +89,13 @@ var Menu = function (_React$Component) {
     if (!openAnimation) {
       switch (this.props.mode) {
         case 'horizontal':
-          openAnimation = 'slide-up';
+          openAnimation = '';
           break;
         case 'vertical':
           // When mode switch from inline
           // submenu should hide without animation
           if (this.switchModeFromInline) {
-            openAnimation = '';
+            openAnimation = _openAnimation2["default"];
             this.switchModeFromInline = false;
           } else {
             openAnimation = 'zoom-big';

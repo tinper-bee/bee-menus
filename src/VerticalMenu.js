@@ -107,13 +107,13 @@ class Menu extends React.Component<MenuProps, any> {
     if (!openAnimation) {
       switch (this.props.mode) {
         case 'horizontal':
-          openAnimation = 'slide-up';
+          openAnimation = '';
           break;
         case 'vertical':
           // When mode switch from inline
           // submenu should hide without animation
           if (this.switchModeFromInline) {
-            openAnimation = '';
+            openAnimation = animation;
             this.switchModeFromInline = false;
           } else {
             openAnimation = 'zoom-big';

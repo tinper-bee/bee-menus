@@ -31,7 +31,10 @@ some description...
 |onSelect|被选中时调|	Function({ item, key, selectedKeys })|-|
 |onDeselect|取消选中时调用，仅在 multiple 生效|	Function({ item, key, selectedKeys })|-|
 |onClick|点击 menuitem 调用此函数，参数为 {item, key, keyPath}|	function|-|
-|style|根节点样式	|Object|-|	
+|style|根节点样式|Object|-|	
+|keyboard|是否使用键盘操作|bool|false|	
+|tabIndex|设置tabIndex|string|0|	
+|Children|MenuItem组件/SubMenu组件/MenuItemGroup组件|node|-|
 
 ## Menu.Item
 
@@ -51,8 +54,20 @@ some description...
 |onTitleClick|点击子菜单标题|Function({ eventKey, domEvent })|
 |disabled|是否禁用|Boolean|false|
 |key|item 的唯一标志|String|-|
+|Children|MenuItem组件/SubMenu组件/MenuItemGroup组件|node|-|
 
 
+## 已支持的键盘操作
+
+注意：目前支持两种写法，参考示例7和示例8
+
+|按键|功能|
+|:---|:----|
+|↑(上箭)|切换选项|
+|↓(下箭) |切换选项|
+|←(左箭) |关闭下级菜单|
+|→(右箭) |打开下级菜单|
+|enter | 选中|
 
 
 #### 开发调试
