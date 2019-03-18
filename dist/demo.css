@@ -244,7 +244,7 @@
   padding-left: 0;
   list-style: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  color: rgba(0, 0, 0, 0.65);
+  color: #212121;
   background: #fff;
   line-height: 0;
   transition: background 0.3s, width 0.2s;
@@ -271,7 +271,7 @@
   display: none; }
 
 .u-menu-item-group-title {
-  color: rgba(0, 0, 0, 0.45);
+  color: #909090;
   font-size: 14px;
   line-height: 1.5;
   padding: 8px 16px;
@@ -319,8 +319,7 @@
 .u-menu:not(.u-menu-inline) .u-menu-submenu-open,
 .u-menu-submenu-active,
 .u-menu-submenu-title:hover {
-  background-color: rgb(235, 236, 240);
-  color: rgb(245, 60, 50); }
+  background-color: rgb(235, 236, 240); }
 
 .u-menu-horizontal .u-menu-item,
 .u-menu-horizontal .u-menu-submenu {
@@ -486,7 +485,7 @@
 .u-menu-submenu-vertical-left > .u-menu-submenu-title:hover .u-menu-submenu-arrow:before,
 .u-menu-submenu-vertical-right > .u-menu-submenu-title:hover .u-menu-submenu-arrow:before,
 .u-menu-submenu-inline > .u-menu-submenu-title:hover .u-menu-submenu-arrow:before {
-  background: linear-gradient(to right, rgb(245, 60, 50), rgb(245, 60, 50)); }
+  background: linear-gradient(to right, #505F79, #505F79); }
 
 .u-menu-submenu-inline > .u-menu-submenu-title .u-menu-submenu-arrow:before {
   transform: rotate(-45deg) translateX(2px); }
@@ -542,9 +541,6 @@
 .u-menu-horizontal > .u-menu-item > a {
   display: block;
   color: rgba(0, 0, 0, 0.65); }
-
-.u-menu-horizontal > .u-menu-item > a:hover {
-  color: rgb(245, 60, 50); }
 
 .u-menu-horizontal > .u-menu-item > a:before {
   bottom: -2px; }
