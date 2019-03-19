@@ -7964,7 +7964,9 @@
 	        if (colorsMap[colors]) {
 	            clsObj[clsPrefix + '-' + colorsMap[colors]] = true;
 	        }
-	        //clsObj[`${clsPrefix}-border`] = bordered;
+	        if (bordered) {
+	            clsObj[clsPrefix + '-border'] = bordered;
+	        }
 	        var classes = (0, _classnames2["default"])(clsPrefix, clsObj);
 	        return _react2["default"].createElement(
 	            'button',
@@ -17940,7 +17942,7 @@
 	  value: true
 	});
 	
-	var _warning = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"warning\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _warning = __webpack_require__(32);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
