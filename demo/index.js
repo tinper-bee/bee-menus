@@ -1,77 +1,83 @@
-import {Col, Row} from 'bee-layout';
-import {Panel} from 'bee-panel';
-import Button from 'bee-button';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Con, Row, Col } from 'bee-layout';
+import { Panel } from 'bee-panel';
+import Drawer from 'bee-drawer';
+import Clipboard from 'bee-clipboard'; 
+import Button from '../src';
 
-
-const CARET = <i className="uf uf-arrow-down"></i>;
-
-const CARETUP = <i className="uf uf-arrow-up"></i>;
 
 
 var Demo1 = require("./demolist/Demo1");var Demo2 = require("./demolist/Demo2");var Demo3 = require("./demolist/Demo3");var Demo4 = require("./demolist/Demo4");var Demo6 = require("./demolist/Demo6");var Demo7 = require("./demolist/Demo7");var Demo8 = require("./demolist/Demo8");var DemoArray = [{"example":<Demo1 />,"title":" 横向Menu纯菜单导航","code":"/**\r\n * @title 横向Menu纯菜单导航\r\n * @description 更简洁，更方便\r\n */\r\n\r\nimport React, { Component } from 'react';\r\nimport { Menu } from 'tinper-bee';\r\n\r\nconst SubMenu = Menu.SubMenu;\r\nconst MenuItemGroup = Menu.ItemGroup;\r\n\r\n\r\nclass Demo1 extends Component {\r\n    constructor(props, context) {\r\n        super(props, context);\r\n        this.state = {\r\n            current: 'mail'\r\n        }\r\n    }\r\n\r\n    handleClick = (e) => {\r\n        this.setState({\r\n            current: e.key,\r\n        });\r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <Menu onClick={this.handleClick}\r\n                  selectedKeys={[this.state.current]}\r\n                  mode=\"horizontal\"\r\n                >\r\n                <Menu.Item key=\"mail\" attribute={{'type': 'mail'}}>\r\n                    组织 1\r\n                </Menu.Item>\r\n                <Menu.Item key=\"app\" disabled>\r\n                    组织 2\r\n                </Menu.Item>\r\n                <SubMenu title={<span>组织 1 - 子</span>}>\r\n                    <MenuItemGroup title=\"组 1\">\r\n                        <Menu.Item key=\"setting:1\">选项 1</Menu.Item>\r\n                        <Menu.Item key=\"setting:2\">选项 2</Menu.Item>\r\n                    </MenuItemGroup>\r\n                    <MenuItemGroup title=\"组 2\">\r\n                        <Menu.Item key=\"setting:3\">选项 3</Menu.Item>\r\n                        <Menu.Item key=\"setting:4\">选项 4</Menu.Item>\r\n                    </MenuItemGroup>\r\n                </SubMenu>\r\n            </Menu>\r\n        )\r\n    }\r\n}\r\n\r\n","desc":" 更简洁，更方便"},{"example":<Demo2 />,"title":" 竖向Menu基础样式","code":"/**\r\n * @title 竖向Menu基础样式\r\n * @description 子菜单竖向显示，可折叠。\r\n */\r\n\r\nimport React, { Component } from 'react';\r\nimport { Menu } from 'tinper-bee';\r\n\r\nconst SubMenu = Menu.SubMenu;\r\nconst MenuItemGroup = Menu.ItemGroup;\r\n\r\n\r\nclass Demo2 extends Component {\r\n    constructor(props, context) {\r\n        super(props, context);\r\n        this.state = {\r\n            current: 1\r\n        }\r\n    }\r\n\r\n    handleClick = (e) => {\r\n\r\n        this.setState({\r\n            current: e.key,\r\n        });\r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <Menu theme=\"dark\" tabIndex='5' onClick={this.handleClick} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode=\"inline\">\r\n                <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\r\n                    <MenuItemGroup title=\"组 1\">\r\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\r\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\r\n                    </MenuItemGroup>\r\n                    <MenuItemGroup title=\"组 2\">\r\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\r\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\r\n                    </MenuItemGroup>\r\n                </SubMenu>\r\n                <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\r\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\r\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\r\n                    <SubMenu key=\"demo3sub3\" title=\"子项\">\r\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\r\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\r\n                    </SubMenu>\r\n                </SubMenu>\r\n                <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\r\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\r\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\r\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\r\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\r\n                </SubMenu>\r\n            </Menu>\r\n        )\r\n    }\r\n}\r\n\r\n","desc":" 子菜单竖向显示，可折叠。"},{"example":<Demo3 />,"title":" 竖向手风琴Menu","code":"/**\r\n * @title 竖向手风琴Menu\r\n * @description 菜单展开是手风琴形式。\r\n */\r\n\r\n\r\nimport React, { Component } from 'react';\r\nimport { Menu } from 'tinper-bee';\r\n\r\nconst SubMenu = Menu.SubMenu;\r\n\r\n\r\nclass Demo3 extends Component {\r\n    constructor(props, context) {\r\n        super(props, context);\r\n        this.state = {\r\n            current: '1',\r\n            openKeys: []\r\n        }\r\n    }\r\n    handleClick = (e) => {\r\n        console.log('Clicked: ', e);\r\n        this.setState({current: e.key});\r\n    }\r\n    onOpenChange = (openKeys) => {\r\n        const state = this.state;\r\n\r\n        const latestOpenKey = this.myfilter(openKeys,state.openKeys);\r\n        const latestCloseKey = this.myfilter(state.openKeys,openKeys);\r\n\r\n        let nextOpenKeys = [];\r\n        if (latestOpenKey) {\r\n            nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);\r\n        }\r\n        if (latestCloseKey) {\r\n            nextOpenKeys = this.getAncestorKeys(latestCloseKey);\r\n        }\r\n        this.setState({openKeys: nextOpenKeys});\r\n    }\r\n\r\n    //IE下 array.find（）方法不可用\r\n    myfilter = (arr1,arr2) => {\r\n        if(arr2.length === 0 || !arr2) {\r\n            return arr1[0];\r\n        }\r\n\r\n        for(var i=0;i<arr1.length;i++)\r\n        {\r\n          if(arr2.indexOf(arr1[i].toString()) === -1)\r\n          {\r\n                return arr1[i];\r\n          }      \r\n        }\r\n        return false;\r\n    }\r\n\r\n    getAncestorKeys = (key) => {\r\n        const map = {\r\n            sub3: ['sub2'],\r\n        };\r\n        return map[key] || [];\r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <Menu\r\n                mode=\"inline\"\r\n                openKeys={this.state.openKeys}\r\n                selectedKeys={[this.state.current]}\r\n                style={{ width: 240 }}\r\n                onOpenChange={this.onOpenChange}\r\n                onClick={this.handleClick}>\r\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\r\n                    <Menu.Item key=\"1\">选项 1</Menu.Item>\r\n                    <Menu.Item key=\"2\">选项 2</Menu.Item>\r\n                    <Menu.Item key=\"3\">选项 3</Menu.Item>\r\n                    <Menu.Item key=\"4\">选项 4</Menu.Item>\r\n                </SubMenu>\r\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\r\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\r\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\r\n                    <SubMenu key=\"sub3\" title=\"子项\">\r\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\r\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\r\n                    </SubMenu>\r\n                </SubMenu>\r\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\r\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\r\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\r\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\r\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\r\n                </SubMenu>\r\n            </Menu>\r\n        )\r\n    }\r\n}\r\n\r\n","desc":" 菜单展开是手风琴形式。"},{"example":<Demo4 />,"title":" 子菜单呼出形式Menu","code":"/**\r\n * @title 子菜单呼出形式Menu\r\n * @description 子菜单在右侧呼出形式显示。\r\n */\r\n\r\nimport React, { Component } from 'react';\r\nimport { Menu } from 'tinper-bee';\r\n\r\nconst SubMenu = Menu.SubMenu;\r\nconst MenuItemGroup = Menu.ItemGroup;\r\n\r\n\r\n\r\nclass Demo4 extends Component {\r\n\r\n    handleClick = (e) => {\r\n        console.log('click', e);\r\n    }\r\n    render() {\r\n        return (\r\n            <Menu onClick={this.handleClick} style={{ width: 240 }} mode=\"vertical\">\r\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\r\n                    <MenuItemGroup title=\"Item 1\">\r\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\r\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\r\n                    </MenuItemGroup>\r\n                    <MenuItemGroup title=\"Iteom 2\">\r\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\r\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\r\n                    </MenuItemGroup>\r\n                </SubMenu>\r\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\r\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\r\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\r\n                    <SubMenu key=\"sub3\" title=\"Submenu\">\r\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\r\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\r\n                    </SubMenu>\r\n                </SubMenu>\r\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\r\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\r\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\r\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\r\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\r\n                </SubMenu>\r\n            </Menu>\r\n        )\r\n    }\r\n}\r\n\r\n","desc":" 子菜单在右侧呼出形式显示。"},{"example":<Demo6 />,"title":" 基础下拉菜单","code":"/**\r\n * @title 基础下拉菜单\r\n * @description 如何获取选中对象自定义对象和数据\r\n *\r\n */\r\nimport React, { Component } from 'react';\r\nimport { Menu } from 'tinper-bee';\r\n\r\nconst SubMenu = Menu.SubMenu;\r\nconst MenuItemGroup = Menu.ItemGroup;\r\n\r\nclass Demo6 extends Component {\r\n    constructor(props, context) {\r\n        super(props, context);\r\n        this.state = {\r\n            current: 1\r\n        }\r\n    }\r\n\r\n    handleClick = (e) => {\r\n\r\n        this.setState({\r\n            current: e.key,\r\n        });\r\n    }\r\n    \r\n    /**\r\n     * 获取当前选中行的item对象。\r\n     * @param {*} value \r\n     */\r\n    onSelect({item,key,selectedKeys}){ \r\n        console.log(`${key} selected`); //获取key\r\n        let currentObject = {};\r\n        currentObject.value = item.props.children; //获取选中对象的数据\r\n        currentObject.key = item.props.eventKey;\r\n        console.log(currentObject); \r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <Menu theme=\"dark\" onClick={this.handleClick} style={{ width: 240 }} defaultOpenKeys={['demo3sub1']} selectedKeys={[this.state.current]} mode=\"inline\" onSelect={this.onSelect.bind(this)}>\r\n                <SubMenu key=\"demo3sub1\" title={<span><span>组织 1</span></span>}>\r\n                    <MenuItemGroup title=\"组 1\">\r\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\r\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\r\n                    </MenuItemGroup>\r\n                    <MenuItemGroup title=\"组 2\">\r\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\r\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\r\n                    </MenuItemGroup>\r\n                </SubMenu>\r\n                <SubMenu key=\"demo3sub2\" title={<span><span>组织 2</span></span>}>\r\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\r\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\r\n                    <SubMenu key=\"demo3sub3\" title=\"子项\">\r\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\r\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\r\n                    </SubMenu>\r\n                </SubMenu>\r\n                <SubMenu key=\"demo3sub4\" title={<span><span>组织 3</span></span>}>\r\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\r\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\r\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\r\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\r\n                </SubMenu>\r\n            </Menu>\r\n        )\r\n    }\r\n}\r\n\r\n","desc":" 如何获取选中对象自定义对象和数据"},{"example":<Demo7 />,"title":" 键盘操作示例一：子菜单在右侧呼出形式显示","code":"/**\r\n * @title 键盘操作示例一：子菜单在右侧呼出形式显示\r\n * @description 子菜单在右侧呼出形式显示。\r\n */\r\n\r\nimport React, { Component } from 'react';\r\n\nimport { Menu, FormControl } from 'tinper-bee';\r\n\r\nconst SubMenu = Menu.SubMenu;\r\nconst MenuItemGroup = Menu.ItemGroup;\r\n\r\n\r\n\r\nclass Demo4 extends Component {\r\n\r\n    handleClick = (e) => {\r\n        console.log('click', e);\r\n    }\r\n    render() {\r\n        return (\r\n            <div>\r\n                <FormControl style={{'width':'240px','marginBottom':'10px'}} placeholder=\"我是为了获得焦点\"/>\r\n                <Menu onClick={this.handleClick} keyboard={true} style={{ width: 240 }} mode=\"vertical\">\r\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\r\n                    <MenuItemGroup title=\"Item 1\">\r\n                        <Menu.Item key=\"1\">选项 1</Menu.Item>\r\n                        <Menu.Item key=\"2\">选项 2</Menu.Item>\r\n                    </MenuItemGroup>\r\n                    <MenuItemGroup title=\"Iteom 2\">\r\n                        <Menu.Item key=\"3\">选项 3</Menu.Item>\r\n                        <Menu.Item key=\"4\">选项 4</Menu.Item>\r\n                    </MenuItemGroup>\r\n                </SubMenu>\r\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\r\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\r\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\r\n                    <SubMenu key=\"sub3\" title=\"Submenu\">\r\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\r\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\r\n                    </SubMenu>\r\n                </SubMenu>\r\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\r\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\r\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\r\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\r\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\r\n                </SubMenu>\r\n            </Menu>\r\n            </div>\r\n            \r\n        )\r\n    }\r\n}\r\n\r\n","desc":" 子菜单在右侧呼出形式显示。"},{"example":<Demo8 />,"title":" 键盘操作示例二：竖向手风琴Menu","code":"/**\r\n * @title 键盘操作示例二：竖向手风琴Menu\r\n * @description 菜单展开是手风琴形式。\r\n */\r\n\r\n\r\nimport React, { Component } from 'react';\r\n\nimport { Menu, FormControl } from 'tinper-bee';\r\n\r\nconst SubMenu = Menu.SubMenu;\r\n\r\n\r\nclass Demo3 extends Component {\r\n    constructor(props, context) {\r\n        super(props, context);\r\n        this.state = {\r\n            current: '1',\r\n            openKeys: []\r\n        }\r\n    }\r\n    handleClick = (e) => {\r\n        console.log('Clicked: ', e);\r\n        this.setState({current: e.key});\r\n    }\r\n    onOpenChange = (openKeys) => {\r\n        const state = this.state;\r\n\r\n        const latestOpenKey = this.myfilter(openKeys,state.openKeys);\r\n        const latestCloseKey = this.myfilter(state.openKeys,openKeys);\r\n\r\n        let nextOpenKeys = [];\r\n        if (latestOpenKey) {\r\n            nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);\r\n        }\r\n        if (latestCloseKey) {\r\n            nextOpenKeys = this.getAncestorKeys(latestCloseKey);\r\n        }\r\n        this.setState({openKeys: nextOpenKeys});\r\n    }\r\n\r\n    //IE下 array.find（）方法不可用\r\n    myfilter = (arr1,arr2) => {\r\n        if(arr2.length === 0 || !arr2) {\r\n            return arr1[0];\r\n        }\r\n\r\n        for(var i=0;i<arr1.length;i++)\r\n        {\r\n          if(arr2.indexOf(arr1[i].toString()) === -1)\r\n          {\r\n                return arr1[i];\r\n          }      \r\n        }\r\n        return false;\r\n    }\r\n\r\n    getAncestorKeys = (key) => {\r\n        const map = {\r\n            sub3: ['sub2'],\r\n        };\r\n        return map[key] || [];\r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <div>\r\n                <FormControl style={{'width':'240px','marginBottom':'10px'}} placeholder=\"我是为了获得焦点\"/>\r\n                <Menu\r\n                mode=\"inline\" keyboard={true}\r\n                openKeys={this.state.openKeys}\r\n                selectedKeys={[this.state.current]}\r\n                style={{ width: 240 }}\r\n                onOpenChange={this.onOpenChange}\r\n                onClick={this.handleClick}>\r\n                <SubMenu key=\"sub1\" title={<span><span>组织 1</span></span>}>\r\n                    <Menu.Item key=\"1\">选项 1</Menu.Item>\r\n                    <Menu.Item key=\"2\">选项 2</Menu.Item>\r\n                    <Menu.Item key=\"3\">选项 3</Menu.Item>\r\n                    <Menu.Item key=\"4\">选项 4</Menu.Item>\r\n                </SubMenu>\r\n                <SubMenu key=\"sub2\" title={<span><span>组织 2</span></span>}>\r\n                    <Menu.Item key=\"5\">选项 5</Menu.Item>\r\n                    <Menu.Item key=\"6\">选项 6</Menu.Item>\r\n                    <SubMenu key=\"sub3\" title=\"子项\">\r\n                        <Menu.Item key=\"7\">选项 7</Menu.Item>\r\n                        <Menu.Item key=\"8\">选项 8</Menu.Item>\r\n                    </SubMenu>\r\n                </SubMenu>\r\n                <SubMenu key=\"sub4\" title={<span><span>组织 3</span></span>}>\r\n                    <Menu.Item key=\"9\">选项 9</Menu.Item>\r\n                    <Menu.Item key=\"10\">选项 10</Menu.Item>\r\n                    <Menu.Item key=\"11\">选项 11</Menu.Item>\r\n                    <Menu.Item key=\"12\">选项 12</Menu.Item>\r\n                </SubMenu>\r\n            </Menu>\r\n            </div>\r\n            \r\n        )\r\n    }\r\n}\r\n\r\n","desc":" 菜单展开是手风琴形式。"}]
 
 
 class Demo extends Component {
-    constructor(props) {
+    constructor(props){
         super(props);
         this.state = {
             open: false
         }
-        this.handleClick = this.handleClick.bind(this);
+    }
+    handleClick=()=> {
+        this.setState({ open: !this.state.open })
+    }
+    fCloseDrawer=()=>{
+        this.setState({
+            open: false
+        })
     }
 
-    handleClick() {
-        this.setState({open: !this.state.open})
-    }
-
-    render() {
-        const {title, example, code, desc, scss_code} = this.props;
-        let caret = this.state.open ? CARETUP : CARET;
-        let text = this.state.open ? "隐藏代码" : "查看代码";
+    render () {
+        const { title, example, code, desc, scss_code  } = this.props;
 
         const header = (
             <div>
-                {example}
-                <Button style={{"marginTop": "10px"}} shape="block" onClick={this.handleClick}>
-                    {caret}
-                    {text}
-                </Button>
+                <p className='component-title'>{ title }</p>
+                <p>{ desc }</p>
+                <span className='component-code' onClick={this.handleClick}> 查看源码 <i className='uf uf-arrow-right'/> </span>
             </div>
         );
         return (
-            <Col md={12}>
-                <h3>{title}</h3>
-                <p>{desc}</p>
-                <Panel collapsible headerContent expanded={this.state.open} colors='bordered' header={header}
-                       footerStyle={{padding: 0}}>
-                    <pre><code className="hljs javascript">{code}</code></pre>
-                    {!!scss_code ? <pre><code className="hljs css">{scss_code}</code></pre> : null}
-                </Panel>
-            </Col>
-        )
+            <Col md={12} id={title.trim()} className='component-demo'>
+            <Panel header={header}>
+                {example}
+            </Panel>
+           
+            <Drawer className='component-drawerc' title={title} show={this.state.open} placement='right' onClose={this.fCloseDrawer}>
+            <div className='component-code-copy'> JS代码 
+                <Clipboard action="copy" text={code}/>
+            </div>
+            <pre className="pre-js">
+                <code className="hljs javascript">{ code }</code>
+            </pre >
+            {!!scss_code ?<div className='component-code-copy copy-css'> SCSS代码 
+                <Clipboard action="copy" text={scss_code}/>
+            </div>:null }
+                { !!scss_code ? <pre className="pre-css">
+                 <code className="hljs css">{ scss_code }</code>
+                 </pre> : null }
+            </Drawer>
+        </Col>
+    )
     }
 }
 
 class DemoGroup extends Component {
-    constructor(props) {
+    constructor(props){
         super(props)
     }
-
-    render() {
+    render () {
         return (
             <Row>
-                {DemoArray.map((child, index) => {
+            {DemoArray.map((child,index) => {
 
-                    return (
-                        <Demo example={child.example} title={child.title} code={child.code} scss_code={child.scss_code}
-                              desc={child.desc} key={index}/>
-                    )
+                return (
+            <Demo example= {child.example} title= {child.title} code= {child.code} scss_code= {child.scss_code} desc= {child.desc} key= {index}/>
+    )
 
-                })}
-            </Row>
-        )
+    })}
+    </Row>
+    )
     }
 }
 
