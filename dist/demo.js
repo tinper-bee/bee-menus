@@ -17502,7 +17502,7 @@
 	    }
 	    if (props.focusable) {
 	      domProps.tabIndex = this.props.tabIndex;
-	      domProps.onKeyDown = this.onKeyDown;
+	      domProps.onKeyDown = props.keyboard && this.onKeyDown;
 	    }
 	    var prefixCls = props.prefixCls,
 	        eventKey = props.eventKey,
@@ -17598,6 +17598,7 @@
 	  var _this3 = this;
 	
 	  this.onKeyDown = function (e, callback) {
+	    console.log('========onKeyDown========');
 	    var keyCode = e.keyCode;
 	    var handled = void 0;
 	    _this3.getFlatInstanceArray().forEach(function (obj) {
