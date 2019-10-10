@@ -65,6 +65,7 @@ export class MenuItem extends React.Component {
 
   componentWillUnmount() {
     const props = this.props;
+    ReactDOM.findDOMNode(this).removeEventListener('DNDclick', this.onClick);
     if (props.onDestroy) {
       props.onDestroy(props.eventKey);
     }
