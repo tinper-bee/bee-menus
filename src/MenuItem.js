@@ -51,6 +51,7 @@ export class MenuItem extends React.Component {
   componentDidMount() {
     // invoke customized ref to expose component to mixin
     this.callRef();
+    ReactDOM.findDOMNode(this).addEventListener('DNDclick', this.onClick);
   }
 
   componentDidUpdate() {

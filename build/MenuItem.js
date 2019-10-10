@@ -132,6 +132,7 @@ var MenuItem = exports.MenuItem = function (_React$Component) {
   MenuItem.prototype.componentDidMount = function componentDidMount() {
     // invoke customized ref to expose component to mixin
     this.callRef();
+    _reactDom2["default"].findDOMNode(this).addEventListener('DNDclick', this.onClick);
   };
 
   MenuItem.prototype.componentDidUpdate = function componentDidUpdate() {
